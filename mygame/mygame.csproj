@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{50917A58-9ADC-AC49-4704-5E8C7894E166}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>5.6.5f1</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_5;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_5;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>Assets/Plugins/DOTween/DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>Assets/Plugins/DOTween/DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets/Plugins/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets/Plugins/DOTween/DOTween50.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\Base\IClear.cs" />
+    <Compile Include="Assets\Scripts\Base\IDisposable.cs" />
+    <Compile Include="Assets\Scripts\Base\IInitialize.cs" />
+    <Compile Include="Assets\Scripts\Base\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\GameApp.cs" />
+    <Compile Include="Assets\Scripts\Modules\IModules.cs" />
+    <Compile Include="Assets\Scripts\Modules\ModulesMgr.cs" />
+    <Compile Include="Assets\Scripts\Modules\ModulesType.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\DataBinding\BindableProperty.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\DataBinding\ObservableList.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\DataBinding\PropertyBinder.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\DataBinding\ViewModelBase.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\DataBinding\ViewModelBaseExtensions.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Factory\FactoryType.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Factory\IObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Factory\PoolObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Factory\SingletonObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Factory\TransientObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\HexConverter.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\HttpMethod.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\HttpUtility.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\ISerializer.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\MD5Helper.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\RepositoryKey.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\Response.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\SQLite.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\SerializerJson.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\SerializerXml.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\TokenHelper.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Infrastructure\TypeFinder.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Inject\ServiceLocator.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\ConsoleContentWriter.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\ConsoleLogStrategy.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\DatabaseContentWriter.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\DatabaseLogStrategy.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\FileContentWriter.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\FileLogStrategy.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\IContentWriter.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\LogFactory.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Log\LogStrategy.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Message\MessageAggregator.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Message\MessageArgs.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Network\HttpClient.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Network\HttpRequest.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Network\HttpResponse.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Network\HttpTool.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Proxy\IInvocationHandler.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Proxy\LogInvocationHandler.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Proxy\Proxy.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\DbRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\FileSystemRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\IRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\MemoryRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\PlayerPrefsRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\RemoteRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Repository\UnityResourcesRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Thread\DispatcherTest.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Thread\ThreadJob.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Thread\ThreadJobTest.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\Thread\UnityDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\View\IView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Core\View\UnityGuiView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Infrastructure\ClanInstall.cs" />
+    <Compile Include="Assets\Scripts\Sources\Infrastructure\FaceBoxInstall.cs" />
+    <Compile Include="Assets\Scripts\Sources\Infrastructure\GlobalSettings.cs" />
+    <Compile Include="Assets\Scripts\Sources\Infrastructure\Install.cs" />
+    <Compile Include="Assets\Scripts\Sources\Models\Badge.cs" />
+    <Compile Include="Assets\Scripts\Sources\Models\Combatant.cs" />
+    <Compile Include="Assets\Scripts\Sources\Models\FaceBox.cs" />
+    <Compile Include="Assets\Scripts\Sources\Models\Identity.cs" />
+    <Compile Include="Assets\Scripts\Sources\Models\User.cs" />
+    <Compile Include="Assets\Scripts\Sources\Repositories\IUnitRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Repositories\IUserRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Repositories\UnitRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\Repositories\UserRepository.cs" />
+    <Compile Include="Assets\Scripts\Sources\ViewModels\BadgeViewModel.cs" />
+    <Compile Include="Assets\Scripts\Sources\ViewModels\ClanViewModel.cs" />
+    <Compile Include="Assets\Scripts\Sources\ViewModels\FaceBoxViewModel.cs" />
+    <Compile Include="Assets\Scripts\Sources\ViewModels\SetupViewModel.cs" />
+    <Compile Include="Assets\Scripts\Sources\ViewModels\TestViewModel.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\BadgeView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\ClanView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\FaceBoxView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\LogMultiStrategyTest.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\NetworkView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\SetupView.cs" />
+    <Compile Include="Assets\Scripts\Sources\Views\TestView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\DOTween\DOTween.XML" />
+    <None Include="Assets\Plugins\DOTween\DOTween43.xml" />
+    <None Include="Assets\Plugins\DOTween\DOTween46.xml" />
+    <None Include="Assets\Plugins\DOTween\DOTween50.xml" />
+    <None Include="Assets\Plugins\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\Plugins\DOTween\readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>
