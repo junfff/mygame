@@ -16,6 +16,18 @@ namespace uMVVM.Sources.ViewModels
         public readonly BindableProperty<float> SuccessRate=new BindableProperty<float>(); 
         public readonly BindableProperty<State> State=new BindableProperty<State>();
 
+        public override void OnStartReveal()
+        {
+            base.OnStartReveal();
+        }
+        public override void OnStartHide()
+        {
+            base.OnStartHide();
+        }
+
+
+
+
 
         public void JoininCurrentTeam()
         {

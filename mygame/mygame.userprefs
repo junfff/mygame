@@ -1,0 +1,25 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Modules\ModulesCollection.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameApp.cs" Line="16" Column="1" />
+      <File FileName="Assets\Scripts\Base\MonoSingleton.cs" Line="40" Column="25" />
+      <File FileName="Assets\Scripts\Modules\ModulesCollection.cs" Line="13" Column="57" />
+      <File FileName="Assets\Scripts\Modules\IModulesCollection.cs" Line="3" Column="22" />
+      <File FileName="Assets\Scripts\Modules\ICoreModules.cs" Line="7" Column="2" />
+      <File FileName="Assets\Scripts\Base\ICoreUtil.cs" Line="9" Column="28" />
+      <File FileName="Assets\Scripts\Modules\Scene\Scene.cs" Line="7" Column="27" />
+      <File FileName="Assets\Scripts\Modules\Scene\LoginScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Modules\Scene\GameScene.cs" Line="6" Column="43" />
+      <File FileName="Assets\Scripts\GameUtil\CoreUtil.cs" Line="6" Column="5" />
+      <File FileName="Assets\Scripts\Modules\Scene\ISceneModules.cs" Line="4" Column="41" />
+      <File FileName="Assets\Scripts\Modules\ModuleFactory.cs" Line="15" Column="41" />
+      <File FileName="Assets\Scripts\Modules\IModules.cs" Line="3" Column="89" />
+      <File FileName="Assets\Scripts\GameUtil\ICore.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

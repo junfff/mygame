@@ -1,7 +1,13 @@
-﻿public enum ModulesType
+﻿namespace Modules
 {
-    NONE,
-    UI,
-    SCENE,
-
+    public enum ModulesType
+    {
+        NONE,
+        UI,
+        SCENE,
+        NET,
+        ANNIMATOR,
+        EFFECT,
+        LOG,
+    }
 }

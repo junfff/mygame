@@ -1,6 +1,8 @@
-﻿
-public interface IModules
+﻿namespace Modules
 {
+	public interface IModules : IInitialize, IDisposable, IUpdate, ILateUpdate,ICoreModules
+    {
+        ModulesType moduleType { get; }
 
-
+    }
 }

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Sources.Core.DataBinding;
+﻿using Assets.Sources.Core.DataBinding;
 using DG.Tweening;
+using GameUI;
+using System;
 using UnityEngine;
 
 namespace uMVVM.Sources.Infrastructure
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class UnityGuiView<T>:MonoBehaviour,IView<T> where T:ViewModelBase
+    public abstract class UnityGuiView<T> : MonoBehaviour, IView<T> where T : ViewModelBase
     {
         private bool _isInitialized;
         public bool destroyOnHide;
-        protected readonly PropertyBinder<T> Binder=new PropertyBinder<T>();
+        protected readonly PropertyBinder<T> Binder = new PropertyBinder<T>();
         public readonly BindableProperty<T> ViewModelProperty = new BindableProperty<T>();
         /// <summary>
         /// 显示之后的回掉函数
@@ -41,7 +39,7 @@ namespace uMVVM.Sources.Infrastructure
 
         public void Reveal(bool immediate = false, Action action = null)
         {
-            if (action!=null)
+            if (action != null)
             {
                 RevealedAction += action;
             }
@@ -52,7 +50,7 @@ namespace uMVVM.Sources.Infrastructure
 
         public void Hide(bool immediate = false, Action action = null)
         {
-            if (action!=null)
+            if (action != null)
             {
                 HiddenAction += action;
             }
@@ -102,12 +100,12 @@ namespace uMVVM.Sources.Infrastructure
         {
             BindingContext.OnFinishReveal();
             //回掉函数
-            if (RevealedAction!=null)
+            if (RevealedAction != null)
             {
                 RevealedAction();
             }
         }
-      
+
         private void OnHide(bool immediate)
         {
             BindingContext.OnStartHide();
@@ -128,7 +126,7 @@ namespace uMVVM.Sources.Infrastructure
         public virtual void OnHidden()
         {
             //回掉函数
-            if (HiddenAction!=null)
+            if (HiddenAction != null)
             {
                 HiddenAction();
             }
@@ -152,6 +150,9 @@ namespace uMVVM.Sources.Infrastructure
         /// </summary>
         public virtual void OnDestroy()
         {
+            if (null == BindingContext)
+                return;
+
             if (BindingContext.IsRevealed)
             {
                 Hide(true);
@@ -197,5 +198,7 @@ namespace uMVVM.Sources.Infrastructure
             Binder.Unbind(oldValue);
             Binder.Bind(newValue);
         }
+
+
     }
 }

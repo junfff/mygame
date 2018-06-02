@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Sources.ViewModels;
+﻿using Assets.Sources.ViewModels;
 using Assets.Sources.Views;
+using GameUI;
 using uMVVM.Sources.ViewModels;
-using uMVVM.Sources.Views;
 using UnityEngine;
 
 
@@ -22,10 +18,10 @@ namespace uMVVM.Sources
             setupView.BindingContext=new SetupViewModel();
             testView.BindingContext=new TestViewModel();
             //以动画模式缓慢显示
-            setupView.Reveal(false, () =>
-            {
-                Debug.Log("测试");
-            });
+            //setupView.Reveal(false, () =>
+            //{
+            //    Debug.Log("测试");
+            //});
             //立刻显示
             testView.Reveal(true);
         }

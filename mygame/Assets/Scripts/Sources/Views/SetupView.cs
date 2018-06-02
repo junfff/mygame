@@ -1,12 +1,10 @@
-﻿
-using uMVVM.Sources.Infrastructure;
-using uMVVM.Sources.Models;
+﻿using uMVVM.Sources.Models;
 using uMVVM.Sources.ViewModels;
 using UnityEngine.UI;
 
-namespace uMVVM.Sources.Views
+namespace GameUI
 {
-    public class SetupView:UnityGuiView<SetupViewModel>
+    public class SetupView : BaseView<SetupViewModel>
     {
 
         public InputField nameInputField;
@@ -26,14 +24,22 @@ namespace uMVVM.Sources.Views
         public Button waitButton;
         public SetupViewModel ViewModel { get { return (SetupViewModel)BindingContext; } }
 
-        protected override void OnInitialize()
+
+        public override void OnEnter()
         {
-            base.OnInitialize();
+            base.OnEnter();
+
+            //Debug.LogErrorFormat("SetupView Enter!");
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
             Binder.Add<string>("Name", OnNamePropertyValueChanged);
-            Binder.Add<string>("Job",OnJobPropertyValueChanged);
-            Binder.Add<int>("ATK",OnATKPropertyValueChanged);
-            Binder.Add<float>("SuccessRate",OnSuccessRatePropertyValueChanged);
-            Binder.Add<State>("State",OnStatePropertyValueChanged);
+            Binder.Add<string>("Job", OnJobPropertyValueChanged);
+            Binder.Add<int>("ATK", OnATKPropertyValueChanged);
+            Binder.Add<float>("SuccessRate", OnSuccessRatePropertyValueChanged);
+            Binder.Add<State>("State", OnStatePropertyValueChanged);
 
         }
 
@@ -85,7 +91,7 @@ namespace uMVVM.Sources.Views
         public void iptATK_ValueChanged()
         {
             int result;
-            if (int.TryParse(atkInputField.text,out result))
+            if (int.TryParse(atkInputField.text, out result))
             {
                 ViewModel.ATK.Value = int.Parse(atkInputField.text);
             }
@@ -116,6 +122,10 @@ namespace uMVVM.Sources.Views
         public void JoinInClan()
         {
             ViewModel.JoininClan();
+        }
+        public void OnExit()
+        {
+            base.Core.UI.BackPage();
         }
     }
 }

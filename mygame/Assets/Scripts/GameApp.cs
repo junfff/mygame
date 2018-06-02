@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Modules;
 using UnityEngine;
-
 public class GameApp : MonoSingleton<GameApp>
 {
-
-    private ModulesMgr modulesMgr;
-
+    //在游戏启动时，会自动调用添加了该属性的方法。
+    [RuntimeInitializeOnLoadMethod]
+    static void OnRuntimeMethodLoad()
+    {
+        Debug.Log("Game loaded and is running");
+    }
+    private ModulesCollection modulesMgr;
+    private float elapseTime;
     protected override void Init()
     {
         print("GameApp Init");
-        modulesMgr = new ModulesMgr();
-
+        modulesMgr = new ModulesCollection();
         modulesMgr.Initialize();
-
     }
 
     protected override void DisInit()
@@ -22,7 +23,20 @@ public class GameApp : MonoSingleton<GameApp>
         modulesMgr.Dispose();
     }
 
+    void Update()
+    {
+        //print("Update");
+        elapseTime = Time.deltaTime;
 
+        modulesMgr.OnUpdate(elapseTime);
+    }
+
+    void LateUpdate()
+    {
+        //print("LateUpdate");
+
+        modulesMgr.OnLateUpdate(elapseTime);
+    }
 
 
 
@@ -51,15 +65,7 @@ public class GameApp : MonoSingleton<GameApp>
     //    print("FixedUpdate");
     //}
 
-    //void Update()
-    //{
-    //    print("Update");
-    //}
 
-    //void LateUpdate()
-    //{
-    //    print("LateUpdate");
-    //}
 
     //void OnGUI()
     //{

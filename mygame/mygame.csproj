@@ -74,14 +74,14 @@
     <Reference Include="UnityEngine.VR">
       <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets/Plugins/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween43">
       <HintPath>Assets/Plugins/DOTween/DOTween43.dll</HintPath>
     </Reference>
     <Reference Include="DOTween46">
       <HintPath>Assets/Plugins/DOTween/DOTween46.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>Assets/Plugins/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="DOTween50">
       <HintPath>Assets/Plugins/DOTween/DOTween50.dll</HintPath>
@@ -91,14 +91,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Base\BitMaskAttribute.cs" />
     <Compile Include="Assets\Scripts\Base\IClear.cs" />
+    <Compile Include="Assets\Scripts\Base\ICoreUtil.cs" />
     <Compile Include="Assets\Scripts\Base\IDisposable.cs" />
     <Compile Include="Assets\Scripts\Base\IInitialize.cs" />
+    <Compile Include="Assets\Scripts\Base\ILateUpdate.cs" />
+    <Compile Include="Assets\Scripts\Base\IUpdate.cs" />
     <Compile Include="Assets\Scripts\Base\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\Extensions\DictionaryExtension.cs" />
+    <Compile Include="Assets\Scripts\Extensions\TransformExtension.cs" />
     <Compile Include="Assets\Scripts\GameApp.cs" />
+    <Compile Include="Assets\Scripts\GameUI\IBaseView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\MonoUI.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIDefine.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIStyle.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIType.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIView\BaseView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIView\LoginView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIView\MainMenuView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\ViewFactory.cs" />
+    <Compile Include="Assets\Scripts\GameUtil\CoreUtil.cs" />
+    <Compile Include="Assets\Scripts\GameUtil\ICore.cs" />
+    <Compile Include="Assets\Scripts\GameUtil\IUIUtil.cs" />
+    <Compile Include="Assets\Scripts\GameUtil\SceneUIProxy.cs" />
+    <Compile Include="Assets\Scripts\Modules\BaseModule.cs" />
+    <Compile Include="Assets\Scripts\Modules\ICoreModules.cs" />
     <Compile Include="Assets\Scripts\Modules\IModules.cs" />
-    <Compile Include="Assets\Scripts\Modules\ModulesMgr.cs" />
+    <Compile Include="Assets\Scripts\Modules\IModulesCollection.cs" />
+    <Compile Include="Assets\Scripts\Modules\Map.cs" />
+    <Compile Include="Assets\Scripts\Modules\ModulesCollection.cs" />
     <Compile Include="Assets\Scripts\Modules\ModulesType.cs" />
+    <Compile Include="Assets\Scripts\Modules\ResModules\AssetHelper.cs" />
+    <Compile Include="Assets\Scripts\Modules\ResModules\IResModule.cs" />
+    <Compile Include="Assets\Scripts\Modules\ResModules\ResourcesModule.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\BaseScene.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\IMap.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\IScene.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\ISceneModules.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\LoginScene.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\SceneFactory.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\SceneModules.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\SceneStep.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\SceneType.cs" />
+    <Compile Include="Assets\Scripts\SceneUIUtil.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\DataBinding\BindableProperty.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\DataBinding\ObservableList.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\DataBinding\PropertyBinder.cs" />
