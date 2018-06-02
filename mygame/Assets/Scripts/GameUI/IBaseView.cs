@@ -5,7 +5,7 @@ namespace GameUI
     public interface IBaseView : ICore, IInitialize, IDisposable
     {
         UIType ViewType { get; set; }
-        MonoUI monoUI { get; set; }
+        IMonoUI monoUI { get; set; }
         void OnEnter();
         void OnExit();
         void OnPause();

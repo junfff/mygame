@@ -1,6 +1,8 @@
 ﻿using Assets.Sources.Core.DataBinding;
 using GameUtil;
 using uMVVM.Sources.Infrastructure;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace GameUI
 {
@@ -8,7 +10,9 @@ namespace GameUI
     {
         public UIType ViewType { get; set; }
         public ICoreUtil Core { get; set; }
-        public MonoUI monoUI { get; set; }
+        public IMonoUI monoUI { get; set; }
+
+        private AutoBinding[] arrayBind;
         public virtual void Dispose()
         {
             if (null != BindingContext)
@@ -19,21 +23,25 @@ namespace GameUI
             }
 
         }
+
         public virtual void Initialize()
         {
             //无所ViewModel的Value怎样变化，只对OnValueChanged事件监听(绑定)一次
             ViewModelProperty.OnValueChanged += OnBindingContextChanged;
             monoUI.Initialize();
+            arrayBind = monoUI.GetAutoBinding();
         }
 
         public virtual void OnEnter()
         {
+            OnAutoBinding();
             BindingContext.OnStartReveal();
 
             monoUI.OnEnter();
 
             BindingContext.OnFinishReveal();
         }
+
 
         public virtual void OnExit()
         {
@@ -51,7 +59,54 @@ namespace GameUI
         {
             monoUI.OnResume();
         }
+        public void AddButton(string name, UnityAction action)
+        {
+            AutoBinding abind = GetBindBy(name);
+            if (null != abind)
+            {
+                Button btn = abind.GetComponent<Button>();
+                if (null != btn)
+                {
+                    btn.onClick.AddListener(action);
+                    abind.cacheObj = btn;
+                }
+            }
+        }
+        public void RemoveButton(string name, UnityAction action)
+        {
+            AutoBinding abind = GetBindBy(name);
+            if (null != abind && (abind.cacheObj is Button))
+            {
+                Button btn = abind.cacheObj as Button;
+                btn.onClick.RemoveListener(action);
+            }
+        }
+        private AutoBinding GetBindBy(string name)
+        {
+            for (int i = 0; i < arrayBind.Length; i++)
+            {
+                AutoBinding abind = arrayBind[i];
+                if (abind.name == name)
+                {
+                    return abind;
+                }
+            }
+            return null;
+        }
 
+        private void OnAutoBinding()
+        {
+            for (int i = 0; i < arrayBind.Length; i++)
+            {
+                AutoBinding abind = arrayBind[i];
+
+            }
+            //Binder.Add<string>("Name", OnNamePropertyValueChanged);
+            //Binder.Add<string>("Job", OnJobPropertyValueChanged);
+            //Binder.Add<int>("ATK", OnATKPropertyValueChanged);
+            //Binder.Add<float>("SuccessRate", OnSuccessRatePropertyValueChanged);
+            //Binder.Add<State>("State", OnStatePropertyValueChanged);
+        }
 
         //*****************************
 

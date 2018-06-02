@@ -70,7 +70,7 @@
             go.transform.SetParent(CoreModules.seneUnity.uiRoot, false);
             go.name = uiType.Name;
 
-            MonoUI monoUI = go.GetComponent<MonoUI>();
+            IMonoUI monoUI = go.GetComponent<MonoUI>();
             if (null == view)
             {
                 Debug.LogErrorFormat("view null error!!");
@@ -156,7 +156,7 @@
 
         private bool IsNew(IBaseView nextView)
         {
-            return (nextView.monoUI.style & UIStyle.NEW) > 0;
+            return (nextView.monoUI.uiStyle & UIStyle.NEW) > 0;
         }
 
         public void Pop()

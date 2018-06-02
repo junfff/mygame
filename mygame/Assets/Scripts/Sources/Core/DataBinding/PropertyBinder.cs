@@ -14,6 +14,7 @@ namespace Assets.Sources.Core.DataBinding
         private delegate void UnBindHandler(T viewmodel);
 
         private readonly List<BindHandler> _binders=new List<BindHandler>();
+
         private readonly List<UnBindHandler> _unbinders=new List<UnBindHandler>();
         
         public void Add<TProperty>(string name,BindableProperty<TProperty>.ValueChangedHandler valueChangedHandler )

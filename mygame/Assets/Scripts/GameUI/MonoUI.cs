@@ -4,10 +4,11 @@
 
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(CanvasGroup))]
-    public class MonoUI : MonoBehaviour
+    public class MonoUI : MonoBehaviour, IMonoUI
     {
         [BitMask(typeof(UIStyle))]
         public UIStyle style = 0;
+        public UIStyle uiStyle { get { return style; } }
 
         protected Animator _animator;
         public virtual void Initialize()
@@ -33,5 +34,11 @@
         {
             _animator.SetTrigger("OnResume");
         }
+
+        public AutoBinding[] GetAutoBinding()
+        {
+            return this.transform.GetComponentsInChildren<AutoBinding>();
+        }
+
     }
 }
