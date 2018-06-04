@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Sources.Core.Message;
-using Assets.Sources.Infrastructure;
-using uMVVM.Sources.Infrastructure;
-using UnityEngine;
+﻿using uMVVM.Sources.Infrastructure;
 
 namespace Assets.Sources.ViewModels
 {
@@ -15,12 +8,12 @@ namespace Assets.Sources.ViewModels
 
         public TestViewModel()
         {
-            MessageAggregator<object>.Instance.Subscribe("Toggle",ToggleHandler);
+            //MessageAggregator<object>.Instance.Subscribe("Toggle",ToggleHandler);//TODO
         }
 
-        private void ToggleHandler(object sender, MessageArgs<object> args)
-        {
-            Color.Value = (string) args.Item;
-        }
+        //private void ToggleHandler(object sender, MessageArgs<object> args)
+        //{
+        //    Color.Value = (string) args.Item;
+        //}
     }
 }

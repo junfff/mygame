@@ -101,20 +101,38 @@
     <Compile Include="Assets\Scripts\Base\ILateUpdate.cs" />
     <Compile Include="Assets\Scripts\Base\IUpdate.cs" />
     <Compile Include="Assets\Scripts\Base\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\Extensions\DictBindingExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\DictionaryExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\TransformExtension.cs" />
     <Compile Include="Assets\Scripts\GameApp.cs" />
+    <Compile Include="Assets\Scripts\GameBusiness\BaseBusiness.cs" />
+    <Compile Include="Assets\Scripts\GameBusiness\Lobby\LobbyMainBusiness.cs" />
+    <Compile Include="Assets\Scripts\GameUI\ViewModels\LobbyMainViewModel.cs" />
+    <Compile Include="Assets\Scripts\Modules\BusinessModule\BusinessCollection.cs" />
+    <Compile Include="Assets\Scripts\GameBusiness\Login\LoginBusiness.cs" />
+    <Compile Include="Assets\Scripts\Modules\BusinessModule\BusinessModules.cs" />
+    <Compile Include="Assets\Scripts\GameBusiness\IBusiness.cs" />
+    <Compile Include="Assets\Scripts\Modules\BusinessModule\IBusinessCollection.cs" />
+    <Compile Include="Assets\Scripts\Modules\BusinessModule\WeightType.cs" />
+    <Compile Include="Assets\Scripts\Modules\BusinessModule\IBusinessModule.cs" />
+    <Compile Include="Assets\Scripts\GameEvent\MessageAggregator.cs" />
+    <Compile Include="Assets\Scripts\GameEvent\MessageDefine.cs" />
     <Compile Include="Assets\Scripts\GameUI\AutoBinding.cs" />
+    <Compile Include="Assets\Scripts\GameUI\BaseView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\DictBinding.cs" />
     <Compile Include="Assets\Scripts\GameUI\IBaseView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\IDictBinding.cs" />
     <Compile Include="Assets\Scripts\GameUI\IMonoUI.cs" />
+    <Compile Include="Assets\Scripts\GameUI\IViewModelBase.cs" />
     <Compile Include="Assets\Scripts\GameUI\MonoUI.cs" />
     <Compile Include="Assets\Scripts\GameUI\UIDefine.cs" />
+    <Compile Include="Assets\Scripts\GameUI\UIHelper.cs" />
     <Compile Include="Assets\Scripts\GameUI\UIStyle.cs" />
     <Compile Include="Assets\Scripts\GameUI\UIType.cs" />
-    <Compile Include="Assets\Scripts\GameUI\UIView\BaseView.cs" />
-    <Compile Include="Assets\Scripts\GameUI\UIView\LoginView.cs" />
-    <Compile Include="Assets\Scripts\GameUI\UIView\MainMenuView.cs" />
     <Compile Include="Assets\Scripts\GameUI\ViewFactory.cs" />
+    <Compile Include="Assets\Scripts\GameUI\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Assets\Scripts\GameUI\Views\LoginView.cs" />
+    <Compile Include="Assets\Scripts\GameUI\Views\MainMenuView.cs" />
     <Compile Include="Assets\Scripts\GameUtil\CoreUtil.cs" />
     <Compile Include="Assets\Scripts\GameUtil\ICore.cs" />
     <Compile Include="Assets\Scripts\GameUtil\IUIUtil.cs" />
@@ -133,6 +151,7 @@
     <Compile Include="Assets\Scripts\Modules\Scene\IMap.cs" />
     <Compile Include="Assets\Scripts\Modules\Scene\IScene.cs" />
     <Compile Include="Assets\Scripts\Modules\Scene\ISceneModules.cs" />
+    <Compile Include="Assets\Scripts\Modules\Scene\LobbyScene.cs" />
     <Compile Include="Assets\Scripts\Modules\Scene\LoginScene.cs" />
     <Compile Include="Assets\Scripts\Modules\Scene\SceneFactory.cs" />
     <Compile Include="Assets\Scripts\Modules\Scene\SceneModules.cs" />
@@ -172,8 +191,6 @@
     <Compile Include="Assets\Scripts\Sources\Core\Log\IContentWriter.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\Log\LogFactory.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\Log\LogStrategy.cs" />
-    <Compile Include="Assets\Scripts\Sources\Core\Message\MessageAggregator.cs" />
-    <Compile Include="Assets\Scripts\Sources\Core\Message\MessageArgs.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\Network\HttpClient.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\Network\HttpRequest.cs" />
     <Compile Include="Assets\Scripts\Sources\Core\Network\HttpResponse.cs" />
@@ -228,6 +245,7 @@
     <None Include="Assets\Plugins\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Plugins\DOTween\readme.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

@@ -9,5 +9,7 @@
         ANNIMATOR,
         EFFECT,
         LOG,
+        RES,
+        BUSINESS,
     }
 }

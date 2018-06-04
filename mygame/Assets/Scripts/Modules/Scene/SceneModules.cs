@@ -8,7 +8,7 @@
     {
         private List<IScene> listScene;
         private List<IScene> listRemove;
-
+        public IScene curScene { get; private set; }
         public override ModulesType moduleType { get { return ModulesType.SCENE; } }
 
         public override void Initialize()
@@ -35,17 +35,28 @@
 
         public int RunScene(SceneType type)
         {
+            StopScene(curScene);
+
             IScene scene = SceneFactory.Create(type);
             scene.CoreModules = this.CoreModules;
             scene.sceneStep = SceneStep.NONE;
+            scene.DoneCallBack = OnSceneDone;
             scene.OnNextStep();
-
             listScene.Add(scene);
+
             return 0;
+        }
+        public void OnSceneDone(IScene scene)
+        {
+            curScene = scene;
         }
         public int StopScene(SceneType type)
         {
             IScene scene = GetScene(type);
+            return StopScene(scene);
+        }
+        public int StopScene(IScene scene)
+        {
             if (null == scene)
             {
                 return -1;
@@ -59,7 +70,6 @@
 
             return 0;
         }
-
 
 
         public IScene GetScene(SceneType type)

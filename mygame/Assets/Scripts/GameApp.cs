@@ -15,11 +15,15 @@ public class GameApp : MonoSingleton<GameApp>
         print("GameApp Init");
         modulesMgr = new ModulesCollection();
         modulesMgr.Initialize();
+        modulesMgr.OnLoad();
+        modulesMgr.OnStart();
     }
 
     protected override void DisInit()
     {
         print("GameApp DisInit");
+        modulesMgr.OnUnLoad();
+        modulesMgr.OnEnd();
         modulesMgr.Dispose();
     }
 

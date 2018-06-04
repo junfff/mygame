@@ -15,7 +15,7 @@ namespace uMVVM.Sources
         void Start()
         {
             //绑定上下文
-            setupView.BindingContext=new SetupViewModel();
+            //setupView.BindingContext=new SetupViewModel();TODO
             testView.BindingContext=new TestViewModel();
             //以动画模式缓慢显示
             //setupView.Reveal(false, () =>

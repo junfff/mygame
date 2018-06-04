@@ -9,6 +9,8 @@
             {
                 case SceneType.Login:
                     return new LoginScene();
+                case SceneType.Lobby:
+                    return new LobbyScene();
             }
 
             return null;

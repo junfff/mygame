@@ -1,8 +1,4 @@
-﻿
-using System;
-using Assets.Sources.Core.Message;
-using Assets.Sources.Infrastructure;
-using uMVVM.Sources.Infrastructure;
+﻿using uMVVM.Sources.Infrastructure;
 using uMVVM.Sources.Models;
 using Debug = UnityEngine.Debug;
 
@@ -31,14 +27,14 @@ namespace uMVVM.Sources.ViewModels
 
         public void JoininCurrentTeam()
         {
-            MessageAggregator<object>.Instance.Publish("Toggle", this,new MessageArgs<object>("Red"));
+            //MessageAggregator<object>.Instance.Publish("Toggle", this,new MessageArgs<object>("Red"));//TODO
                                                
             Debug.Log(Name.Value + "加入当前Team，职业："+Job.Value+",攻击力："+ATK.Value+"成功率："+SuccessRate.Value);
         }
 
         public void JoininClan()
         {
-            MessageAggregator<object>.Instance.Publish("Toggle", this, new MessageArgs<object>("Yellow"));
+            //MessageAggregator<object>.Instance.Publish("Toggle", this, new MessageArgs<object>("Yellow"));
             Debug.Log(Name.Value + "加入当前Clan，职业：" + Job.Value + ",攻击力：" + ATK.Value + "成功率：" + SuccessRate.Value);
         }
     }

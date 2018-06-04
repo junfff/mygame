@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace uMVVM.Sources.Infrastructure
+﻿namespace uMVVM.Sources.Infrastructure
 {
-    public class ViewModelBase
+    using System;
+    using GameEvent;
+    using GameUI;
+
+    public class ViewModelBase : IViewModelBase
     {
-        private bool _isInitialized;
+        public MessageAggregator messageAggregator { get; private set; }
         public ViewModelBase ParentViewModel { get; set; }
         public bool IsRevealed { get; private set; }
         public bool IsRevealInProgress { get; private set; }
-        public bool IsHideInProgress { get; private set ; }
+        public bool IsHideInProgress { get; private set; }
 
-        protected virtual void OnInitialize()
+        public virtual void Initialize()
         {
-            
+            messageAggregator = new MessageAggregator();
         }
 
+        public virtual void Dispose()
+        {
+            messageAggregator.Dispose();
+        }
         public virtual void OnStartReveal()
         {
             IsRevealInProgress = true;
-            //在开始显示的时候进行初始化操作
-            if (!_isInitialized)
-            {
-                OnInitialize();
-                _isInitialized = true;
-            }
         }
 
         public virtual void OnFinishReveal()
@@ -34,6 +31,8 @@ namespace uMVVM.Sources.Infrastructure
             IsRevealInProgress = false;
             IsRevealed = true;
         }
+
+ 
 
         public virtual void OnStartHide()
         {
@@ -47,10 +46,6 @@ namespace uMVVM.Sources.Infrastructure
             IsRevealed = false;
         }
 
-        public virtual void OnDestory()
-        {
-            
-        }
 
     }
 }

@@ -1,11 +1,16 @@
-﻿using GameUI;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-namespace Modules.Scene
+﻿namespace Modules.Scene
 {
+    using GameBusiness;
+    using GameUI;
+
     public class LoginScene : BaseScene
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            base.AddBusiness<LoginBusiness>();
+        }
+
         public override SceneType sceneType
         {
             get
@@ -16,11 +21,8 @@ namespace Modules.Scene
         public override void OnStart()
         {
             base.OnStart();
-
-
-            base.coreUtil.UI.Show(UIDefine.LoginView);
         }
 
-      
+
     }
 }

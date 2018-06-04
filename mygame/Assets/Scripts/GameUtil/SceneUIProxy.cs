@@ -57,7 +57,7 @@
 
             IBaseView view = ViewFactory.CreateView(panelId);
 
-            UIType uiType = view.ViewType;
+            UIType uiType = ViewFactory.GetViewType(panelId);
             if (null == uiType)
             {
                 Debug.LogErrorFormat("path null error!!");
@@ -75,8 +75,11 @@
             {
                 Debug.LogErrorFormat("view null error!!");
             }
+
             view.Core = this.Core;
+            view.CoreModules = this.CoreModules;
             view.monoUI = monoUI;
+            view.ViewType = uiType;
             view.Initialize();
             _UIDict.AddOrReplace(uiType.panelId, view);
 
@@ -131,7 +134,7 @@
         public int contextMgrCount { get { return _contextStack.Count; } }
         private Stack<IBaseView> _contextStack = new Stack<IBaseView>();
 
-    
+
 
         public void Push(int panelId)
         {
@@ -185,6 +188,6 @@
             return null;
         }
 
- 
+
     }
 }

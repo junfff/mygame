@@ -1,5 +1,6 @@
 ﻿namespace Modules
 {
+    using GameBusiness;
     using Modules.Scene;
     /// <summary>
     /// 核心模块集
@@ -9,5 +10,6 @@
         SceneUIUtil seneUnity { get; }
         ISceneModules sceneMDL { get; }
         IResModule resMDL { get; }
+        IBusinessModule busMDL { get; }
     }
 }
