@@ -128,6 +128,18 @@
     <Reference Include="DOTweenEditor">
       <HintPath>Assets/Plugins/DOTween/Editor/DOTweenEditor.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets/Plugins/x86_64/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>Assets/Plugins/x86_64/DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>Assets/Plugins/x86_64/DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets/Plugins/x86_64/DOTween50.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="mygame.csproj">
@@ -137,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ILRuntime\Adapters\Editor\ILRuntimeCLRBinding.cs" />
+    <Compile Include="Assets\Scripts\Examples\08_MonoBehaviour\Editor\MonoBehaviourAdapterEditor.cs" />
     <Compile Include="Assets\Scripts\GameUI\Editor\BitMaskAttributeDrawer.cs" />
     <Compile Include="Assets\Scripts\GameUI\Editor\MonoUIEditor.cs" />
   </ItemGroup>
@@ -147,6 +160,11 @@
     <None Include="Assets\Plugins\DOTween\DOTween50.xml" />
     <None Include="Assets\Plugins\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Plugins\DOTween\readme.txt" />
+    <None Include="Assets\StreamingAssets\DOTween.xml" />
+    <None Include="Assets\StreamingAssets\DOTween43.xml" />
+    <None Include="Assets\StreamingAssets\DOTween46.xml" />
+    <None Include="Assets\StreamingAssets\DOTween50.xml" />
+    <None Include="Assets\StreamingAssets\UnityEngine.UI.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

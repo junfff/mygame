@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
+using ILRuntime.Runtime;
 using ILRuntime.Runtime.Stack;
 using ILRuntime.Other;
 using ILRuntime.Runtime.Enviorment;
@@ -687,6 +687,12 @@ namespace ILRuntime.Runtime.Intepreter
                 if(ret->ObjectType>= ObjectTypes.Object)
                 {
                     retObj = mStack[ret->Value];
+                    if(retObj == null)
+                    {
+                        retSObj.ObjectType = ObjectTypes.Null;
+                        retSObj.Value = -1;
+                        retSObj.ValueLow = 0;
+                    }
                 }
                 intp.Free(ret);
             }
@@ -792,6 +798,8 @@ namespace ILRuntime.Runtime.Intepreter
             StringBuilder sb = new StringBuilder();
             sb.Append("Cannot find Delegate Adapter for:");
             sb.Append(method.ToString());
+            string clsName, rName;
+            bool isByRef;
             if (method.ReturnType.Name != "Void" || method.ParameterCount > 0)
             {
                 sb.AppendLine(", Please add following code:");
@@ -808,10 +816,11 @@ namespace ILRuntime.Runtime.Intepreter
                         else
                         {
                             sb.Append(", ");
-                        }                        
-                        sb.Append(i.TypeForCLR.FullName);
+                        }
+                        i.TypeForCLR.GetClassName(out clsName, out rName, out isByRef);
+                        sb.Append(rName);                        
                     }
-                    sb.AppendLine(">");
+                    sb.AppendLine(">();");
                 }
                 else
                 {
@@ -827,12 +836,14 @@ namespace ILRuntime.Runtime.Intepreter
                         {
                             sb.Append(", ");
                         }
-                        sb.Append(i.TypeForCLR.FullName);
+                        i.TypeForCLR.GetClassName(out clsName, out rName, out isByRef);
+                        sb.Append(rName);
                     }
                     if (!first)
                         sb.Append(", ");
-                    sb.Append(method.ReturnType.TypeForCLR.FullName);
-                    sb.AppendLine(">");
+                    method.ReturnType.TypeForCLR.GetClassName(out clsName, out rName, out isByRef);
+                    sb.Append(rName);
+                    sb.AppendLine(">();");
                 }
             }
             throw new KeyNotFoundException(sb.ToString());

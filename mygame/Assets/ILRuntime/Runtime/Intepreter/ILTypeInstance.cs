@@ -209,7 +209,7 @@ namespace ILRuntime.Runtime.Intepreter
                         {
                             if (value.GetType().IsPrimitive)
                             {
-                                ILIntepreter.UnboxObject(esp, value);
+                                ILIntepreter.UnboxObject(esp, value, managedObjs, type.AppDomain);
                             }
                             else
                             {
@@ -280,6 +280,44 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
+        internal unsafe void CopyValueTypeToStack(StackObject* ptr, IList<object> mStack)
+        {
+            ptr->ObjectType = ObjectTypes.ValueTypeDescriptor;
+            ptr->Value = type.GetHashCode();
+            ptr->ValueLow = type.TotalFieldCount;
+            for(int i = 0; i < fields.Length; i++)
+            {
+                var val = ILIntepreter.Minus(ptr, i + 1);
+                switch (val->ObjectType)
+                {
+                    case ObjectTypes.Object:
+                    case ObjectTypes.FieldReference:
+                    case ObjectTypes.ArrayReference:
+                        mStack[val->Value] = ILIntepreter.CheckAndCloneValueType(managedObjs[i], type.AppDomain);
+                        val->ValueLow = fields[i].ValueLow;
+                        break;
+                    case ObjectTypes.ValueTypeObjectReference:
+                        {
+                            var obj = managedObjs[i];
+                            var dst = *(StackObject**)&val->Value;
+                            var vt = type.AppDomain.GetType(dst->Value);
+                            if (vt is ILType)
+                            {
+                                ((ILTypeInstance)obj).CopyValueTypeToStack(dst, mStack);
+                            }
+                            else
+                            {
+                                ((CLRType)vt).ValueTypeBinder.CopyValueTypeToStack(obj, dst, mStack);
+                            }
+                        }
+                        break;
+                    default:
+                        *val = fields[i];
+                        break;
+                }                
+            }
+        }
+
         internal void Clear()
         {   
             InitializeFields(type);
@@ -302,23 +340,62 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
+        internal unsafe void AssignFromStack(StackObject* esp, Enviorment.AppDomain appdomain, IList<object> managedStack)
+        {
+            StackObject* val = *(StackObject**)&esp->Value;
+            int cnt = val->ValueLow;
+            for (int i = 0; i < cnt; i++)
+            {
+                var addr = ILIntepreter.Minus(val, i + 1);
+                AssignFromStack(i, addr, type.AppDomain, managedStack);
+            }
+        }
+
         unsafe void AssignFromStackSub(ref StackObject field, int fieldIdx, StackObject* esp, IList<object> managedStack)
         {
             esp = ILIntepreter.GetObjectAndResolveReference(esp);
             field = *esp;
-            if (field.ObjectType >= ObjectTypes.Object)
+            switch (field.ObjectType)
             {
-                field.Value = fieldIdx;
-                managedObjs[fieldIdx] = ILIntepreter.CheckAndCloneValueType(managedStack[esp->Value], Type.AppDomain);
+                case ObjectTypes.Object:
+                case ObjectTypes.ArrayReference:
+                case ObjectTypes.FieldReference:
+                    field.Value = fieldIdx;
+                    managedObjs[fieldIdx] = ILIntepreter.CheckAndCloneValueType(managedStack[esp->Value], Type.AppDomain);
+                    break;
+                case ObjectTypes.ValueTypeObjectReference:
+                    {
+                        var domain = type.AppDomain;
+                        field.ObjectType = ObjectTypes.Object;
+                        field.Value = fieldIdx;
+                        var dst = *(StackObject**)&esp->Value;
+                        var vt = domain.GetType(dst->Value);
+                        if(vt is ILType)
+                        {
+                            var ins = managedObjs[fieldIdx];
+                            if (ins == null)
+                                throw new NullReferenceException();
+                            ILTypeInstance child = (ILTypeInstance)ins;
+                            child.AssignFromStack(esp, domain, managedStack);
+                        }
+                        else
+                        {
+                            managedObjs[fieldIdx] = ((CLRType)vt).ValueTypeBinder.ToObject(dst, managedStack);
+                        }
+                        
+                    }
+                    break;
+                default:
+                    if (managedObjs != null)
+                        managedObjs[fieldIdx] = null;
+                    break;
             }
-            else if (managedObjs != null)
-                managedObjs[fieldIdx] = null;
         }
 
+       
         public override string ToString()
         {
-            IMethod m = type.AppDomain.ObjectType.GetMethod("ToString", 0);
-            m = type.GetVirtualMethod(m);
+            var m = type.ToStringMethod;
             if (m != null)
             {
                 if (m is ILMethod)
@@ -333,6 +410,66 @@ namespace ILRuntime.Runtime.Intepreter
                 return type.FullName;
         }
 
+        public override bool Equals(object obj)
+        {
+            var m = type.EqualsMethod;
+            if (m != null)
+            {
+                using (var ctx = type.AppDomain.BeginInvoke(m))
+                {
+                    ctx.PushObject(this);
+                    ctx.PushObject(obj);
+                    ctx.Invoke();
+                    return ctx.ReadBool();
+                }
+            }
+            else
+            {
+                if (this is ILEnumTypeInstance)
+                {
+                    if (obj is ILEnumTypeInstance)
+                    {
+                        ILEnumTypeInstance enum1 = (ILEnumTypeInstance)this;
+                        ILEnumTypeInstance enum2 = (ILEnumTypeInstance)obj;
+                        if (enum1.type == enum2.type)
+                        {
+                            var res = enum1.fields[0] == enum2.fields[0];
+                            return res;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return base.Equals(obj);
+                }
+                else
+                    return base.Equals(obj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            var m = type.GetHashCodeMethod;
+            if (m != null)
+            {
+                using (var ctx = type.AppDomain.BeginInvoke(m))
+                {
+                    ctx.PushObject(this);
+                    ctx.Invoke();
+                    return ctx.ReadInteger();
+                }
+            }
+            else
+            {
+                if (this is ILEnumTypeInstance)
+                {
+                    return ((ILEnumTypeInstance)this).fields[0].Value.GetHashCode();
+                }
+                else
+                    return base.GetHashCode();
+            }
+        }
+
         public bool CanAssignTo(IType type)
         {
             return this.type.CanAssignTo(type);
@@ -344,15 +481,7 @@ namespace ILRuntime.Runtime.Intepreter
             for (int i = 0; i < fields.Length; i++)
             {
                 ins.fields[i] = fields[i];
-                ins.managedObjs[i] = managedObjs[i];
-            }
-            if (type.FirstCLRBaseType is Enviorment.CrossBindingAdaptor)
-            {
-                ins.clrInstance = ((Enviorment.CrossBindingAdaptor)type.FirstCLRBaseType).CreateCLRInstance(type.AppDomain, ins);
-            }
-            else
-            {
-                ins.clrInstance = ins;
+                ins.managedObjs[i] = ILIntepreter.CheckAndCloneValueType(managedObjs[i],Type.AppDomain);
             }
             return ins;
         }

@@ -28,11 +28,12 @@ namespace ILRuntime.Runtime.Enviorment
         Queue<ILIntepreter> freeIntepreters = new Queue<ILIntepreter>();
         Dictionary<int, ILIntepreter> intepreters = new Dictionary<int, ILIntepreter>();
         Dictionary<Type, CrossBindingAdaptor> crossAdaptors = new Dictionary<Type, CrossBindingAdaptor>(new ByReferenceKeyComparer<Type>());
-        Dictionary<string, IType> mapType = new Dictionary<string, IType>();
+        Dictionary<Type, ValueTypeBinder> valueTypeBinders = new Dictionary<Type, ValueTypeBinder>();
+        ThreadSafeDictionary<string, IType> mapType = new ThreadSafeDictionary<string, IType>();
         Dictionary<Type, IType> clrTypeMapping = new Dictionary<Type, IType>(new ByReferenceKeyComparer<Type>());
-        Dictionary<int, IType> mapTypeToken = new Dictionary<int, IType>();
-        Dictionary<int, IMethod> mapMethod = new Dictionary<int, IMethod>();
-        Dictionary<long, string> mapString = new Dictionary<long, string>();
+        ThreadSafeDictionary<int, IType> mapTypeToken = new ThreadSafeDictionary<int, IType>();
+        ThreadSafeDictionary<int, IMethod> mapMethod = new ThreadSafeDictionary<int, IMethod>();
+        ThreadSafeDictionary<long, string> mapString = new ThreadSafeDictionary<long, string>();
         Dictionary<System.Reflection.MethodBase, CLRRedirectionDelegate> redirectMap = new Dictionary<System.Reflection.MethodBase, CLRRedirectionDelegate>();
         Dictionary<System.Reflection.FieldInfo, CLRFieldGetterDelegate> fieldGetterMap = new Dictionary<System.Reflection.FieldInfo, CLRFieldGetterDelegate>();
         Dictionary<System.Reflection.FieldInfo, CLRFieldSetterDelegate> fieldSetterMap = new Dictionary<System.Reflection.FieldInfo, CLRFieldSetterDelegate>();
@@ -107,6 +108,17 @@ namespace ILRuntime.Runtime.Enviorment
                     RegisterCLRMethodRedirection(i, CLRRedirections.MethodInfoInvoke);
                 }
             }
+            foreach (var i in typeof(Enum).GetMethods())
+            {
+                if (i.Name == "Parse" && i.GetParameters().Length == 2)
+                {
+                    RegisterCLRMethodRedirection(i, CLRRedirections.EnumParse);
+                }
+                if (i.Name == "GetValues" && i.GetParameters().Length == 1)
+                {
+                    RegisterCLRMethodRedirection(i, CLRRedirections.EnumGetValues);
+                }
+            }
             mi = typeof(System.Type).GetMethod("GetTypeFromHandle");
             RegisterCLRMethodRedirection(mi, CLRRedirections.GetTypeFromHandle);
             mi = typeof(object).GetMethod("GetType");
@@ -130,7 +142,10 @@ namespace ILRuntime.Runtime.Enviorment
         public IType DoubleType { get { return doubleType; } }
         public IType ObjectType { get { return objectType; } }
 
-        public Dictionary<string, IType> LoadedTypes { get { return mapType; } }
+        /// <summary>
+        /// Attention, this property isn't thread safe
+        /// </summary>
+        public Dictionary<string, IType> LoadedTypes { get { return mapType.InnerDictionary; } }
         internal Dictionary<MethodBase, CLRRedirectionDelegate> RedirectMap { get { return redirectMap; } }
         internal Dictionary<FieldInfo, CLRFieldGetterDelegate> FieldGetterMap { get { return fieldGetterMap; } }
         internal Dictionary<FieldInfo, CLRFieldSetterDelegate> FieldSetterMap { get { return fieldSetterMap; } }
@@ -138,6 +153,7 @@ namespace ILRuntime.Runtime.Enviorment
         internal Dictionary<Type, CLRCreateDefaultInstanceDelegate> CreateDefaultInstanceMap { get { return createDefaultInstanceMap; } }
         internal Dictionary<Type, CLRCreateArrayInstanceDelegate> CreateArrayInstanceMap { get { return createArrayInstanceMap; } }
         internal Dictionary<Type, CrossBindingAdaptor> CrossBindingAdaptors { get { return crossAdaptors; } }
+        internal Dictionary<Type, ValueTypeBinder> ValueTypeBinders { get { return valueTypeBinders; } }
         public DebugService DebugService { get { return debugService; } }
         internal Dictionary<int, ILIntepreter> Intepreters { get { return intepreters; } }
         internal Queue<ILIntepreter> FreeIntepreters { get { return freeIntepreters; } }
@@ -335,13 +351,14 @@ namespace ILRuntime.Runtime.Enviorment
 
             if (module.HasAssemblyReferences) //如果此模块引用了其他模块
             {
-                foreach (var ar in module.AssemblyReferences)
+                /*foreach (var ar in module.AssemblyReferences)
                 {
-                    /*if (moduleref.Contains(ar.Name) == false)
+                    if (moduleref.Contains(ar.Name) == false)
                         moduleref.Add(ar.Name);
                     if (moduleref.Contains(ar.FullName) == false)
-                        moduleref.Add(ar.FullName);*/
+                        moduleref.Add(ar.FullName);
                 }
+                */
             }
 
             if (module.HasTypes)
@@ -369,7 +386,7 @@ namespace ILRuntime.Runtime.Enviorment
                 objectType = GetType("System.Object");
             }
             module.AssemblyResolver.ResolveFailure += AssemblyResolver_ResolveFailure;
-#if DEBUG
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
             debugService.NotifyModuleLoaded(module.Name);
 #endif
         }
@@ -434,6 +451,18 @@ namespace ILRuntime.Runtime.Enviorment
                 createArrayInstanceMap[t] = createArray;
         }
 
+        public void RegisterValueTypeBinder(Type t, ValueTypeBinder binder)
+        {
+            if (!valueTypeBinders.ContainsKey(t))
+            {
+                valueTypeBinders[t] = binder;
+                binder.RegisterCLRRedirection(this);
+
+                var ct = GetType(t) as CLRType;
+                binder.CLRType = ct;
+            }
+        }
+
         /// <summary>
         /// 更近类型名称返回类型
         /// </summary>
@@ -485,31 +514,36 @@ namespace ILRuntime.Runtime.Enviorment
                     bt = bt.MakeGenericInstance(genericArguments);
                     mapType[bt.FullName] = bt;
                     mapTypeToken[bt.GetHashCode()] = bt;
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append(baseType);
-                    sb.Append('<');
-                    for (int i = 0; i < genericParams.Count; i++)
+                    if (bt is CLRType)
                     {
-                        if (i > 0)
-                            sb.Append(",");
-                        if (genericParams[i].Contains(","))
-                            sb.Append(genericParams[i].Substring(0, genericParams[i].IndexOf(',')));
-                        else
-                            sb.Append(genericParams[i]);
+                        //It still make sense for CLRType, since CLR uses [T] for generics instead of <T>
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append(baseType);
+                        sb.Append('<');
+                        for (int i = 0; i < genericParams.Count; i++)
+                        {
+                            if (i > 0)
+                                sb.Append(",");
+                            if (genericParams[i].Contains(","))
+                                sb.Append(genericParams[i].Substring(0, genericParams[i].IndexOf(',')));
+                            else
+                                sb.Append(genericParams[i]);
+                        }
+                        sb.Append('>');
+                        var asmName = sb.ToString();
+                        if (bt.FullName != asmName)
+                            mapType[asmName] = bt;
                     }
-                    sb.Append('>');
-                    var asmName = sb.ToString();
-                    if (bt.FullName != asmName)
-                        mapType[asmName] = bt;
                 }
 
                 if (isArray)
                 {
-                    bt = bt.MakeArrayType();
+                    bt = bt.MakeArrayType(1);
                     mapType[bt.FullName] = bt;
                     mapTypeToken[bt.GetHashCode()] = bt;
                     if (!isByRef)
                     {
+                        mapType[fullname] = bt;
                         return bt;
                     }
                 }
@@ -523,7 +557,10 @@ namespace ILRuntime.Runtime.Enviorment
                     return res;
                 }
                 else
+                {
+                    mapType[fullname] = bt;
                     return bt;
+                }
             }
             else
             {
@@ -683,10 +720,11 @@ namespace ILRuntime.Runtime.Enviorment
                 }
                 if (_ref.IsArray)
                 {
+                    ArrayType at = (ArrayType)_ref;
                     var t = GetType(_ref.GetElementType(), contextType, contextMethod);
                     if (t != null)
                     {
-                        res = t.MakeArrayType();
+                        res = t.MakeArrayType(at.Rank);
                         if (res is ILType)
                         {
                             ///Unify the TypeReference
@@ -923,6 +961,59 @@ namespace ILRuntime.Runtime.Enviorment
             return null;
         }
 
+        ILIntepreter RequestILIntepreter()
+        {
+            ILIntepreter inteptreter = null;
+            lock (freeIntepreters)
+            {
+                if (freeIntepreters.Count > 0)
+                {
+                    inteptreter = freeIntepreters.Dequeue();
+                    //Clear debug state, because it may be in ShouldBreak State
+                    inteptreter.ClearDebugState();
+                }
+                else
+                {
+                    inteptreter = new ILIntepreter(this);
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                    intepreters[inteptreter.GetHashCode()] = inteptreter;
+                    debugService.ThreadStarted(inteptreter);
+#endif
+                }
+            }
+
+            return inteptreter;
+        }
+
+        internal void FreeILIntepreter(ILIntepreter inteptreter)
+        {
+            lock (freeIntepreters)
+            {
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                if (inteptreter.CurrentStepType != StepTypes.None)
+                {
+                    //We should resume all other threads if we are currently doing stepping operation
+                    foreach (var i in intepreters)
+                    {
+                        if (i.Value != inteptreter)
+                        {
+                            i.Value.ClearDebugState();
+                            i.Value.Resume();
+                        }
+                    }
+                    inteptreter.ClearDebugState();
+                }
+#endif
+                inteptreter.Stack.ManagedStack.Clear();
+                inteptreter.Stack.Frames.Clear();
+                freeIntepreters.Enqueue(inteptreter);
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                //debugService.ThreadEnded(inteptreter);
+#endif
+
+            }
+        }
+
         /// <summary>
         /// Invokes a specific method
         /// </summary>
@@ -935,61 +1026,30 @@ namespace ILRuntime.Runtime.Enviorment
             object res = null;
             if (m is ILMethod)
             {
-                ILIntepreter inteptreter = null;
-                lock (freeIntepreters)
-                {
-                    if (freeIntepreters.Count > 0)
-                    {
-                        inteptreter = freeIntepreters.Dequeue();
-                        //Clear debug state, because it may be in ShouldBreak State
-                        inteptreter.ClearDebugState();
-                    }
-                    else
-                    {
-                        inteptreter = new ILIntepreter(this);
-#if DEBUG
-                        intepreters[inteptreter.GetHashCode()] = inteptreter;
-                        debugService.ThreadStarted(inteptreter);
-#endif
-                    }
-                }
+                ILIntepreter inteptreter = RequestILIntepreter();
                 try
                 {
                     res = inteptreter.Run((ILMethod)m, instance, p);
                 }
                 finally
                 {
-                    lock (freeIntepreters)
-                    {
-#if DEBUG
-                        if(inteptreter.CurrentStepType!= StepTypes.None)
-                        {
-                            //We should resume all other threads if we are currently doing stepping operation
-                            foreach(var i in intepreters)
-                            {
-                                if(i.Value != inteptreter)
-                                {
-                                    i.Value.ClearDebugState();
-                                    i.Value.Resume();
-                                }
-                            }
-                            inteptreter.ClearDebugState();
-                        }
-#endif
-                        inteptreter.Stack.ManagedStack.Clear();
-                        inteptreter.Stack.Frames.Clear();
-                        freeIntepreters.Enqueue(inteptreter);
-#if DEBUG
-                        //debugService.ThreadEnded(inteptreter);
-#endif
-
-                    }
+                    FreeILIntepreter(inteptreter);
                 }
             }
 
             return res;
         }
 
+        public InvocationContext BeginInvoke(IMethod m)
+        {
+            if (m is ILMethod)
+            {
+                ILIntepreter inteptreter = RequestILIntepreter();
+                return new InvocationContext(inteptreter, (ILMethod)m);
+            }
+            else
+                throw new NotSupportedException("Cannot invoke CLRMethod");
+        }
         internal IMethod GetMethod(object token, ILType contextType,ILMethod contextMethod, out bool invalidToken)
         {
             string methodname = null;
@@ -1084,7 +1144,7 @@ namespace ILRuntime.Runtime.Enviorment
                 method = type.GetConstructor(paramList);
             else
             {
-                method = type.GetMethod(methodname, paramList, genericArguments, returnType);
+                method = type.GetMethod(methodname, paramList, genericArguments, returnType, true);
             }
 
             if (method == null)
@@ -1186,6 +1246,7 @@ namespace ILRuntime.Runtime.Enviorment
         public void RegisterCrossBindingAdaptor(CrossBindingAdaptor adaptor)
         {
             var bType = adaptor.BaseCLRType;
+            
             if (bType != null)
             {
                 if (!crossAdaptors.ContainsKey(bType))

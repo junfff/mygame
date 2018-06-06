@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\ILRuntimeDemo\Assets\StreamingAssets\</OutputPath>
+    <OutputPath>..\mygame\Assets\StreamingAssets\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,18 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\mygame\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween50.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,12 +58,140 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\Base\IClear.cs" />
+    <Compile Include="Scripts\Base\ICoreUtil.cs" />
+    <Compile Include="Scripts\Base\IDisposable.cs" />
+    <Compile Include="Scripts\Base\IInitialize.cs" />
+    <Compile Include="Scripts\Base\ILateUpdate.cs" />
+    <Compile Include="Scripts\Base\IUpdate.cs" />
+    <Compile Include="Scripts\Extensions\DictBindingExtension.cs" />
+    <Compile Include="Scripts\Extensions\DictionaryExtension.cs" />
+    <Compile Include="Scripts\Extensions\TransformExtension.cs" />
+    <Compile Include="Scripts\GameApp.cs" />
     <Compile Include="InstanceClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\GameBusiness\BaseBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\IBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\Lobby\LobbyMainBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\Login\LoginBusiness.cs" />
+    <Compile Include="Scripts\GameEvent\MessageAggregator.cs" />
+    <Compile Include="Scripts\GameEvent\MessageDefine.cs" />
+    <Compile Include="Scripts\GameUI\BaseView.cs" />
+    <Compile Include="Scripts\GameUI\DictBinding.cs" />
+    <Compile Include="Scripts\GameUI\IBaseView.cs" />
+    <Compile Include="Scripts\GameUI\IDictBinding.cs" />
+    <Compile Include="Scripts\GameUI\IViewModelBase.cs" />
+    <Compile Include="Scripts\GameUI\UIDefine.cs" />
+    <Compile Include="Scripts\GameUI\UIHelper.cs" />
+    <Compile Include="Scripts\GameUI\UIType.cs" />
+    <Compile Include="Scripts\GameUI\ViewFactory.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\LobbyMainViewModel.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Scripts\GameUI\Views\LoginView.cs" />
+    <Compile Include="Scripts\GameUI\Views\MainMenuView.cs" />
+    <Compile Include="Scripts\GameUtil\BaseProxy.cs" />
+    <Compile Include="Scripts\GameUtil\CoreUtil.cs" />
+    <Compile Include="Scripts\GameUtil\ICore.cs" />
+    <Compile Include="Scripts\GameUtil\IUIUtil.cs" />
+    <Compile Include="Scripts\GameUtil\SceneUIProxy.cs" />
+    <Compile Include="Scripts\Modules\BaseModule.cs" />
+    <Compile Include="Scripts\Modules\BusinessModule\BusinessCollection.cs" />
+    <Compile Include="Scripts\Modules\BusinessModule\BusinessModules.cs" />
+    <Compile Include="Scripts\Modules\BusinessModule\IBusinessCollection.cs" />
+    <Compile Include="Scripts\Modules\BusinessModule\IBusinessModule.cs" />
+    <Compile Include="Scripts\Modules\BusinessModule\WeightType.cs" />
+    <Compile Include="Scripts\Modules\ICoreModules.cs" />
+    <Compile Include="Scripts\Modules\IModules.cs" />
+    <Compile Include="Scripts\Modules\IModulesCollection.cs" />
+    <Compile Include="Scripts\Modules\Map.cs" />
+    <Compile Include="Scripts\Modules\ModulesCollection.cs" />
+    <Compile Include="Scripts\Modules\ModulesType.cs" />
+    <Compile Include="Scripts\Modules\ResModules\AssetHelper.cs" />
+    <Compile Include="Scripts\Modules\ResModules\IResModule.cs" />
+    <Compile Include="Scripts\Modules\ResModules\ResourcesModule.cs" />
+    <Compile Include="Scripts\Modules\Scene\BaseScene.cs" />
+    <Compile Include="Scripts\Modules\Scene\IMap.cs" />
+    <Compile Include="Scripts\Modules\Scene\IScene.cs" />
+    <Compile Include="Scripts\Modules\Scene\ISceneModules.cs" />
+    <Compile Include="Scripts\Modules\Scene\LobbyScene.cs" />
+    <Compile Include="Scripts\Modules\Scene\LoginScene.cs" />
+    <Compile Include="Scripts\Modules\Scene\SceneFactory.cs" />
+    <Compile Include="Scripts\Modules\Scene\SceneModules.cs" />
+    <Compile Include="Scripts\Modules\Scene\SceneStep.cs" />
+    <Compile Include="Scripts\Modules\Scene\SceneType.cs" />
+    <Compile Include="Scripts\Sources\Core\DataBinding\BindableProperty.cs" />
+    <Compile Include="Scripts\Sources\Core\DataBinding\ObservableList.cs" />
+    <Compile Include="Scripts\Sources\Core\DataBinding\PropertyBinder.cs" />
+    <Compile Include="Scripts\Sources\Core\DataBinding\ViewModelBase.cs" />
+    <Compile Include="Scripts\Sources\Core\DataBinding\ViewModelBaseExtensions.cs" />
+    <Compile Include="Scripts\Sources\Core\Factory\FactoryType.cs" />
+    <Compile Include="Scripts\Sources\Core\Factory\IObjectFactory.cs" />
+    <Compile Include="Scripts\Sources\Core\Factory\PoolObjectFactory.cs" />
+    <Compile Include="Scripts\Sources\Core\Factory\SingletonObjectFactory.cs" />
+    <Compile Include="Scripts\Sources\Core\Factory\TransientObjectFactory.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\HexConverter.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\HttpMethod.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\HttpUtility.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\ISerializer.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\MD5Helper.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\RepositoryKey.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\Response.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\SerializerJson.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\SerializerXml.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\Singleton.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\SQLite.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\TokenHelper.cs" />
+    <Compile Include="Scripts\Sources\Core\Infrastructure\TypeFinder.cs" />
+    <Compile Include="Scripts\Sources\Core\Inject\ServiceLocator.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\ConsoleContentWriter.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\ConsoleLogStrategy.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\DatabaseContentWriter.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\DatabaseLogStrategy.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\FileContentWriter.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\FileLogStrategy.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\IContentWriter.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\LogFactory.cs" />
+    <Compile Include="Scripts\Sources\Core\Log\LogStrategy.cs" />
+    <Compile Include="Scripts\Sources\Core\Network\HttpClient.cs" />
+    <Compile Include="Scripts\Sources\Core\Network\HttpRequest.cs" />
+    <Compile Include="Scripts\Sources\Core\Network\HttpResponse.cs" />
+    <Compile Include="Scripts\Sources\Core\Network\HttpTool.cs" />
+    <Compile Include="Scripts\Sources\Core\Proxy\IInvocationHandler.cs" />
+    <Compile Include="Scripts\Sources\Core\Proxy\LogInvocationHandler.cs" />
+    <Compile Include="Scripts\Sources\Core\Proxy\Proxy.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\DbRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\FileSystemRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\IRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\MemoryRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\PlayerPrefsRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\RemoteRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Repository\UnityResourcesRepository.cs" />
+    <Compile Include="Scripts\Sources\Core\Thread\ThreadJob.cs" />
+    <Compile Include="Scripts\Sources\Core\View\IView.cs" />
+    <Compile Include="Scripts\Sources\Models\Badge.cs" />
+    <Compile Include="Scripts\Sources\Models\Combatant.cs" />
+    <Compile Include="Scripts\Sources\Models\FaceBox.cs" />
+    <Compile Include="Scripts\Sources\Models\Identity.cs" />
+    <Compile Include="Scripts\Sources\Models\User.cs" />
+    <Compile Include="Scripts\Sources\Repositories\IUnitRepository.cs" />
+    <Compile Include="Scripts\Sources\Repositories\IUserRepository.cs" />
+    <Compile Include="Scripts\Sources\Repositories\UnitRepository.cs" />
+    <Compile Include="Scripts\Sources\Repositories\UserRepository.cs" />
+    <Compile Include="Scripts\Sources\ViewModels\BadgeViewModel.cs" />
+    <Compile Include="Scripts\Sources\ViewModels\ClanViewModel.cs" />
+    <Compile Include="Scripts\Sources\ViewModels\FaceBoxViewModel.cs" />
+    <Compile Include="Scripts\Sources\ViewModels\SetupViewModel.cs" />
+    <Compile Include="Scripts\Sources\ViewModels\TestViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\GameUI\Models\" />
+    <Folder Include="Scripts\Sources\Core\Message\" />
+    <Folder Include="Scripts\Sources\Infrastructure\" />
+    <Folder Include="Scripts\Sources\Views\" />
+    <Folder Include="Scripts\UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
