@@ -1,9 +1,9 @@
 ﻿namespace Modules
 {
+    using GameBase;
     using GameBusiness;
     using System;
     using System.Collections.Generic;
-    using uMVVM.Sources.Infrastructure;
     using UnityEngine;
 
     public class BusinessCollection : IInitialize, IDisposable, IUpdate, ILateUpdate, IBusinessCollection, ICoreModules

@@ -1,7 +1,7 @@
 ﻿namespace Modules
 {
+    using GameBase;
     using GameBusiness;
-    using uMVVM.Sources.Infrastructure;
 
     public interface IBusinessCollection
     {

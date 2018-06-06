@@ -34,18 +34,6 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\mygame\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="DOTween">
-      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween43">
-      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween43.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween46">
-      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween46.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween50">
-      <HintPath>..\mygame\Assets\Plugins\DOTween\DOTween50.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -123,29 +111,8 @@
     <Compile Include="Scripts\Modules\Scene\SceneStep.cs" />
     <Compile Include="Scripts\Modules\Scene\SceneType.cs" />
     <Compile Include="Scripts\Sources\Core\DataBinding\BindableProperty.cs" />
-    <Compile Include="Scripts\Sources\Core\DataBinding\ObservableList.cs" />
     <Compile Include="Scripts\Sources\Core\DataBinding\PropertyBinder.cs" />
     <Compile Include="Scripts\Sources\Core\DataBinding\ViewModelBase.cs" />
-    <Compile Include="Scripts\Sources\Core\DataBinding\ViewModelBaseExtensions.cs" />
-    <Compile Include="Scripts\Sources\Core\Factory\FactoryType.cs" />
-    <Compile Include="Scripts\Sources\Core\Factory\IObjectFactory.cs" />
-    <Compile Include="Scripts\Sources\Core\Factory\PoolObjectFactory.cs" />
-    <Compile Include="Scripts\Sources\Core\Factory\SingletonObjectFactory.cs" />
-    <Compile Include="Scripts\Sources\Core\Factory\TransientObjectFactory.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\HexConverter.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\HttpMethod.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\HttpUtility.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\ISerializer.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\MD5Helper.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\RepositoryKey.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\Response.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\SerializerJson.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\SerializerXml.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\Singleton.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\SQLite.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\TokenHelper.cs" />
-    <Compile Include="Scripts\Sources\Core\Infrastructure\TypeFinder.cs" />
-    <Compile Include="Scripts\Sources\Core\Inject\ServiceLocator.cs" />
     <Compile Include="Scripts\Sources\Core\Log\ConsoleContentWriter.cs" />
     <Compile Include="Scripts\Sources\Core\Log\ConsoleLogStrategy.cs" />
     <Compile Include="Scripts\Sources\Core\Log\DatabaseContentWriter.cs" />
@@ -155,41 +122,27 @@
     <Compile Include="Scripts\Sources\Core\Log\IContentWriter.cs" />
     <Compile Include="Scripts\Sources\Core\Log\LogFactory.cs" />
     <Compile Include="Scripts\Sources\Core\Log\LogStrategy.cs" />
-    <Compile Include="Scripts\Sources\Core\Network\HttpClient.cs" />
-    <Compile Include="Scripts\Sources\Core\Network\HttpRequest.cs" />
-    <Compile Include="Scripts\Sources\Core\Network\HttpResponse.cs" />
-    <Compile Include="Scripts\Sources\Core\Network\HttpTool.cs" />
     <Compile Include="Scripts\Sources\Core\Proxy\IInvocationHandler.cs" />
     <Compile Include="Scripts\Sources\Core\Proxy\LogInvocationHandler.cs" />
     <Compile Include="Scripts\Sources\Core\Proxy\Proxy.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\DbRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\FileSystemRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\IRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\MemoryRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\PlayerPrefsRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\RemoteRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Repository\UnityResourcesRepository.cs" />
-    <Compile Include="Scripts\Sources\Core\Thread\ThreadJob.cs" />
     <Compile Include="Scripts\Sources\Core\View\IView.cs" />
-    <Compile Include="Scripts\Sources\Models\Badge.cs" />
-    <Compile Include="Scripts\Sources\Models\Combatant.cs" />
-    <Compile Include="Scripts\Sources\Models\FaceBox.cs" />
-    <Compile Include="Scripts\Sources\Models\Identity.cs" />
-    <Compile Include="Scripts\Sources\Models\User.cs" />
     <Compile Include="Scripts\Sources\Repositories\IUnitRepository.cs" />
     <Compile Include="Scripts\Sources\Repositories\IUserRepository.cs" />
     <Compile Include="Scripts\Sources\Repositories\UnitRepository.cs" />
     <Compile Include="Scripts\Sources\Repositories\UserRepository.cs" />
-    <Compile Include="Scripts\Sources\ViewModels\BadgeViewModel.cs" />
-    <Compile Include="Scripts\Sources\ViewModels\ClanViewModel.cs" />
-    <Compile Include="Scripts\Sources\ViewModels\FaceBoxViewModel.cs" />
-    <Compile Include="Scripts\Sources\ViewModels\SetupViewModel.cs" />
-    <Compile Include="Scripts\Sources\ViewModels\TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\GameUI\Models\" />
+    <Folder Include="Scripts\Sources\Core\Factory\" />
+    <Folder Include="Scripts\Sources\Core\Infrastructure\" />
+    <Folder Include="Scripts\Sources\Core\Inject\" />
     <Folder Include="Scripts\Sources\Core\Message\" />
+    <Folder Include="Scripts\Sources\Core\Network\" />
+    <Folder Include="Scripts\Sources\Core\Repository\" />
+    <Folder Include="Scripts\Sources\Core\Thread\" />
     <Folder Include="Scripts\Sources\Infrastructure\" />
+    <Folder Include="Scripts\Sources\Models\" />
+    <Folder Include="Scripts\Sources\ViewModels\" />
     <Folder Include="Scripts\Sources\Views\" />
     <Folder Include="Scripts\UI\" />
   </ItemGroup>

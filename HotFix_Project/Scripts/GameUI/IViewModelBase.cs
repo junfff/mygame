@@ -1,5 +1,6 @@
 ﻿namespace GameUI
 {
+    using GameBase;
     using GameEvent;
     using System;
 

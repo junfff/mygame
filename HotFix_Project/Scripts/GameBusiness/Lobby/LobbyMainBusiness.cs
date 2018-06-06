@@ -1,7 +1,7 @@
 ﻿namespace GameBusiness
 {
+    using GameBase;
     using GameUI;
-    using uMVVM.Sources.ViewModels;
 
     public class LobbyMainBusiness : BaseBusiness<LobbyMainViewModel>
     {

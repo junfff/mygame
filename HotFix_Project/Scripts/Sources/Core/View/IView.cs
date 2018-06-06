@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace uMVVM.Sources.Infrastructure
+namespace GameBase
 {
     /// <summary>
     /// 统一的视图接口

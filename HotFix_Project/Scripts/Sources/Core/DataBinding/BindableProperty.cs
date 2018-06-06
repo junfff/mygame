@@ -1,4 +1,4 @@
-﻿namespace uMVVM.Sources.Infrastructure
+﻿namespace GameBase
 {
     public class BindableProperty<T>
     {

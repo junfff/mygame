@@ -1,9 +1,4 @@
-﻿using GameEvent;
-using GameUI;
-using uMVVM.Sources.Infrastructure;
-using uMVVM.Sources.Models;
-
-namespace uMVVM.Sources.ViewModels
+﻿namespace GameBase
 {
     public class LobbyMainViewModel : ViewModelBase
     {
@@ -11,7 +6,7 @@ namespace uMVVM.Sources.ViewModels
         public readonly BindableProperty<string> Job = new BindableProperty<string>();
         public readonly BindableProperty<int> ATK = new BindableProperty<int>();
         public readonly BindableProperty<float> SuccessRate = new BindableProperty<float>();
-        public readonly BindableProperty<State> State = new BindableProperty<State>();
+        //public readonly BindableProperty<State> State = new BindableProperty<State>();
 
 
         public override void OnStartReveal()

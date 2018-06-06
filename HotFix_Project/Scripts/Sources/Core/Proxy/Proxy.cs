@@ -1,4 +1,4 @@
-﻿namespace Assets.Sources.Core.Proxy
+﻿namespace GameBase
 {
     public class Proxy
     {

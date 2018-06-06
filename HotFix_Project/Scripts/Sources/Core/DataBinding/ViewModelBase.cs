@@ -1,6 +1,5 @@
-﻿namespace uMVVM.Sources.Infrastructure
+﻿namespace GameBase
 {
-    using System;
     using GameEvent;
     using GameUI;
 

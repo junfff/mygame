@@ -1,7 +1,4 @@
-﻿using uMVVM.Sources.Infrastructure;
-using uMVVM.Sources.ViewModels;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using GameBase;
 
 namespace GameUI
 {

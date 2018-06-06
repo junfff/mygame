@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Assets.Sources.Core.Log;
-using UnityEngine;
+﻿using System.Reflection;
 
-namespace Assets.Sources.Core.Proxy
+namespace GameBase
 {
     public class LogInvocationHandler:IInvocationHandler
     {

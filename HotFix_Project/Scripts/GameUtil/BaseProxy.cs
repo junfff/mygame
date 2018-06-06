@@ -1,5 +1,6 @@
 ﻿namespace GameUtil
 {
+    using GameBase;
     using Modules;
     using System;
     public class BaseProxy : IDisposable, IInitialize, ICore, ICoreModules

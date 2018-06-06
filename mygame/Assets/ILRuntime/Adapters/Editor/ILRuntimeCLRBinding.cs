@@ -56,6 +56,24 @@ public class ILRuntimeCLRBinding
         //domain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
         //domain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         //domain.RegisterCrossBindingAdaptor(new InheritanceAdapter());
+
+        domain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
+
+        domain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action) =>
+        {
+            return new UnityEngine.Events.UnityAction(() =>
+            {
+                ((System.Action)action)();
+            });
+        });
+
+        domain.DelegateManager.RegisterDelegateConvertor<System.Action>((action) =>
+        {
+            return new System.Action(() =>
+            {
+                ((System.Action)action)();
+            });
+        });
     }
 }
 #endif

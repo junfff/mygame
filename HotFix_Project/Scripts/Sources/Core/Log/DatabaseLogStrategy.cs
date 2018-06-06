@@ -1,4 +1,4 @@
-﻿namespace Assets.Sources.Core.Log
+﻿namespace GameBase
 {
     public class DatabaseLogStrategy : LogStrategy
     {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using uMVVM.Sources.Infrastructure;
 
-namespace Assets.Sources.Core.DataBinding
+namespace GameBase
 {
     public class PropertyBinder<T> where T:ViewModelBase
     {

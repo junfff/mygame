@@ -1,5 +1,7 @@
-﻿
-public interface IInitialize
+﻿namespace GameBase
 {
-    void Initialize();
+    public interface IInitialize
+    {
+        void Initialize();
+    }
 }

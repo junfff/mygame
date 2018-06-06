@@ -1,5 +1,6 @@
 ﻿namespace Modules
 {
+    using GameBase;
     using GameBusiness;
 
     public class BusinessModules : BaseModule, IBusinessModule

@@ -1,10 +1,10 @@
 ﻿namespace Modules.Scene
 {
+    using GameBase;
     using GameBusiness;
     using GameUtil;
     using System;
     using System.Collections;
-    using uMVVM.Sources.Infrastructure;
     using UnityEngine;
     using UnityEngine.SceneManagement;
 

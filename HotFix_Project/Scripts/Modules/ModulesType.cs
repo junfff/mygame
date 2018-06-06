@@ -1,4 +1,4 @@
-﻿namespace Modules
+﻿namespace GameBase
 {
     public enum ModulesType
     {

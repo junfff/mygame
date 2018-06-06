@@ -1,6 +1,8 @@
-﻿
-
-public interface ILateUpdate
+﻿namespace GameBase
 {
-    void OnLateUpdate(float elapse);
+
+    public interface ILateUpdate
+    {
+        void OnLateUpdate(float elapse);
+    }
 }

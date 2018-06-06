@@ -1,5 +1,6 @@
 ﻿namespace Modules
 {
+    using GameBase;
     using GameBusiness;
     using GameUI;
     using Modules.Scene;

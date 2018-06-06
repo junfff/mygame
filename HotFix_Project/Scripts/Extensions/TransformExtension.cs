@@ -1,16 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿namespace GameBase
+{
+    using UnityEngine;
+    using System.Collections;
+    using System.Collections.Generic;
 
-/*
- *	
- *  
- *
- *	by Xuanyi
- *
- */
+    /*
+     *	
+     *  
+     *
+     *	by Xuanyi
+     *
+     */
 
-	public static class TransformExtension 
+    public static class TransformExtension
     {
         public static void DestroyChildren(this Transform trans)
         {
@@ -25,9 +27,10 @@ using System.Collections.Generic;
             Transform childTrans = GameObject.Instantiate(prefab) as Transform;
             childTrans.SetParent(trans, false);
             if (name != null)
-	        {
+            {
                 childTrans.gameObject.name = name;
-	        }
+            }
             return childTrans;
         }
-	}
+    }
+}

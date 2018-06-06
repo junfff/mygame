@@ -1,5 +1,6 @@
 ﻿namespace GameBusiness
 {
+    using GameBase;
     using GameUtil;
     using Modules;
     using System;

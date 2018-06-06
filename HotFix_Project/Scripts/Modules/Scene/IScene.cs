@@ -1,9 +1,9 @@
 ﻿namespace Modules.Scene
 {
+    using GameBase;
     using GameBusiness;
     using GameUtil;
     using System;
-    using uMVVM.Sources.Infrastructure;
 
     public interface IScene : IUpdate, ILateUpdate, IInitialize, IDisposable, ICoreModules
     {

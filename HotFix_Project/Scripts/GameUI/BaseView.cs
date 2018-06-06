@@ -1,9 +1,8 @@
 ﻿namespace GameUI
 {
-    using Assets.Sources.Core.DataBinding;
+    using GameBase;
     using GameUtil;
     using Modules;
-    using uMVVM.Sources.Infrastructure;
     public abstract class BaseView<T> : IBaseView where T : ViewModelBase
     {
         public ICoreUtil Core { get; set; }

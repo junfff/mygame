@@ -1,34 +1,37 @@
-﻿using GameUI;
-using UnityEngine.Events;
-using UnityEngine.UI;
-public static class DictBindingExtension
+﻿namespace GameBase
 {
-    public static Button AddButton(this IDictBinding dictBind, string name, UnityAction action)
+    using GameUI;
+    using UnityEngine.Events;
+    using UnityEngine.UI;
+    public static class DictBindingExtension
     {
-        Button btn = null;
-        AutoBinding abind = dictBind[name];
-        if (null != abind)
+        public static Button AddButton(this IDictBinding dictBind, string name, UnityAction action)
         {
-            btn = abind.GetComponent<Button>();
-            if (null != btn)
+            Button btn = null;
+            AutoBinding abind = dictBind[name];
+            if (null != abind)
             {
-                btn.onClick.AddListener(action);
-                abind.cacheObj = btn;
+                btn = abind.GetComponent<Button>();
+                if (null != btn)
+                {
+                    btn.onClick.AddListener(action);
+                    abind.cacheObj = btn;
+                }
             }
+            return btn;
         }
-        return btn;
-    }
-    public static Button RemoveButton(this IDictBinding dictBind, string name, UnityAction action)
-    {
-        Button btn = null;
-        AutoBinding abind = dictBind[name];
-        if (null != abind && (abind.cacheObj is Button))
+        public static Button RemoveButton(this IDictBinding dictBind, string name, UnityAction action)
         {
-            btn = abind.cacheObj as Button;
-            btn.onClick.RemoveListener(action);
+            Button btn = null;
+            AutoBinding abind = dictBind[name];
+            if (null != abind && (abind.cacheObj is Button))
+            {
+                btn = abind.cacheObj as Button;
+                btn.onClick.RemoveListener(action);
+            }
+            return btn;
         }
-        return btn;
+
     }
 
 }
-

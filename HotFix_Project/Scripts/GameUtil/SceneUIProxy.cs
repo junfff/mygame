@@ -1,5 +1,6 @@
 ﻿namespace GameUtil
 {
+    using GameBase;
     using GameUI;
     using Modules;
     using System;

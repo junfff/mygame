@@ -1,4 +1,7 @@
-﻿public interface IClear
+﻿namespace GameBase
 {
-    void Clear();
+    public interface IClear
+    {
+        void Clear();
+    }
 }

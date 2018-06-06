@@ -1,10 +1,6 @@
-﻿using uMVVM.Sources.Infrastructure;
-using uMVVM.Sources.ViewModels;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace GameUI
+﻿namespace GameUI
 {
+    using GameBase;
     public class LoginView : BaseView<LoginViewModel>
     {
         public override void Initialize()

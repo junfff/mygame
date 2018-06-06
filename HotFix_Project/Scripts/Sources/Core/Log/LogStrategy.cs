@@ -2,7 +2,7 @@
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Sources.Core.Log
+namespace GameBase
 {
     public abstract class LogStrategy
     {

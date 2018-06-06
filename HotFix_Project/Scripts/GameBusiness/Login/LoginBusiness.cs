@@ -1,8 +1,8 @@
 ﻿namespace GameBusiness
 {
+    using GameBase;
     using GameUI;
     using Modules.Scene;
-    using uMVVM.Sources.ViewModels;
     using UnityEngine;
 
     public class LoginBusiness : BaseBusiness<LoginViewModel>

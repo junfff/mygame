@@ -1,5 +1,6 @@
 ﻿namespace Modules
 {
+    using GameBase;
     using UnityEngine;
 
     public class ResourcesModule : BaseModule, IResModule

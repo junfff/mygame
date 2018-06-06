@@ -1,9 +1,6 @@
 ﻿using ILRuntime.CLR.TypeSystem;
-using ILRuntime.Runtime.Enviorment;
-using System;
 using System.Collections;
 using System.IO;
-using System.Reflection;
 using UnityEngine;
 
 public class GameRoot : MonoSingleton<GameRoot>
@@ -15,6 +12,8 @@ public class GameRoot : MonoSingleton<GameRoot>
 
     public bool DEBUG = true;
     private object GameApp_obj;
+    private IType GameApp_type;
+
     //private GameApp gameApp;
     private float elapseTime;
 
@@ -28,24 +27,24 @@ public class GameRoot : MonoSingleton<GameRoot>
     {
         //print("GameApp DisInit");
         //gameApp.Dispose();
-        if (null != GameApp_obj)
-            appdomain.Invoke("GameBase.GameApp", "Dispose", GameApp_obj, null);
+
+        GameApp_obj_Invoke("Dispose");
     }
     void Update()
     {
         //print("Update");
         elapseTime = Time.deltaTime;
         //gameApp.OnUpdate(elapseTime);
-        if (null != GameApp_obj)
-            appdomain.Invoke("GameBase.GameApp", "OnUpdate", GameApp_obj, elapseTime);
+
+        GameApp_obj_Invoke("OnUpdate", elapseTime);
     }
 
     void LateUpdate()
     {
         //print("LateUpdate");
         //gameApp.OnLateUpdate(elapseTime);
-        if (null != GameApp_obj)
-            appdomain.Invoke("GameBase.GameApp", "OnLateUpdate", GameApp_obj, elapseTime);
+
+        GameApp_obj_Invoke("OnLateUpdate", elapseTime);
     }
 
 
@@ -117,8 +116,9 @@ public class GameRoot : MonoSingleton<GameRoot>
     {
         //这里做一些ILRuntime的注册，HelloWorld示例暂时没有需要注册的
 
-        //ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
+        ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
         //appdomain.RegisterCrossBindingAdaptor(new IDisposableAdapter());
+
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
 
         appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action) =>
@@ -147,10 +147,11 @@ public class GameRoot : MonoSingleton<GameRoot>
         //Debug.Log("实例化热更里的类");
         //object obj2 = appdomain.Instantiate("HotFix_Project.InstanceClass", new object[] { 233 });
 
-        IType type = appdomain.LoadedTypes["GameBase.GameApp"];
-        GameApp_obj = ((ILType)type).Instantiate();
-        if (null != GameApp_obj)
-            appdomain.Invoke("GameBase.GameApp", "Initialize", GameApp_obj, null);
+        GameApp_type = appdomain.LoadedTypes["GameBase.GameApp"];
+        GameApp_obj = ((ILType)GameApp_type).Instantiate();
+
+        GameApp_obj_Invoke("Initialize");
+
 
 
 
@@ -169,7 +170,14 @@ public class GameRoot : MonoSingleton<GameRoot>
         //MethodInfo mi = type.GetMethod("Initialize");
 
         //mi.Invoke(obj, null);
+
     }
-
-
+    private void GameApp_obj_Invoke(string name, params object[] param)
+    {
+        if (null != GameApp_obj)
+        {
+            var m = GameApp_type.GetMethod(name, 0);
+            appdomain.Invoke(m, GameApp_obj, param);
+        }
+    }
 }

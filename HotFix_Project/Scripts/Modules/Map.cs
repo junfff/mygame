@@ -2,6 +2,7 @@
 
 namespace Modules
 {
+    using GameBase;
     using Modules.Scene;
     using System;
 

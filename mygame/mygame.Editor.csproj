@@ -160,10 +160,6 @@
     <None Include="Assets\Plugins\DOTween\DOTween50.xml" />
     <None Include="Assets\Plugins\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Plugins\DOTween\readme.txt" />
-    <None Include="Assets\StreamingAssets\DOTween.xml" />
-    <None Include="Assets\StreamingAssets\DOTween43.xml" />
-    <None Include="Assets\StreamingAssets\DOTween46.xml" />
-    <None Include="Assets\StreamingAssets\DOTween50.xml" />
     <None Include="Assets\StreamingAssets\UnityEngine.UI.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

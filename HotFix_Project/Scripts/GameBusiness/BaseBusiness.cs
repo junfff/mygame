@@ -1,8 +1,8 @@
 ﻿namespace GameBusiness
 {
+    using GameBase;
     using GameUtil;
     using Modules;
-    using uMVVM.Sources.Infrastructure;
     public class BaseBusiness<T> : IBusiness where T : ViewModelBase
     {
         public int refCount { get; set; }

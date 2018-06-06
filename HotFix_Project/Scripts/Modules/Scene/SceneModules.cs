@@ -1,6 +1,6 @@
 ﻿namespace Modules.Scene
 {
-
+    using GameBase;
     using System.Collections.Generic;
     using UnityEngine;
 

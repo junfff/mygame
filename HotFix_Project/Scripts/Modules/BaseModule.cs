@@ -1,5 +1,6 @@
 ﻿namespace Modules
 {
+    using GameBase;
     public class BaseModule : IModules
     {
         public virtual ModulesType moduleType
