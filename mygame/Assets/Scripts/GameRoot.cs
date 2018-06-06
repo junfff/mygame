@@ -115,10 +115,7 @@ public class GameRoot : MonoSingleton<GameRoot>
     void InitializeILRuntime()
     {
         //这里做一些ILRuntime的注册，HelloWorld示例暂时没有需要注册的
-
-        ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
         //appdomain.RegisterCrossBindingAdaptor(new IDisposableAdapter());
-
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
 
         appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action) =>
@@ -136,6 +133,8 @@ public class GameRoot : MonoSingleton<GameRoot>
                 ((System.Action)action)();
             });
         });
+
+        ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
     }
 
     void OnHotFixLoaded()
