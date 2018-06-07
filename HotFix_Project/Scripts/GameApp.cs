@@ -1,6 +1,5 @@
 ﻿namespace GameBase
 {
-    using Modules;
     using System;
     using UnityEngine;
     public class GameApp : IInitialize, IDisposable, IUpdate, ILateUpdate

@@ -2,7 +2,7 @@
 namespace GameUtil
 {
     using GameBase;
-    using Modules.Scene;
+    using GameScene;
     using System;
 
     /// <summary>

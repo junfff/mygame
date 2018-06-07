@@ -1,8 +1,8 @@
 ﻿namespace GameBusiness
 {
     using GameBase;
+    using GameScene;
     using GameUI;
-    using Modules.Scene;
     using UnityEngine;
 
     public class LoginBusiness : BaseBusiness<LoginViewModel>

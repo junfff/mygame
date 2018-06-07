@@ -1,7 +1,7 @@
 ﻿namespace GameUtil
 {
-    using Modules;
-    using Modules.Scene;
+    using GameBase;
+    using GameScene;
     using System.Collections.Generic;
 
     public class CoreUtil : ICoreUtil, ICoreModules

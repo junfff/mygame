@@ -1,7 +1,5 @@
-﻿namespace Modules
+﻿namespace GameBusiness
 {
-    using GameBusiness;
-
     public interface IBusinessModule
     {
         bool AddBusiness<T>() where T : IBusiness;

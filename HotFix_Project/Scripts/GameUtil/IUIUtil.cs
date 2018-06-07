@@ -2,8 +2,6 @@
 namespace GameUtil
 {
     using GameUI;
-    using Modules;
-    using System;
 
     public interface IUIUtil 
     {

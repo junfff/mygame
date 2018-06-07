@@ -1,8 +1,8 @@
-﻿namespace Modules
+﻿namespace GameBase
 {
-    using GameBase;
     using GameBusiness;
-    using Modules.Scene;
+    using GameNet;
+    using GameRes;
     using System;
 
     /// <summary>
@@ -14,5 +14,6 @@
         ISceneModules sceneMDL { get; }
         IResModule resMDL { get; }
         IBusinessModule busMDL { get; }
+        INetModule netMDL { get; }
     }
 }

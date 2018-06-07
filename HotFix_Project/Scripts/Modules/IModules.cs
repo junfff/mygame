@@ -1,7 +1,5 @@
-﻿using GameBase;
-using System;
-using GameBase;
-namespace Modules
+﻿using System;
+namespace GameBase
 {
     public interface IModules : IInitialize, IDisposable, IUpdate, ILateUpdate,ICoreModules
     {

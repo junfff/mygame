@@ -1,4 +1,4 @@
-﻿namespace Modules
+﻿namespace GameBusiness
 {
     public enum WeightType
     {

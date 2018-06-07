@@ -1,4 +1,4 @@
-﻿namespace Modules.Scene
+﻿namespace GameScene
 {
     using GameBase;
     using GameBusiness;

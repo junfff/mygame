@@ -1,7 +1,7 @@
-﻿namespace Modules.Scene
+﻿namespace GameScene
 {
     using GameBusiness;
-    using GameUI;
+    using GameScene;
 
     public class LobbyScene : BaseScene
     {

@@ -1,7 +1,6 @@
-﻿namespace Modules
+﻿namespace GameBusiness
 {
     using GameBase;
-    using GameBusiness;
     using System;
     using System.Collections.Generic;
     using UnityEngine;

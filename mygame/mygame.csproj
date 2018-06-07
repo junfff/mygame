@@ -13,12 +13,14 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.5f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -377,11 +379,14 @@
     <Compile Include="Assets\Scripts\Examples\07_Coroutine\CoroutineDemo.cs" />
     <Compile Include="Assets\Scripts\Examples\08_MonoBehaviour\MonoBehaviourAdapter.cs" />
     <Compile Include="Assets\Scripts\Examples\08_MonoBehaviour\MonoBehaviourDemo.cs" />
+    <Compile Include="Assets\Scripts\GameAppDebug.cs" />
+    <Compile Include="Assets\Scripts\GameAppILRt.cs" />
     <Compile Include="Assets\Scripts\GameRoot.cs" />
     <Compile Include="Assets\Scripts\GameUI\AutoBinding.cs" />
     <Compile Include="Assets\Scripts\GameUI\IMonoUI.cs" />
     <Compile Include="Assets\Scripts\GameUI\MonoUI.cs" />
     <Compile Include="Assets\Scripts\GameUI\UIStyle.cs" />
+    <Compile Include="Assets\Scripts\IGameAppProxy.cs" />
     <Compile Include="Assets\Scripts\SceneUIUtil.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace Modules.Scene
+﻿namespace GameScene
 {
     public enum SceneType
     {

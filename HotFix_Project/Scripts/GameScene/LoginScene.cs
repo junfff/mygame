@@ -1,7 +1,7 @@
-﻿namespace Modules.Scene
+﻿namespace GameScene
 {
     using GameBusiness;
-    using UnityEngine;
+    using GameScene;
 
     public class LoginScene : BaseScene
     {

@@ -1,7 +1,7 @@
 ﻿
-namespace Modules
+namespace GameRes
 {
-    using Modules;
+    using GameBase;
     public interface IResModule: IModules
     {
         T GetRes<T>(string path) where T : UnityEngine.Object;

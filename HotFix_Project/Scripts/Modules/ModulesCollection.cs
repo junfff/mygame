@@ -1,9 +1,10 @@
-﻿namespace Modules
+﻿namespace GameBase
 {
-    using GameBase;
     using GameBusiness;
+    using GameNet;
+    using GameRes;
+    using GameScene;
     using GameUI;
-    using Modules.Scene;
     using System;
     using System.Collections.Generic;
     using UnityEngine;
@@ -13,6 +14,8 @@
         public ISceneModules sceneMDL { get; private set; }
         public IResModule resMDL { get; private set; }
         public IBusinessModule busMDL { get; private set; }
+        public INetModule netMDL { get; private set; }
+        
         public SceneUIUtil seneUnity { get; private set; }
 
         private Dictionary<ModulesType, IModules> modulesDict;
@@ -20,10 +23,10 @@
         {
             modulesDict = new Dictionary<ModulesType, IModules>();
             resMDL = this.CreateModules<ResourcesModule>();
-            sceneMDL = this.CreateModules<SceneModules>();
-            busMDL = this.CreateModules<BusinessModules>();
+            sceneMDL = this.CreateModules<SceneModule>();
+            busMDL = this.CreateModules<BusinessModule>();
+            netMDL = this.CreateModules<NetModule>();
             seneUnity = resMDL.GetRes<SceneUIUtil>(UIDefine.SceneUIUtil);
-            //net
             //data
             //
         }

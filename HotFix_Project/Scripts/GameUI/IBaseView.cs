@@ -2,7 +2,6 @@
 {
     using GameBase;
     using GameUtil;
-    using Modules;
     using System;
 
     public interface IBaseView : ICore, IInitialize, IDisposable

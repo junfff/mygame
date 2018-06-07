@@ -1,9 +1,8 @@
 ﻿
 
-namespace Modules
+namespace GameBase
 {
-    using GameBase;
-    using Modules.Scene;
+    using GameScene;
     using System;
 
     public class Map : IInitialize, IDisposable, IMap

@@ -2,7 +2,6 @@
 {
     using GameBase;
     using GameUtil;
-    using Modules;
     public abstract class BaseView<T> : IBaseView where T : ViewModelBase
     {
         public ICoreUtil Core { get; set; }

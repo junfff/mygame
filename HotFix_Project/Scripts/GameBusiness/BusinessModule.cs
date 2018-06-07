@@ -1,9 +1,8 @@
-﻿namespace Modules
+﻿namespace GameBusiness
 {
     using GameBase;
-    using GameBusiness;
-
-    public class BusinessModules : BaseModule, IBusinessModule
+ 
+    public class BusinessModule : BaseModule, IBusinessModule
     {
         public override ModulesType moduleType
         {

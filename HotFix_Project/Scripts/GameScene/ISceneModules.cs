@@ -1,5 +1,7 @@
-﻿namespace Modules.Scene
+﻿namespace GameBase
 {
+    using GameScene;
+
 
     public interface ISceneModules : IModules
     {

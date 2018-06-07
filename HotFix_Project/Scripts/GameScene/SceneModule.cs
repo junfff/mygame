@@ -1,10 +1,11 @@
-﻿namespace Modules.Scene
+﻿namespace GameScene
 {
     using GameBase;
+    using GameScene;
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class SceneModules : BaseModule, ISceneModules
+    public class SceneModule : BaseModule, ISceneModules
     {
         private List<IScene> listScene;
         private List<IScene> listRemove;

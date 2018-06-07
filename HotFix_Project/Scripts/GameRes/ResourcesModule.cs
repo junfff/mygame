@@ -1,4 +1,4 @@
-﻿namespace Modules
+﻿namespace GameRes
 {
     using GameBase;
     using UnityEngine;
