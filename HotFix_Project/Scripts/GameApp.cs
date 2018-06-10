@@ -31,7 +31,6 @@
         public void OnUpdate(float elapseTime)
         {
             //print("Update");
-
             modulesMgr.OnUpdate(elapseTime);
         }
 

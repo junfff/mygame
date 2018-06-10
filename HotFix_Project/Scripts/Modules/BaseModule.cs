@@ -22,9 +22,29 @@
 
         }
 
+        public virtual void OnEnd()
+        {
+          
+        }
+
         public virtual void OnLateUpdate(float elapse)
         {
 
+        }
+
+        public virtual void OnLoad()
+        {
+         
+        }
+
+        public virtual void OnStart()
+        {
+           
+        }
+
+        public virtual void OnUnLoad()
+        {
+           
         }
 
         public virtual void OnUpdate(float elapse)

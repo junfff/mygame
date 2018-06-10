@@ -91,6 +91,7 @@
 
         public override void OnUpdate(float elapse)
         {
+
             listRemove.Clear();
             var enumerator2 = listRemove.GetEnumerator();
             while (enumerator2.MoveNext())

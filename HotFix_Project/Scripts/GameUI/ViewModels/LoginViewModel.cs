@@ -2,10 +2,10 @@
 {
     public class LoginViewModel : ViewModelBase
     {
-        public readonly BindableProperty<string> Name = new BindableProperty<string>();
-        public readonly BindableProperty<string> Job = new BindableProperty<string>();
-        public readonly BindableProperty<int> ATK = new BindableProperty<int>();
-        public readonly BindableProperty<float> SuccessRate = new BindableProperty<float>();
+        public readonly BindableProperty<string> LoginState = new BindableProperty<string>();
+        //public readonly BindableProperty<string> Job = new BindableProperty<string>();
+        //public readonly BindableProperty<int> ATK = new BindableProperty<int>();
+        //public readonly BindableProperty<float> SuccessRate = new BindableProperty<float>();
         //public readonly BindableProperty<State> State = new BindableProperty<State>();
 
   
@@ -22,8 +22,12 @@
         {
             base.messageAggregator.Publish(Define_StartButton, true);
         }
-
+        public void OnLoginButton()
+        {
+            base.messageAggregator.Publish(Define_LoginButton, true);
+        }
         public int Define_StartButton { get { return 1; } }
+        public int Define_LoginButton { get { return 2; } }
 
     }
 }

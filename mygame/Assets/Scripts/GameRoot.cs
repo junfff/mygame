@@ -33,6 +33,7 @@ public class GameRoot : MonoSingleton<GameRoot>
         //print("Update");
         elapseTime = Time.deltaTime;
         gameApp.OnUpdate(elapseTime);
+
     }
 
     void LateUpdate()

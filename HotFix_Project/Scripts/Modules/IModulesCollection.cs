@@ -3,6 +3,7 @@
     using GameBusiness;
     using GameNet;
     using GameRes;
+    using GameTimer;
     using System;
 
     /// <summary>
@@ -15,5 +16,6 @@
         IResModule resMDL { get; }
         IBusinessModule busMDL { get; }
         INetModule netMDL { get; }
+        ITimerModule timerMDL { get; }
     }
 }

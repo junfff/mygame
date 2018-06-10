@@ -75,7 +75,7 @@
 
         public virtual void OnUpdate(float elapse)
         {
-
+            businessCollection.OnUpdate(elapse);
         }
 
 

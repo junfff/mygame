@@ -1,10 +1,21 @@
 ﻿namespace GameBase
 {
     using GameUI;
+    using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.UI;
     public static class DictBindingExtension
     {
+        public static T FindUI<T>(this IDictBinding dictBind, string name) where T : Component
+        {
+            T t = default(T);
+            AutoBinding abind = dictBind[name];
+            if (null != abind)
+            {
+                t = abind.GetComponent<T>();
+            }
+            return t;
+        }
         public static Button AddButton(this IDictBinding dictBind, string name, UnityAction action)
         {
             Button btn = null;

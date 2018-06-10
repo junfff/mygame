@@ -1,4 +1,6 @@
-﻿namespace GameBase
+﻿using UnityEngine;
+
+namespace GameBase
 {
     public class BindableProperty<T>
     {
@@ -26,10 +28,8 @@
 
         private void ValueChanged(T oldValue, T newValue)
         {
-            if (OnValueChanged != null)
-            {
-                OnValueChanged(oldValue, newValue);
-            }
+            OnValueChanged?.Invoke(oldValue, newValue);
+            //Debug.LogErrorFormat("ValueChanged = {0}", OnValueChanged == null);
         }
 
         public override string ToString()

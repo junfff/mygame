@@ -35,11 +35,11 @@
             collection.OnLateUpdate(elapse);
         }
 
-        public void OnStart()
+        public override void OnStart()
         {
             collection.OnStart();
         }
-        public void OnEnd()
+        public override void OnEnd()
         {
             collection.OnEnd();
         }

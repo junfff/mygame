@@ -4,7 +4,7 @@
     using GameUtil;
     using System;
 
-    public interface IBusiness : ICoreModules, IInitialize, IDisposable
+    public interface IBusiness : ICoreModules, IInitialize, IDisposable,IUpdate,ILateUpdate
     {
         int refCount { get; set; }
         ICoreUtil Core { get; }

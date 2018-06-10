@@ -4,6 +4,7 @@
     using GameNet;
     using GameRes;
     using GameScene;
+    using GameTimer;
     using GameUI;
     using System;
     using System.Collections.Generic;
@@ -15,7 +16,8 @@
         public IResModule resMDL { get; private set; }
         public IBusinessModule busMDL { get; private set; }
         public INetModule netMDL { get; private set; }
-        
+        public ITimerModule timerMDL { get; private set; }
+
         public SceneUIUtil seneUnity { get; private set; }
 
         private Dictionary<ModulesType, IModules> modulesDict;
@@ -26,26 +28,14 @@
             sceneMDL = this.CreateModules<SceneModule>();
             busMDL = this.CreateModules<BusinessModule>();
             netMDL = this.CreateModules<NetModule>();
-            seneUnity = resMDL.GetRes<SceneUIUtil>(UIDefine.SceneUIUtil);
+            timerMDL = this.CreateModules<TimerModule>();
+
+
             //data
             //
+            seneUnity = resMDL.GetRes<SceneUIUtil>(UIDefine.SceneUIUtil);
         }
-        public void OnLoad()
-        {
 
-        }
-        public void OnStart()
-        {
-            busMDL.OnStart();
-        }
-        public void OnEnd()
-        {
-            busMDL.OnEnd();
-        }
-        public void OnUnLoad()
-        {
-
-        }
         public void Dispose()
         {
             resMDL.RecycleRes(seneUnity);
@@ -83,6 +73,7 @@
 
         public void OnUpdate(float elapse)
         {
+
             var enumerator = modulesDict.GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -98,6 +89,42 @@
             {
                 var item = enumerator.Current;
                 item.Value.OnLateUpdate(elapse);
+            }
+        }
+        public void OnLoad()
+        {
+            var enumerator = modulesDict.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var item = enumerator.Current;
+                item.Value.OnLoad();
+            }
+        }
+        public void OnStart()
+        {
+            var enumerator = modulesDict.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var item = enumerator.Current;
+                item.Value.OnStart();
+            }
+        }
+        public void OnEnd()
+        {
+            var enumerator = modulesDict.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var item = enumerator.Current;
+                item.Value.OnEnd();
+            }
+        }
+        public void OnUnLoad()
+        {
+            var enumerator = modulesDict.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var item = enumerator.Current;
+                item.Value.OnUnLoad();
             }
         }
     }

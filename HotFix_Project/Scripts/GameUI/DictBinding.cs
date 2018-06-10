@@ -1,4 +1,6 @@
-﻿namespace GameUI
+﻿using UnityEngine;
+
+namespace GameUI
 {
     public class DictBinding : IDictBinding
     {
@@ -21,6 +23,7 @@
                         return abind;
                     }
                 }
+                Debug.LogErrorFormat("not find autoBinding key = {0}!!!", key);
                 return null;
             }
         }

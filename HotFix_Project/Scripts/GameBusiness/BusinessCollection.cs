@@ -9,8 +9,6 @@
     {
         private List<ViewModelBase> listViewModel;
         private List<IBusiness> listBusiness;
-        private List<IUpdate> lisUpdate;
-        private List<ILateUpdate> lisLateUpdate;
 
         public IModulesCollection CoreModules { get; set; }
 
@@ -26,14 +24,6 @@
 
             business = System.Activator.CreateInstance<T>();
 
-            if (business is IUpdate)
-            {
-                lisUpdate.Add(business as IUpdate);
-            }
-            if (business is ILateUpdate)
-            {
-                lisLateUpdate.Add(business as ILateUpdate);
-            }
             if (business is ICoreModules)
             {
                 (business as ICoreModules).CoreModules = this.CoreModules;
@@ -71,7 +61,6 @@
             {
                 var item = enumerator.Current;
                 item.Dispose();
-                RemoveUpdate(item);
             }
             var enumerator3 = listViewModel.GetEnumerator();
             while (enumerator3.MoveNext())
@@ -80,8 +69,7 @@
                 item.Dispose();
             }
 
-            lisUpdate.Clear();
-            lisLateUpdate.Clear();
+      
             listBusiness.Clear();
             listViewModel.Clear();
         }
@@ -105,8 +93,6 @@
         {
             listViewModel = new List<ViewModelBase>();
             listBusiness = new List<IBusiness>();
-            lisUpdate = new List<IUpdate>();
-            lisLateUpdate = new List<ILateUpdate>();
         }
 
         public void OnEnd()
@@ -121,7 +107,7 @@
 
         public void OnLateUpdate(float elapse)
         {
-            var enumerator = lisLateUpdate.GetEnumerator();
+            var enumerator = listBusiness.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 var item = enumerator.Current;
@@ -141,7 +127,7 @@
 
         public void OnUpdate(float elapse)
         {
-            var enumerator = lisUpdate.GetEnumerator();
+            var enumerator = listBusiness.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 var item = enumerator.Current;
@@ -173,7 +159,6 @@
             if (ret)
             {
                 removeItem.Dispose();
-                RemoveUpdate(removeItem);
                 listBusiness.Remove(removeItem);
             }
             return ret;
@@ -191,24 +176,6 @@
             }
             return default(T);
         }
-        private void RemoveUpdate(IBusiness removeItem)
-        {
-            if (removeItem is IUpdate)
-            {
-                IUpdate iupdate = removeItem as IUpdate;
-                if (lisUpdate.Contains(iupdate))
-                {
-                    lisUpdate.Remove(iupdate);
-                }
-            }
-            if (removeItem is ILateUpdate)
-            {
-                ILateUpdate ilateUpdate = removeItem as ILateUpdate;
-                if (lisLateUpdate.Contains(ilateUpdate))
-                {
-                    lisLateUpdate.Remove(ilateUpdate);
-                }
-            }
-        }
+
     }
 }

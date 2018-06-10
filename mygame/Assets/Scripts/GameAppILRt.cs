@@ -149,7 +149,8 @@ public class GameAppILRt : IGameAppProxy
     {
         if (null != GameApp_obj)
         {
-            var m = GameApp_type.GetMethod(name, 0);
+            int paramCount = param == null ? 0 : param.Length;
+            var m = GameApp_type.GetMethod(name, paramCount);
             appdomain.Invoke(m, GameApp_obj, param);
         }
     }

@@ -2,6 +2,8 @@
 {
     using GameBase;
     using GameUtil;
+    using UnityEngine;
+
     public abstract class BaseView<T> : IBaseView where T : ViewModelBase
     {
         public ICoreUtil Core { get; set; }
@@ -24,7 +26,6 @@
 
         public virtual void Initialize()
         {
-            BindingContext = CoreModules.sceneMDL.curScene.businessCollection.GetViewModel<T>();
             //无所ViewModel的Value怎样变化，只对OnValueChanged事件监听(绑定)一次
             ViewModelProperty.OnValueChanged += OnBindingContextChanged;
             monoUI.Initialize();
@@ -34,6 +35,8 @@
 
         public virtual void OnEnter()
         {
+            BindingContext = CoreModules.sceneMDL.curScene.businessCollection.GetViewModel<T>();
+
             BindingContext.OnStartReveal();
 
             monoUI.OnEnter();
@@ -47,6 +50,7 @@
             BindingContext.OnStartHide();
             monoUI.OnExit();
             BindingContext.OnFinishHide();
+            BindingContext = null;
         }
 
         public virtual void OnPause()
@@ -88,6 +92,7 @@
         {
             Binder.Unbind(oldValue);
             Binder.Bind(newValue);
+            //Debug.LogErrorFormat("OnBindingContextChanged is null? = {0}", newValue == null);
         }
 
     }

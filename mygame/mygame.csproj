@@ -13,14 +13,12 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.5f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -120,6 +118,8 @@
     <Compile Include="Assets\ILRuntime\Generated\MonoSingleton_1_GameRoot_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\SceneUIUtil_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Activator_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_ArraySegment_1_Byte_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Byte_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Ad_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Ad_t_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.cs" />
@@ -128,11 +128,15 @@
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_CoroutineAdapter_Binding_Adaptor_Bindin_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_CoroutineAdapter_Binding_Adaptor_Bindin_t_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_ILTypeInstance_Binding.cs" />
-    <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_ILTypeInstance_Binding_Enumerator_ILTyp_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Stack_1_CoroutineAdapter_Binding_Adaptor_Bindi_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_IEnumerator_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_DateTime_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Exception_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_IDisposable_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Net_IPAddress_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Net_IPEndPoint_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Net_Sockets_SocketAsyncEventArgs_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Net_Sockets_Socket_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_NotImplementedException_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_NotSupportedException_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Object_Binding.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="Assets\ILRuntime\Generated\UnityEngine_SystemInfo_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\UnityEngine_Transform_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\UnityEngine_UI_Button_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\UnityEngine_UI_Text_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Other\ByReferenceKeyComparer.cs" />
     <Compile Include="Assets\ILRuntime\Other\DelegateExportAttribute.cs" />
     <Compile Include="Assets\ILRuntime\Other\NeedAdaptorAttribute.cs" />

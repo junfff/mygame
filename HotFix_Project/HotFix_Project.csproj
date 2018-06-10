@@ -94,6 +94,11 @@
     <Compile Include="Scripts\GameNet\RomoteType.cs" />
     <Compile Include="Scripts\GameNet\ServerInfo.cs" />
     <Compile Include="Scripts\GameNet\SocketState.cs" />
+    <Compile Include="Scripts\GameTimer\ITimer.cs" />
+    <Compile Include="Scripts\GameTimer\ITimerModule.cs" />
+    <Compile Include="Scripts\GameTimer\BaseTimer.cs" />
+    <Compile Include="Scripts\GameTimer\TimerHandler.cs" />
+    <Compile Include="Scripts\GameTimer\TimerModule.cs" />
     <Compile Include="Scripts\GameUI\BaseView.cs" />
     <Compile Include="Scripts\GameUI\DictBinding.cs" />
     <Compile Include="Scripts\GameUI\IBaseView.cs" />
