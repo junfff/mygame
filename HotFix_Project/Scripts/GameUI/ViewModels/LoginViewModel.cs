@@ -1,4 +1,6 @@
-﻿namespace GameBase
+﻿using System;
+
+namespace GameBase
 {
     public class LoginViewModel : ViewModelBase
     {
@@ -28,6 +30,11 @@
         }
         public int Define_StartButton { get { return 1; } }
         public int Define_LoginButton { get { return 2; } }
+        public int Define_SendButton { get { return 3; } }
 
+        public void OnSendButton(string text)
+        {
+            base.messageAggregator.Publish(Define_SendButton, text);
+        }
     }
 }

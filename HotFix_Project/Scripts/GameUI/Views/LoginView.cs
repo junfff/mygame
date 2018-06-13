@@ -2,17 +2,23 @@
 {
     using System;
     using GameBase;
+    using UnityEngine;
     using UnityEngine.UI;
 
     public class LoginView : BaseView<LoginViewModel>
     {
         private Text LoginState;
+        private InputField InputField;
         public override void Initialize()
         {
             base.Initialize();
             LoginState = dictBind.FindUI<Text>("LoginState");
+            InputField = dictBind.FindUI<InputField>("InputField");
+
             dictBind.AddButton("StartButton", OnStartButton);
             dictBind.AddButton("LoginButton", OnLoginButton);
+            dictBind.AddButton("SendButton", OnSendButton);
+
 
             Binder.Add<string>("LoginState", OnLoginState);
 
@@ -31,7 +37,16 @@
         {
             base.Dispose();
             dictBind.RemoveButton("StartButton", OnStartButton);
+            dictBind.RemoveButton("LoginButton", OnLoginButton);
+            dictBind.RemoveButton("SendButton", OnSendButton);
         }
+
+        private void OnSendButton()
+        {
+            base.BindingContext.OnSendButton(InputField.text);
+            InputField.text = string.Empty;  
+        }
+
         public void OnStartButton()
         {
             base.BindingContext.OnStartButton();

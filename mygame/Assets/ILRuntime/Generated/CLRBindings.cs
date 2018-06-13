@@ -26,6 +26,11 @@ namespace ILRuntime.Runtime.Generated
             System_String_Binding.Register(app);
             GameUI_AutoBinding_Binding.Register(app);
             UnityEngine_UI_Text_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_Enumerator_Int32_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_List_1_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_List_1_ILTypeInstance_Binding_Enumerator_ILTypeInstance_Binding.Register(app);
             System_Activator_Binding.Register(app);
             System_Net_Sockets_Socket_Binding.Register(app);
             System_Exception_Binding.Register(app);
@@ -35,7 +40,6 @@ namespace ILRuntime.Runtime.Generated
             System_ArraySegment_1_Byte_Binding.Register(app);
             System_Byte_Binding.Register(app);
             System_IDisposable_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Adaptor_Binding.Register(app);
             System_Collections_Generic_Stack_1_CoroutineAdapter_Binding_Adaptor_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Adaptor_Binding_Enumerator_Int32_CoroutineAdapter_Binding_Adaptor_Binding.Register(app);
@@ -55,7 +59,6 @@ namespace ILRuntime.Runtime.Generated
             System_DateTime_Binding.Register(app);
             UnityEngine_SystemInfo_Binding.Register(app);
             System_Reflection_MethodBase_Binding.Register(app);
-            System_Collections_Generic_List_1_ILTypeInstance_Binding.Register(app);
 
             ILRuntime.CLR.TypeSystem.CLRType __clrType = null;
         }

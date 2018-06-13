@@ -107,6 +107,14 @@ public class GameAppILRt : IGameAppProxy
                 ((System.Action)action)();
             });
         });
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.EventHandler<System.Net.Sockets.SocketAsyncEventArgs>>((act) =>
+        {
+            return new System.EventHandler<System.Net.Sockets.SocketAsyncEventArgs>((sender, e) =>
+            {
+                ((System.Action<System.Object, System.Net.Sockets.SocketAsyncEventArgs>)act)(sender, e);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object, System.Net.Sockets.SocketAsyncEventArgs>();
 
         ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
     }

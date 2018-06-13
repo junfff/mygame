@@ -13,6 +13,7 @@
             if (null == remote)
             {
                 remote = RemoteFactory.Create(type);
+                remote.CoreModules = base.CoreModules;
                 Add(remote);
             }
             remote.Connect(info);
@@ -99,5 +100,16 @@
             return null;
         }
 
+
+        public override void OnUpdate(float elapse)
+        {
+            base.OnUpdate(elapse);
+            var enumerator = listRemote.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                var item = enumerator.Current;
+                item.OnUpdate(elapse);
+            }
+        }
     }
 }

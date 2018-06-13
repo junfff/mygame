@@ -1,8 +1,9 @@
 ﻿
 namespace GameNet
 {
+    using GameBase;
     using System;
-    public interface IRemote:IDisposable
+    public interface IRemote : IDisposable,IUpdate
     {
         IHeartBeat heartBeat { get; }
         IMsgProcess msgProcess { get; }
@@ -17,6 +18,7 @@ namespace GameNet
         void SendMessage(IMessage msg);
         bool IsConnected();
         void OnBuild(AbsRemoteBuilder builder);
+        IModulesCollection CoreModules { get; set; }
 
     }
 }

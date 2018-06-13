@@ -2,6 +2,7 @@
 {
     using System;
     using GameBase;
+    using GameNet;
     using GameScene;
     using GameTimer;
     using GameUI;
@@ -9,24 +10,22 @@
 
     public class LoginBusiness : BaseBusiness<LoginViewModel>, IUpdate
     {
-        private ITimer timer;
         public override void OnStart()
         {
             base.OnStart();
             base.Core.UI.Show(UIDefine.LoginView);
             base.Subscribe(base.viewModel.Define_StartButton, OnStartButton);
             base.Subscribe(base.viewModel.Define_LoginButton, OnLoginButton);
+            base.Subscribe(base.viewModel.Define_SendButton, OnSendButton);
 
-            timer = base.timerHandler.AddTimer(1000, OnTime, true);
+            //base.timerHandler.AddTimer(1000, OnTime);
         }
         public override void OnEnd()
         {
             base.OnEnd();
             base.UnSubscribe(base.viewModel.Define_StartButton, OnStartButton);
             base.UnSubscribe(base.viewModel.Define_LoginButton, OnLoginButton);
-
-
-            base.timerHandler.RemoveTimer(timer);
+            base.UnSubscribe(base.viewModel.Define_SendButton, OnSendButton);
         }
         private void OnTime(int passedTime)
         {
@@ -39,20 +38,35 @@
         }
         private void OnLoginButton(object param)
         {
-            start = true;
             base.viewModel.LoginState.Value = "Start Connecting...\n";
-        }
 
-        private int num = 0;
+            ServerInfo info = new ServerInfo();
+            info.ip = "47.106.123.211";
+            info.port = 33000;
+
+            base.CoreModules.netMDL.ConnectServer(info, RomoteType.LOGIN);
+
+        }
+        private void OnSendButton(object param)
+        {
+            if(param is string)
+            {
+                string str = (string)param;
+                if (string.IsNullOrEmpty(str))
+                {
+                    Debug.LogErrorFormat("OnSendButton str IsNullOrEmpty");
+                    return;
+                }
+                BaseMessage msg = new BaseMessage();
+                msg.obj = str;
+                CoreModules.netMDL.SendMessage(msg);
+                Debug.LogErrorFormat("OnSendButton str = {0}", str);
+            }
+      
+        }
         public override void OnUpdate(float elapse)
         {
-            if (start && num % 100 == 0)
-            {
-                base.viewModel.LoginState.Value = string.Format("Start Connecting...{0}\n", num) + base.viewModel.LoginState.Value;
-            }
-            num++;
         }
 
-        private bool start;
     }
 }

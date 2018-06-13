@@ -1,7 +1,10 @@
-﻿namespace GameNet
+﻿using GameBase;
+
+namespace GameNet
 {
     public class Remote : IRemote
     {
+        public IModulesCollection CoreModules { get; set; }
         public Remote(RomoteType t)
         {
             type = t;
@@ -24,7 +27,7 @@
         public void Connect(ServerInfo info)
         {
             mInfo = info;
-            this.socket.Connect(mInfo.ip, mInfo.port, mInfo.domain);
+            this.socket.Connect(mInfo.ip, mInfo.port);
         }
 
         public void Disconnect()
@@ -34,7 +37,7 @@
 
         public void Reconnect()
         {
-            this.socket.Connect(mInfo.ip, mInfo.port, mInfo.domain);
+            this.socket.Connect(mInfo.ip, mInfo.port);
         }
 
         public void SendMessage(IMessage msg)
@@ -58,7 +61,18 @@
 
         public void Dispose()
         {
-           
+            heartBeat.Dispose();
+            msgProcess.Dispose();
+            msgReceriver.Dispose();
+            msgSender.Dispose();
+            reconnect.Dispose();
+            socket.Dispose();
+        }
+
+
+        public void OnUpdate(float elapse)
+        {
+            msgProcess.OnUpdate(elapse);
         }
     }
 }

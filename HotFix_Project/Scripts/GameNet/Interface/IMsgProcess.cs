@@ -1,7 +1,10 @@
-﻿namespace GameNet
+﻿
+namespace GameNet
 {
-    public interface IMsgProcess: IRemoteHandler
-    {
+    using GameBase;
 
+    public interface IMsgProcess: IRemoteHandler,IUpdate
+    {
+        void EnqueueSocketConnectState(SocketConnectState state);
     }
 }

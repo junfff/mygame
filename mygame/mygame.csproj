@@ -123,11 +123,14 @@
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Ad_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_CoroutineAdapter_Binding_Ad_t_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_Enum_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_KeyValuePair_2_Int32_CoroutineAdapter_Binding__t.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_CoroutineAdapter_Binding_Adaptor_Bindin_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_CoroutineAdapter_Binding_Adaptor_Bindin_t_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_ILTypeInstance_Binding.cs" />
+    <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_List_1_ILTypeInstance_Binding_Enumerator_ILTyp_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_Generic_Stack_1_CoroutineAdapter_Binding_Adaptor_Bindi_t.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_Collections_IEnumerator_Binding.cs" />
     <Compile Include="Assets\ILRuntime\Generated\System_DateTime_Binding.cs" />

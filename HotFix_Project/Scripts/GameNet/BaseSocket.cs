@@ -1,5 +1,6 @@
 ﻿namespace GameNet
 {
+    using GameTimer;
     using System;
     using System.Net;
     using System.Net.Sockets;
@@ -9,6 +10,7 @@
     {
         private const int bufferLength = 0x4000;
         private const int TimeOut = 6000;
+        //private ITimer timer;
         private Socket mSocket;
         private SocketAsyncEventArgs mRevevent;
         private SocketState mState;
@@ -18,7 +20,7 @@
         {
             //Socket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType);
         }
-        public bool Connect(string ip, int port, string domain)
+        public bool Connect(string ip, int port)
         {
             if (this.IsConnecting())
             {
@@ -55,6 +57,7 @@
             this.mRevevent.RemoteEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             this.mRevevent.Completed += this.EventCompleted;
             mState = SocketState.CONNECTING;
+            OnSocketState();
             try
             {
                 this.mSocket.ConnectAsync(mRevevent);
@@ -63,6 +66,7 @@
             {
                 Debug.LogErrorFormat("socket connectasync failed : {0}", e.Message);
                 mState = SocketState.ERROR;
+                OnSocketState();
                 return false;
             }
 
@@ -72,11 +76,10 @@
 
         private void StartTimer()
         {
-            //TODO
-            //OnTimeOut();
+            Context.CoreModules.timerMDL.AddTimer(TimeOut, OnTimeOut);
         }
 
-        private void OnTimeOut()
+        private void OnTimeOut(int passedTime)
         {
             if (!this.IsConnected(true))
             {
@@ -106,7 +109,7 @@
         {
             if (e != null && e.SocketError != SocketError.Success)
             {
-                Debug.LogErrorFormat("socket SocketError : {0}", e.SocketError);
+                Debug.LogErrorFormat("ProcessConnect SocketError : {0}", e.SocketError);
             }
             else
             {
@@ -123,6 +126,7 @@
                 this.mState = SocketState.CONNECTED;
                 this.mSocket.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, true);
                 this.StartReceive();
+                OnSocketState();
             }
         }
 
@@ -130,7 +134,7 @@
         {
             if (e.SocketError != SocketError.Success)
             {
-                Debug.LogErrorFormat("socket SocketError : {0}", e.SocketError);
+                Debug.LogErrorFormat("ProcessReceive SocketError : {0}", e.SocketError);
             }
             else if (e.BytesTransferred <= 0)
             {
@@ -138,6 +142,7 @@
             }
             else
             {
+                Debug.LogErrorFormat("ProcessReceive  e.Buffer = {0}  BytesTransferred = {1} e.Offset = {2}", e.Buffer, e.BytesTransferred, e.Offset);
                 Context.msgReceriver.OnRead(e.Buffer, e.Offset, e.BytesTransferred);
                 StartReceive();
             }
@@ -243,6 +248,12 @@
         public void Clear()
         {
             this.Disconnect();
+        }
+
+
+        private void OnSocketState(SocketError error = SocketError.Success)
+        {
+            Context.msgProcess.EnqueueSocketConnectState(new SocketConnectState(mState, error));
         }
     }
 }
