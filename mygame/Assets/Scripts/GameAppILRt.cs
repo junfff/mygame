@@ -1,9 +1,11 @@
 ﻿using ILRuntime.CLR.TypeSystem;
+using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
 public class GameAppILRt : IGameAppProxy
 {
+    private bool InitFinish;
     private object GameApp_obj;
     private IType GameApp_type;
     public void DisInit()
@@ -13,17 +15,29 @@ public class GameAppILRt : IGameAppProxy
 
     public void Init()
     {
-        GameRoot.instance.StartCoroutine(LoadHotFixAssembly());
+        //首先实例化ILRuntime的AppDomain，AppDomain是一个应用程序域，每个AppDomain都是一个独立的沙盒
+        appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
+        //正常项目中应该是自行从其他地方下载dll，或者打包在AssetBundle中读取，平时开发以及为了演示方便直接从StreammingAssets中读取，
+        //正式发布的时候需要大家自行从其他地方读取dll
+        GameRoot.instance.StartCoroutine(LoadHotFixAssembly("HotFix_Project", OnLoadCallBack));
     }
-
+    private void OnLoadCallBack()
+    {
+        //GameRoot.instance.StartCoroutine(LoadHotFixAssembly("Google.Protobuf", null));
+        InitializeILRuntime();
+        OnHotFixLoaded();
+        InitFinish = true;
+    }
     public void OnLateUpdate(float elapseTime)
     {
-        GameApp_obj_Invoke("OnLateUpdate", elapseTime);
+        if (InitFinish)
+            GameApp_obj_Invoke("OnLateUpdate", elapseTime);
     }
 
     public void OnUpdate(float elapseTime)
     {
-        GameApp_obj_Invoke("OnUpdate", elapseTime);
+        if (InitFinish)
+            GameApp_obj_Invoke("OnUpdate", elapseTime);
     }
 
 
@@ -37,20 +51,15 @@ public class GameAppILRt : IGameAppProxy
     //大家在正式项目中请全局只创建一个AppDomain
     ILRuntime.Runtime.Enviorment.AppDomain appdomain;
 
-    IEnumerator LoadHotFixAssembly()
+    IEnumerator LoadHotFixAssembly(string dllName, Action action)
     {
-        //首先实例化ILRuntime的AppDomain，AppDomain是一个应用程序域，每个AppDomain都是一个独立的沙盒
-        appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
-        //正常项目中应该是自行从其他地方下载dll，或者打包在AssetBundle中读取，平时开发以及为了演示方便直接从StreammingAssets中读取，
-        //正式发布的时候需要大家自行从其他地方读取dll
-
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //这个DLL文件是直接编译HotFix_Project.sln生成的，已经在项目中设置好输出目录为StreamingAssets，在VS里直接编译即可生成到对应目录，无需手动拷贝
 #if UNITY_ANDROID
         WWW www = new WWW(Application.streamingAssetsPath + "/HotFix_Project.dll");
 #else
-        //string path = "file:///" + Application.streamingAssetsPath + "/HotFix_Project.dll";
-        string path = "file:///" + Application.dataPath + "/StreamingAssets/HotFix_Project.dll";
+        //string path = string.Format("file:///{0}/StreamingAssets/{1}.dll", Application.dataPath, dllName); 
+        string path = string.Format("file:///E:/ljf/HotFix_Project/lib/{1}.dll", Application.dataPath, dllName);
         WWW www = new WWW(path);
 #endif
         while (!www.isDone)
@@ -64,8 +73,9 @@ public class GameAppILRt : IGameAppProxy
 #if UNITY_ANDROID
         www = new WWW(Application.streamingAssetsPath + "/HotFix_Project.pdb");
 #else
-        www = new WWW("file:///" + Application.streamingAssetsPath + "/HotFix_Project.pdb");
-        //www = new WWW("file:///" + Application.dataPath + "/Plugins/x86_64/HotFix_Project.pdb");
+        //path = string.Format("file:///{0}/StreamingAssets/{1}.pdb", Application.dataPath, dllName);
+        path = string.Format("file:///E:/ljf/HotFix_Project/lib/{1}.pdb", Application.dataPath, dllName);
+        www = new WWW(path);
 #endif
         while (!www.isDone)
             yield return null;
@@ -78,18 +88,30 @@ public class GameAppILRt : IGameAppProxy
         {
             using (MemoryStream p = new MemoryStream(pdb))
             {
-                appdomain.LoadAssembly(fs, p, new Mono.Cecil.Pdb.PdbReaderProvider());
+                appdomain.LoadAssembly(fs, null != action ? p : null, new Mono.Cecil.Pdb.PdbReaderProvider());
             }
         }
 
-        InitializeILRuntime();
-        OnHotFixLoaded();
+        if (null != action)
+        {
+            action.Invoke();
+        }
+
     }
+
+
 
     void InitializeILRuntime()
     {
-        //这里做一些ILRuntime的注册，HelloWorld示例暂时没有需要注册的
-        //appdomain.RegisterCrossBindingAdaptor(new IDisposableAdapter());
+        //这里做一些ILRuntime的注册
+        //appdomain.RegisterCrossBindingAdaptor(new MessageAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new IOExceptionAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new EqualityComparerAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new EqualityComparerSingleAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new EqualityComparerNullableDoubleAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new EqualityComparerNullableSingleAdapter());
+
+        appdomain.RegisterCrossBindingAdaptor(new Adapter_Protobuf());
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
 
         appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action) =>
@@ -113,8 +135,10 @@ public class GameAppILRt : IGameAppProxy
             {
                 ((System.Action<System.Object, System.Net.Sockets.SocketAsyncEventArgs>)act)(sender, e);
             });
-        });
-        appdomain.DelegateManager.RegisterMethodDelegate<System.Object, System.Net.Sockets.SocketAsyncEventArgs>();
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object, System.Net.Sockets.SocketAsyncEventArgs>();
+
 
         ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
     }
@@ -130,7 +154,6 @@ public class GameAppILRt : IGameAppProxy
 
         GameApp_type = appdomain.LoadedTypes["GameBase.GameApp"];
         GameApp_obj = ((ILType)GameApp_type).Instantiate();
-
         GameApp_obj_Invoke("Initialize");
 
 
@@ -161,6 +184,19 @@ public class GameAppILRt : IGameAppProxy
             var m = GameApp_type.GetMethod(name, paramCount);
             appdomain.Invoke(m, GameApp_obj, param);
         }
+    }
+
+    public void OnUpdateBtn()
+    {
+        Debug.LogErrorFormat("GameAppILRt OnUpdateBtn !!");
+        this.Init();
+    }
+
+    public void Clear()
+    {
+        GameApp_obj = null;
+        appdomain = null;
+        GameApp_type = null;
     }
 }
 

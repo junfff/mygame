@@ -1,13 +1,12 @@
 ﻿namespace GameBusiness
 {
-    using System;
     using GameBase;
     using GameNet;
     using GameScene;
-    using GameTimer;
     using GameUI;
+    using Google.Protobuf;
+    using System.IO;
     using UnityEngine;
-
     public class LoginBusiness : BaseBusiness<LoginViewModel>, IUpdate
     {
         public override void OnStart()
@@ -49,7 +48,7 @@
         }
         private void OnSendButton(object param)
         {
-            if(param is string)
+            if (param is string)
             {
                 string str = (string)param;
                 if (string.IsNullOrEmpty(str))
@@ -57,12 +56,38 @@
                     Debug.LogErrorFormat("OnSendButton str IsNullOrEmpty");
                     return;
                 }
+
+
+                Person p = new Person();
+                p.Name = "liujunfeng";
+                p.Email = "67449789@qq.com";
+                p.Id = 333;
+
+                //序列化操作
+                MemoryStream stream = new MemoryStream();
+                p.WriteTo(stream);
+                byte[] buffer = stream.ToArray();
+
+               //反序列化操作
+               Person p2 = new Person();
+                p2.MergeFrom(buffer);
+
+                string bufferstr = System.Text.Encoding.Default.GetString(buffer);
+                Debug.LogErrorFormat("name = {0} email = {1} id = {2} bufferstr = {3} buffer length = {4}", p2.Name, p2.Email, p2.Id, bufferstr, buffer.Length);
+
+                return;
+
+
+
+
+
+
                 BaseMessage msg = new BaseMessage();
                 msg.obj = str;
                 CoreModules.netMDL.SendMessage(msg);
                 Debug.LogErrorFormat("OnSendButton str = {0}", str);
             }
-      
+
         }
         public override void OnUpdate(float elapse)
         {

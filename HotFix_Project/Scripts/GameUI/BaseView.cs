@@ -50,7 +50,6 @@
             BindingContext.OnStartHide();
             monoUI.OnExit();
             BindingContext.OnFinishHide();
-            BindingContext = null;
         }
 
         public virtual void OnPause()

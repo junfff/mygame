@@ -2,7 +2,7 @@
 {
     public class BaseMessage : IMessage
     {
-        public RomoteType type => RomoteType.LOGIN;
+        public RomoteType romoteType => RomoteType.LOGIN;
 
         public string obj { get; internal set; }
         public byte[] byteArray { get; internal set; }

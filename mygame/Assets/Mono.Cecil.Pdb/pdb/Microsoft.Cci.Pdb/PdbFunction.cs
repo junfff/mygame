@@ -230,11 +230,11 @@ namespace Microsoft.Cci.Pdb
 
             if (proc.seg != 1)
             {
-                throw new PdbDebugException("Segment is {0}, not 1.", proc.seg);
+                 new PdbDebugException("Segment is {0}, not 1.", proc.seg);
             }
             if (proc.parent != 0 || proc.next != 0)
             {
-                throw new PdbDebugException("Warning parent={0}, next={1}",
+                 new PdbDebugException("Warning parent={0}, next={1}",
                                             proc.parent, proc.next);
             }
             //if (proc.dbgStart != 0 || proc.dbgEnd != 0) {
@@ -301,9 +301,10 @@ namespace Microsoft.Cci.Pdb
                             }
                             else
                             {
-                                throw new PdbDebugException("OEM section: guid={0} ti={1}",
+                                 new PdbDebugException("OEM section: guid={0} ti={1}",
                                                             oem.idOem, oem.typind);
                                 // bits.Position = stop;
+                                return;
                             }
                         }
 
@@ -348,14 +349,14 @@ namespace Microsoft.Cci.Pdb
                         {
                             //throw new PdbDebugException("Unknown SYM: {0}", (SYM)rec);
                             bits.Position = stop;
-                            break;
+                            return;
                         }
                 }
             }
 
             if (bits.Position != proc.end)
             {
-                throw new PdbDebugException("Not at S_END");
+                 new PdbDebugException("Not at S_END");
             }
 
             ushort esiz;
@@ -365,7 +366,7 @@ namespace Microsoft.Cci.Pdb
 
             if (erec != (ushort)SYM.S_END)
             {
-                throw new PdbDebugException("Missing S_END");
+                 new PdbDebugException("Missing S_END");
             }
         }
 
@@ -376,7 +377,7 @@ namespace Microsoft.Cci.Pdb
             bits.ReadUInt8(out version);
             if (version != 4)
             {
-                throw new PdbDebugException("Unknown custom metadata item version: {0}", version);
+                 new PdbDebugException("Unknown custom metadata item version: {0}", version);
             }
             byte kind;
             bits.ReadUInt8(out kind);
@@ -393,7 +394,8 @@ namespace Microsoft.Cci.Pdb
                 case 6: break; //vs2015 thing
                 case 7: break; //vs2015 thing
                 default:
-                    throw new PdbDebugException("Unknown custom metadata item kind: {0}", kind);
+                     new PdbDebugException("Unknown custom metadata item kind: {0}", kind);
+                    break;
             }
             bits.Position = savedPosition + (int)numberOfBytesInItem;
         }

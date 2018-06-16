@@ -1,6 +1,11 @@
 ﻿
 public class GameAppDebug : IGameAppProxy
 {
+    public void Clear()
+    {
+       
+    }
+
     //private GameApp gameApp;
 
     public void DisInit()
@@ -23,6 +28,11 @@ public class GameAppDebug : IGameAppProxy
     public void OnUpdate(float elapseTime)
     {
         //gameApp.OnUpdate(elapseTime);
+    }
+
+    public void OnUpdateBtn()
+    {
+       
     }
 }
 

@@ -9,7 +9,7 @@
         {
             get
             {
-                return  ModulesType.RES;
+                return ModulesType.RES;
             }
         }
         public T GetRes<T>(string path) where T : Object
@@ -20,10 +20,13 @@
 
         public bool RecycleRes(Object obj)
         {
-            if (null != obj && AssetHelper.IsCloneType(obj))
+            if (null != obj && obj.name.Contains("Clone"))
             {
+                Debug.LogWarningFormat("Destroy obj name = {0}", obj.name);
                 UnityEngine.Object.Destroy(obj);
+                return true;
             }
+            Debug.LogWarningFormat("RecycleRes false Destroy obj name = {0}", obj.name);
             return false;
         }
     }

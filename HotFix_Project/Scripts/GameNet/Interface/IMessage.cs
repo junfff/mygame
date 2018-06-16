@@ -2,7 +2,7 @@
 {
     public interface IMessage
     {
-        RomoteType type { get; }
+        RomoteType romoteType { get; }
         byte[] GetByte();
         string GetString();
     }

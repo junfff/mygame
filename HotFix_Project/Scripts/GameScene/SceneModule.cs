@@ -22,12 +22,12 @@
 
         public override void Dispose()
         {
+            StopScene(curScene);
             var enumerator = listScene.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 var item = enumerator.Current;
-
-
+                item.Dispose();
             }
 
             listScene.Clear();

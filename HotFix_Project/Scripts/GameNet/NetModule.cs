@@ -41,7 +41,7 @@
 
         public void SendMessage(IMessage msg)
         {
-            IRemote remote = Get(msg.type);
+            IRemote remote = Get(msg.romoteType);
             if (null != remote)
             {
                 remote.SendMessage(msg);

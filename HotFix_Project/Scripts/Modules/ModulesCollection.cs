@@ -38,7 +38,7 @@
 
         public void Dispose()
         {
-            resMDL.RecycleRes(seneUnity);
+            resMDL.RecycleRes(seneUnity.gameObject);
 
             var enumerator = modulesDict.GetEnumerator();
             while (enumerator.MoveNext())

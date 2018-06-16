@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameRoot : MonoSingleton<GameRoot>
 {
@@ -22,6 +23,12 @@ public class GameRoot : MonoSingleton<GameRoot>
         }
 
         gameApp.Init();
+    }
+
+    internal void OnUpdateBtn()
+    {
+        gameApp.DisInit();
+        Init();
     }
 
     protected override void DisInit()

@@ -26,6 +26,10 @@ namespace ILRuntime.Runtime.Generated
             app.RegisterCLRMethodRedirection(method, Dispose_0);
 
 
+
+            app.RegisterCLRCreateArrayInstance(type, s => new System.IDisposable[s]);
+
+
         }
 
 
@@ -43,6 +47,8 @@ namespace ILRuntime.Runtime.Generated
 
             return __ret;
         }
+
+
 
 
 

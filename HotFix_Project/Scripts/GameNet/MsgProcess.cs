@@ -29,7 +29,7 @@
 
         public void EnqueueSocketConnectState(SocketConnectState state)
         {
-            socketStateQueue.Enqueue(state);
+            //socketStateQueue.Enqueue(state);
         }
 
 

@@ -32,7 +32,7 @@ namespace Microsoft.Cci.Pdb {
     internal void Read(PdbReader reader, int position,
                      byte[] bytes, int offset, int data) {
       if (position + data > contentSize) {
-        throw new PdbException("DataStream can't read off end of stream. " +
+         new PdbException("DataStream can't read off end of stream. " +
                                        "(pos={0},siz={1})",
                                position, data);
       }

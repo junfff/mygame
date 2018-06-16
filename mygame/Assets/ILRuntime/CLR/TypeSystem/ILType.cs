@@ -8,6 +8,7 @@ using ILRuntime.Runtime.Enviorment;
 using ILRuntime.CLR.Method;
 using ILRuntime.Runtime.Intepreter;
 using ILRuntime.Reflection;
+using UnityEngine;
 
 namespace ILRuntime.CLR.TypeSystem
 {
@@ -192,7 +193,7 @@ namespace ILRuntime.CLR.TypeSystem
         {
             get
             {
-                return  typeRef.HasGenericParameters && genericArguments == null;
+                return typeRef.HasGenericParameters && genericArguments == null;
             }
         }
 
@@ -492,7 +493,11 @@ namespace ILRuntime.CLR.TypeSystem
                             firstCLRInterface = adaptor;
                         }
                         else
-                            throw new TypeLoadException("Cannot find Adaptor for:" + interfaces[i].TypeForCLR.ToString());
+                        {
+                            string name = interfaces[i].TypeForCLR.ToString();
+                            //Debug.LogErrorFormat("Cannot find Adaptor for: {0}", name);
+                            throw new TypeLoadException("Cannot find Adaptor for:" + name);
+                        }
                     }
                 }
             }
@@ -807,7 +812,7 @@ namespace ILRuntime.CLR.TypeSystem
                         p2 = p2.ElementType;
                     if (p.HasGenericParameter)
                     {
-                        if(p.Name != p2.Name)
+                        if (p.Name != p2.Name)
                         {
                             match = false;
                             break;
@@ -816,7 +821,7 @@ namespace ILRuntime.CLR.TypeSystem
                         continue;
                     }
 
-                    
+
                     if (p2 != p)
                     {
                         match = false;
@@ -1099,7 +1104,7 @@ namespace ILRuntime.CLR.TypeSystem
             if (arrayTypes == null)
                 arrayTypes = new Dictionary<int, IType>();
             IType atype;
-            if(!arrayTypes.TryGetValue(rank, out atype))
+            if (!arrayTypes.TryGetValue(rank, out atype))
             {
                 var def = new ArrayType(typeRef, rank);
                 atype = new ILType(def, appdomain);

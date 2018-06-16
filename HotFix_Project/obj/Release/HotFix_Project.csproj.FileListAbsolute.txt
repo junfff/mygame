@@ -1,0 +1,11 @@
+E:\ljf\mygame\Assets\StreamingAssets\HotFix_Project.dll
+E:\ljf\mygame\Assets\StreamingAssets\HotFix_Project.pdb
+E:\ljf\HotFix_Project\obj\Release\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\ljf\HotFix_Project\obj\Release\HotFix_Project.csproj.CopyComplete
+E:\ljf\HotFix_Project\obj\Release\HotFix_Project.dll
+E:\ljf\HotFix_Project\obj\Release\HotFix_Project.pdb
+E:\ljf\HotFix_Project\lib\HotFix_Project.dll
+E:\ljf\HotFix_Project\lib\HotFix_Project.pdb
+E:\ljf\HotFix_Project\lib\Assembly-CSharp.dll
+E:\ljf\HotFix_Project\lib\UnityEngine.UI.dll
+E:\ljf\HotFix_Project\lib\UnityEngine.UI.xml

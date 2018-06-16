@@ -11,7 +11,7 @@ public class ILRuntimeCLRBinding
     static void GenerateCLRBinding()
     {
         List<Type> types = new List<Type>();
-        types.Add(typeof(IDisposable));
+        types.Add(typeof(IDisposable)); 
         types.Add(typeof(int));
         types.Add(typeof(bool));
         types.Add(typeof(float));
@@ -41,10 +41,16 @@ public class ILRuntimeCLRBinding
     {
         //用新的分析热更dll调用引用来生成绑定代码
         ILRuntime.Runtime.Enviorment.AppDomain domain = new ILRuntime.Runtime.Enviorment.AppDomain();
+
+        //using (System.IO.FileStream fs = new System.IO.FileStream("Assets/StreamingAssets/Google.Protobuf.dll", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+        //{
+        //    domain.LoadAssembly(fs);
+        //}
         using (System.IO.FileStream fs = new System.IO.FileStream("Assets/StreamingAssets/HotFix_Project.dll", System.IO.FileMode.Open, System.IO.FileAccess.Read))
         {
             domain.LoadAssembly(fs);
         }
+
         //Crossbind Adapter is needed to generate the correct binding code
         InitILRuntime(domain);
         ILRuntime.Runtime.CLRBinding.BindingCodeGenerator.GenerateBindingCode(domain, "Assets/ILRuntime/Generated");
@@ -56,8 +62,21 @@ public class ILRuntimeCLRBinding
         //domain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
         //domain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         //domain.RegisterCrossBindingAdaptor(new InheritanceAdapter());
+        //Debug.LogErrorFormat("RegisterCrossBindingAdaptor MessageAdapter");
+        //domain.RegisterCrossBindingAdaptor(new MessageAdapter());
 
+        //domain.RegisterCrossBindingAdaptor(new IOExceptionAdapter());
+        //domain.RegisterCrossBindingAdaptor(new EqualityComparerAdapter()); 
+        //domain.RegisterCrossBindingAdaptor(new EqualityComparerSingleAdapter()); 
+        //domain.RegisterCrossBindingAdaptor(new EqualityComparerNullableDoubleAdapter()); 
+        //domain.RegisterCrossBindingAdaptor(new EqualityComparerNullableSingleAdapter());
+
+        //domain.RegisterCrossBindingAdaptor(new ListAdapter_Protobuf()); 
+        domain.RegisterCrossBindingAdaptor(new ListStringAdapter()); 
+        domain.RegisterCrossBindingAdaptor(new ListInt32Adapter());
+        domain.RegisterCrossBindingAdaptor(new Adapter_Protobuf());
         domain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
+
 
         domain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action) =>
         {
@@ -74,6 +93,17 @@ public class ILRuntimeCLRBinding
                 ((System.Action)action)();
             });
         });
+        domain.DelegateManager.RegisterDelegateConvertor<System.EventHandler<System.Net.Sockets.SocketAsyncEventArgs>>((act) =>
+        {
+            return new System.EventHandler<System.Net.Sockets.SocketAsyncEventArgs>((sender, e) =>
+            {
+                ((System.Action<System.Object, System.Net.Sockets.SocketAsyncEventArgs>)act)(sender, e);
+            });
+        });
+
+        domain.DelegateManager.RegisterMethodDelegate<System.Object, System.Net.Sockets.SocketAsyncEventArgs>();
+
+        domain.DelegateManager.RegisterFunctionDelegate<System.Reflection.MethodInfo>();
     }
 }
 #endif

@@ -13,7 +13,7 @@ namespace GameBase
 
         private readonly List<UnBindHandler> _unbinders = new List<UnBindHandler>();
 
-        public void Add<TProperty>(string name, BindableProperty<TProperty>.ValueChangedHandler valueChangedHandler)
+        public void Add<TProperty>(string name, BindableProperty<TProperty>.ValueChangedHandler valueChangedHandler) 
         {
             var fieldInfo = typeof(T).GetField(name, BindingFlags.Instance | BindingFlags.Public);
             if (fieldInfo == null)
@@ -35,7 +35,7 @@ namespace GameBase
 
         }
 
-        private BindableProperty<TProperty> GetPropertyValue<TProperty>(string name, T viewModel, FieldInfo fieldInfo)
+        private BindableProperty<TProperty> GetPropertyValue<TProperty>(string name, T viewModel, FieldInfo fieldInfo) 
         {
             var value = fieldInfo.GetValue(viewModel);
             BindableProperty<TProperty> bindableProperty = value as BindableProperty<TProperty>;

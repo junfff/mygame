@@ -41,7 +41,6 @@
             {
                 this.Disconnect();
             }
-
             try
             {
                 this.mSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -51,7 +50,6 @@
                 Debug.LogErrorFormat("socket create failed : {0}", e.Message);
                 return false;
             }
-
             //IPEndPoint(long address, int port);  IPEndPoint(IPAddress address, int port);
             this.mRevevent = new SocketAsyncEventArgs();
             this.mRevevent.RemoteEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -69,7 +67,6 @@
                 OnSocketState();
                 return false;
             }
-
             StartTimer();
             return true;
         }

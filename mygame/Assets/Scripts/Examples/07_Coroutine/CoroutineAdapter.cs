@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using ILRuntime.Other;
-using System;
-using System.Collections;
+﻿using ILRuntime.CLR.Method;
 using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Intepreter;
-using ILRuntime.CLR.Method;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 
 public class CoroutineAdapter : CrossBindingAdaptor
@@ -157,5 +155,7 @@ public class CoroutineAdapter : CrossBindingAdaptor
             else
                 return instance.Type.FullName;
         }
+
+ 
     }
 }

@@ -5,5 +5,7 @@ public interface IGameAppProxy
     void DisInit();
     void OnUpdate(float elapseTime);
     void OnLateUpdate(float elapseTime);
+    void OnUpdateBtn();
+    void Clear();
 }
 
