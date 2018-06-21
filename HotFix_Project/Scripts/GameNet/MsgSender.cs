@@ -22,8 +22,10 @@ namespace GameNet
         {
             if (Context.IsConnected())
             {
-                //Context.socket.Send(buff, buffSize);
                 byte[] tmp = msg.GetByte();
+
+                Debug.LogFormat("socket send msg context : {0} byte length : {1}", msg.GetString(), tmp.Length);
+
                 Context.socket.Send(tmp, tmp.Length);
             }
             else

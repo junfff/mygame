@@ -1,8 +1,9 @@
 ﻿namespace GameBase
 {
     using System.Threading;
+    using UnityEngine;
 
-    public class ConcurrentLinkedQueue<T>
+    public class ConcurrentLinkedQueue<T> : IClear
     {
         private class Node
         {
@@ -10,9 +11,9 @@
             public Node Next;
         }
 
-        private Node _head = new Node();
+        private Node _head;
         private Node _tail;
-
+        private int mCount;
         public ConcurrentLinkedQueue()
         {
             _head = new Node();
@@ -23,7 +24,6 @@
         {
             get { return (_head.Next == null); }
         }
-
         public void Enqueue(T item)
         {
             Node newNode = new Node();
@@ -40,11 +40,11 @@
                     if (residue == null)
                     {
                         //C 如果其他process改变了tail.next节点，需要重新取新的tail节点
-                        if (Interlocked.CompareExchange<Node>(
-                            ref curTail.Next, newNode, residue) == residue)
+                        if (Interlocked.CompareExchange<Node>(ref curTail.Next, newNode, null) == null)
                         {
                             //D 尝试修改tail
                             Interlocked.CompareExchange<Node>(ref _tail, newNode, curTail);
+                            Interlocked.Increment(ref mCount);
                             return;
                         }
                     }
@@ -52,6 +52,7 @@
                     {
                         //B 帮助其他线程完成D操作
                         Interlocked.CompareExchange<Node>(ref _tail, residue, curTail);
+
                     }
                 }
             }
@@ -91,7 +92,21 @@
                 }
             }
             while (true);
+            Interlocked.Decrement(ref mCount);
             return true;
+        }
+
+        public void Clear()
+        {
+            mCount = 0;
+            _head.Next = null;
+        }
+        public int Count
+        {
+            get
+            {
+                return mCount;
+            }
         }
     }
 }

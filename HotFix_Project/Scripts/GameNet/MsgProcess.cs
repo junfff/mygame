@@ -5,7 +5,7 @@
 
     public class MsgProcess : IMsgProcess
     {
-        private ConcurrentLinkedQueue<SocketConnectState> socketStateQueue;
+        private ConcurrentLinkedQueue<SocketConnectState> socketStateQueue; 
         public IRemote Context { get; set; }
 
         public void Dispose()
@@ -29,7 +29,7 @@
 
         public void EnqueueSocketConnectState(SocketConnectState state)
         {
-            //socketStateQueue.Enqueue(state);
+            socketStateQueue.Enqueue(state);
         }
 
 

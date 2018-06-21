@@ -18,18 +18,15 @@ namespace GameNet
         }
         public void OnRead(byte[] buff, int offset, int length)
         {
-            Debug.LogErrorFormat("OnRead  buff = {0}  length = {1} offset = {2}", buff.ToString(), length, offset);
             BaseMessage msg = new BaseMessage();
-            msg.byteArray = new byte[length];
-            Array.Copy(buff, offset, msg.byteArray, 0, length);
-            for (int i = 0; i < length; i++)
-            {
-                if (buff[i] != 0)
-                {
-                    Debug.LogErrorFormat("OnRead buff i = {0}  buff = {1}", i, buff[i]);
-                }
-            }
-            Debug.LogErrorFormat("OnRead msg context = {0}  buff.Length = {1}", msg.GetString(), buff.Length);
+
+            msg.WriteIn(buff, offset, length);
+
+            Debug.LogErrorFormat("OnRead msg context = {0}  buff.Length = {1} offset = {2}", msg.GetString(), msg.Length, offset);
+
+            //反序列化操作
+            Person p = Person.Parser.ParseFrom(msg.GetByte());
+            Debug.LogErrorFormat(">>>> name = {0} email = {1} id = {2} ", p.Name, p.Email, p.Id);
         }
     }
 }

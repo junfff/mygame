@@ -40,7 +40,9 @@
             base.viewModel.LoginState.Value = "Start Connecting...\n";
 
             ServerInfo info = new ServerInfo();
-            info.ip = "47.106.123.211";
+            //info.ip = "47.106.123.211";
+            //info.ip = "127.0.0.1"; 
+            info.ip = "172.16.73.132"; 
             info.port = 33000;
 
             base.CoreModules.netMDL.ConnectServer(info, RomoteType.LOGIN);
@@ -58,32 +60,28 @@
                 }
 
 
+
+
+                // //序列化操作
+                // MemoryStream stream = new MemoryStream();
+                // p.WriteTo(stream);
+                // byte[] buffer = stream.ToArray();
+
+                ////反序列化操作
+                //Person p2 = new Person();
+                // p2.MergeFrom(buffer);
+
+                // string bufferstr = System.Text.Encoding.Default.GetString(buffer);
+                // Debug.LogErrorFormat("name = {0} email = {1} id = {2} bufferstr = {3} buffer length = {4}", p2.Name, p2.Email, p2.Id, bufferstr, buffer.Length);
+
+
                 Person p = new Person();
-                p.Name = "liujunfeng";
+                p.Name = "huangqiaoping_hahaha";
                 p.Email = "67449789@qq.com";
-                p.Id = 333;
-
-                //序列化操作
-                MemoryStream stream = new MemoryStream();
-                p.WriteTo(stream);
-                byte[] buffer = stream.ToArray();
-
-               //反序列化操作
-               Person p2 = new Person();
-                p2.MergeFrom(buffer);
-
-                string bufferstr = System.Text.Encoding.Default.GetString(buffer);
-                Debug.LogErrorFormat("name = {0} email = {1} id = {2} bufferstr = {3} buffer length = {4}", p2.Name, p2.Email, p2.Id, bufferstr, buffer.Length);
-
-                return;
-
-
-
-
-
+                p.Id = 222;
 
                 BaseMessage msg = new BaseMessage();
-                msg.obj = str;
+                msg.WriteIn(p);
                 CoreModules.netMDL.SendMessage(msg);
                 Debug.LogErrorFormat("OnSendButton str = {0}", str);
             }

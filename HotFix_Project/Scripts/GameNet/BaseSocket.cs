@@ -92,6 +92,7 @@
 
         private void EventCompleted(object sender, SocketAsyncEventArgs e)
         {
+            //Debug.LogErrorFormat("EventCompleted LastOperation = {0}", e.LastOperation);
             if (e.LastOperation == SocketAsyncOperation.Connect)
             {
                 this.ProcessConnect(sender as Socket, null, e);
@@ -139,7 +140,6 @@
             }
             else
             {
-                Debug.LogErrorFormat("ProcessReceive  e.Buffer = {0}  BytesTransferred = {1} e.Offset = {2}", e.Buffer, e.BytesTransferred, e.Offset);
                 Context.msgReceriver.OnRead(e.Buffer, e.Offset, e.BytesTransferred);
                 StartReceive();
             }
