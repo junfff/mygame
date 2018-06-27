@@ -18,9 +18,9 @@
             return CreateInstance<MsgProcess>();
         }
 
-        public override IMsgReceriver BuildMsgReceriver()
+        public override IMsgReceiver BuildMsgReceriver()
         {
-            return CreateInstance<MsgReceriver>();
+            return CreateInstance<MsgReceiver>();
         }
 
         public override IMsgSender BuildMsgSender()
@@ -35,10 +35,13 @@
 
         public override ISocket BuildSocket()
         {
-            return CreateInstance<BaseSocket>(); 
+            return CreateInstance<BaseSocket>();
+        }
+        public override IMarshalEndian BuildMarshalEndian()
+        {
+            return CreateInstance<MarshalEndian>();
         }
 
- 
 
     }
 }

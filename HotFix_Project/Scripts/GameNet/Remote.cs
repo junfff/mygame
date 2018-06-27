@@ -16,13 +16,15 @@ namespace GameNet
 
         public IMsgProcess msgProcess { get; private set; }
 
-        public IMsgReceriver msgReceriver { get; private set; }
+        public IMsgReceiver msgReceriver { get; private set; }
 
         public IMsgSender msgSender { get; private set; }
 
         public IReconnect reconnect { get; private set; }
 
         public ISocket socket { get; private set; }
+        public IMarshalEndian marshalEndian { get; private set; }
+
         private ServerInfo mInfo;
         public void Connect(ServerInfo info)
         {
@@ -40,9 +42,9 @@ namespace GameNet
             this.socket.Connect(mInfo.ip, mInfo.port);
         }
 
-        public void SendMessage(IMessage msg)
+        public void SendMessage(IBaseMessage msg)
         {
-            this.msgSender.SendMsg(msg);
+            this.msgProcess.EnqueueSenderMsg(msg);
         }
         public void OnBuild(AbsRemoteBuilder builder)
         {
@@ -52,6 +54,7 @@ namespace GameNet
             this.msgSender = builder.BuildMsgSender();
             this.reconnect = builder.BuildReconnect();
             this.socket = builder.BuildSocket();
+            this.marshalEndian = builder.BuildMarshalEndian();
         }
 
         public bool IsConnected()

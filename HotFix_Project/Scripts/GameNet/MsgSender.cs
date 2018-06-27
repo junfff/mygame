@@ -18,13 +18,14 @@ namespace GameNet
             this.buff = new byte[buffSize];
         }
 
-        public void SendMsg(IMessage msg)
+        public void SendMsg(IBaseMessage msg)
         {
             if (Context.IsConnected())
             {
-                byte[] tmp = msg.GetByte();
+                byte[] tmp = Context.marshalEndian.Encode(msg);
 
-                Debug.LogFormat("socket send msg context : {0} byte length : {1}", msg.GetString(), tmp.Length);
+                Debug.LogFormat("============ Socket Send : ({0}) byte length : {1}   tmp[0]:{2} tmp[1]:{3}", 
+                    msg.GetString(), tmp.Length,tmp[0].ToString("x8"),tmp[1].ToString("x8"));
 
                 Context.socket.Send(tmp, tmp.Length);
             }

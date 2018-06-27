@@ -1,4 +1,6 @@
-﻿namespace GameNet
+﻿using System;
+
+namespace GameNet
 {
     public abstract class AbsRemoteBuilder : IRemoteBuilder
     {
@@ -11,7 +13,7 @@
         public abstract ISocket BuildSocket();
         public abstract IHeartBeat BuildHeartBeat();
         public abstract IMsgProcess BuildMsgProcess();
-        public abstract IMsgReceriver BuildMsgReceriver();
+        public abstract IMsgReceiver BuildMsgReceriver();
         public abstract IMsgSender BuildMsgSender();
         public abstract IReconnect BuildReconnect();
         protected T CreateInstance<T>() where T : IRemoteHandler
@@ -22,5 +24,6 @@
             return t;
         }
 
+        public abstract IMarshalEndian BuildMarshalEndian();
     }
 }

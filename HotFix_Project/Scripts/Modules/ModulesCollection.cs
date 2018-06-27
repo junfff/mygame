@@ -1,6 +1,7 @@
 ﻿namespace GameBase
 {
     using GameBusiness;
+    using GameEvent;
     using GameNet;
     using GameRes;
     using GameScene;
@@ -17,6 +18,7 @@
         public IBusinessModule busMDL { get; private set; }
         public INetModule netMDL { get; private set; }
         public ITimerModule timerMDL { get; private set; }
+        public IEventModule eventMDL { get; private set; }
 
         public SceneUIUtil seneUnity { get; private set; }
 
@@ -29,7 +31,7 @@
             busMDL = this.CreateModules<BusinessModule>();
             netMDL = this.CreateModules<NetModule>();
             timerMDL = this.CreateModules<TimerModule>();
-
+            eventMDL = this.CreateModules<EventModule>();
 
             //data
             //

@@ -5,6 +5,7 @@
     using GameRes;
     using GameTimer;
     using System;
+    using GameEvent;
 
     /// <summary>
     /// 核心模块集
@@ -17,5 +18,6 @@
         IBusinessModule busMDL { get; }
         INetModule netMDL { get; }
         ITimerModule timerMDL { get; }
+        IEventModule eventMDL { get; }
     }
 }

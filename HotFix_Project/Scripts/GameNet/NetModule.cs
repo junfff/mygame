@@ -39,7 +39,7 @@
             }
         }
 
-        public void SendMessage(IMessage msg)
+        public void SendMessage(IBaseMessage msg)
         {
             IRemote remote = Get(msg.romoteType);
             if (null != remote)

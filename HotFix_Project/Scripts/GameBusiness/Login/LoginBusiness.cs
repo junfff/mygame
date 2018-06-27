@@ -1,10 +1,12 @@
 ﻿namespace GameBusiness
 {
     using GameBase;
+    using GameEvent;
     using GameNet;
     using GameScene;
     using GameUI;
     using Google.Protobuf;
+    using System;
     using System.IO;
     using UnityEngine;
     public class LoginBusiness : BaseBusiness<LoginViewModel>, IUpdate
@@ -18,6 +20,8 @@
             base.Subscribe(base.viewModel.Define_SendButton, OnSendButton);
 
             //base.timerHandler.AddTimer(1000, OnTime);
+
+            base.CoreModules.eventMDL.Subscribe(DefineProtobuf.MSG_PERSON,OnPerson);
         }
         public override void OnEnd()
         {
@@ -25,7 +29,19 @@
             base.UnSubscribe(base.viewModel.Define_StartButton, OnStartButton);
             base.UnSubscribe(base.viewModel.Define_LoginButton, OnLoginButton);
             base.UnSubscribe(base.viewModel.Define_SendButton, OnSendButton);
+
+            base.CoreModules.eventMDL.UnSubscribe(DefineProtobuf.MSG_PERSON, OnPerson);
         }
+
+        private void OnPerson(object param)
+        {
+            if(param is Person)
+            {
+                Person p = param as Person;
+                Debug.LogErrorFormat(">>>> LoginBusiness OnPerson name = {0} email = {1} id = {2} ", p.Name, p.Email, p.Id);
+            }
+        }
+
         private void OnTime(int passedTime)
         {
             Debug.LogErrorFormat("OnTime passedTime = {0}", passedTime);
@@ -59,29 +75,13 @@
                     return;
                 }
 
-
-
-
-                // //序列化操作
-                // MemoryStream stream = new MemoryStream();
-                // p.WriteTo(stream);
-                // byte[] buffer = stream.ToArray();
-
-                ////反序列化操作
-                //Person p2 = new Person();
-                // p2.MergeFrom(buffer);
-
-                // string bufferstr = System.Text.Encoding.Default.GetString(buffer);
-                // Debug.LogErrorFormat("name = {0} email = {1} id = {2} bufferstr = {3} buffer length = {4}", p2.Name, p2.Email, p2.Id, bufferstr, buffer.Length);
-
-
                 Person p = new Person();
                 p.Name = "huangqiaoping_hahaha";
                 p.Email = "67449789@qq.com";
                 p.Id = 222;
 
-                BaseMessage msg = new BaseMessage();
-                msg.WriteIn(p);
+                IBaseMessage msg = ReceiverHelper.PopMessage();
+                msg.WriteIn(p,DefineProtobuf.MSG_PERSON);
                 CoreModules.netMDL.SendMessage(msg);
                 Debug.LogErrorFormat("OnSendButton str = {0}", str);
             }

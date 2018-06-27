@@ -140,7 +140,14 @@
             }
             else
             {
-                Context.msgReceriver.OnRead(e.Buffer, e.Offset, e.BytesTransferred);
+                try
+                {
+                    Context.msgReceriver.OnRead(e.Buffer, e.Offset, e.BytesTransferred);
+                }
+                catch (Exception error)
+                {
+                    Debug.LogErrorFormat("socket ProcessReceive OnRead  error : {0}", error.Message);
+                }
                 StartReceive();
             }
         }
