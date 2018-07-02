@@ -141,6 +141,8 @@ public class GameAppILRt : IGameAppProxy
 
 
         ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
+
+        appdomain.DebugService.StartDebugService(56000);
     }
 
     void OnHotFixLoaded()
