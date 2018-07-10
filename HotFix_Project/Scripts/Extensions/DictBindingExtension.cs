@@ -4,6 +4,7 @@
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.UI;
+
     public static class DictBindingExtension
     {
         public static T FindUI<T>(this IDictBinding dictBind, string name) where T : Component
