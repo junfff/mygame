@@ -20,7 +20,7 @@ namespace GameNet
         }
         public void OnRead(byte[] buff, int offset, int length)
         {
-            Debug.LogFormat("============ Socket Read :  buff.Length = {0} offset = {1}", length, offset);
+            Debug.LogFormat("============ Socket Read :  buff.Length = {0} offset = {1}, buff = ( {2} )", length, offset,buff.ToString());
 
             List<IBaseMessage> list = Context.marshalEndian.Decode(buff, length);
 

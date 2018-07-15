@@ -111,15 +111,24 @@ public class MarshalEndian: IMarshalEndian
                         }
                         byte tt1 = buffers.ReadByte();
                         byte tt2 = buffers.ReadByte();
-                        if (!(tt1 == t1 && tt2 == t2))
+                        byte tt3 = buffers.ReadByte();
+                        byte tt4 = buffers.ReadByte();
+                        if (!(tt1 == t1 && tt3 == t2))
                         {
+                            Debug.LogErrorFormat("tt1 = {0},tt2 = {1}", tt1.ToString("x8"), tt2.ToString("x8"));
+                            Debug.LogErrorFormat("tt3 = {0},tt4 = {1}",tt3.ToString("x8"),tt4.ToString("x8"));
                             long ttttt = buffers.BaseStream.Seek(-3, SeekOrigin.Current);
                             continue;
+                        }
+                        else
+                        {
+                            Debug.LogErrorFormat("成功 包头！！！");
                         }
                         #endregion
 
                         #region 包协议  
                         int offset = buffers.ReadInt16();
+                        Debug.LogErrorFormat("包协议，长度是 offset={0}",offset);
                         #endregion
 
                         #region 包解析  
@@ -127,6 +136,7 @@ public class MarshalEndian: IMarshalEndian
                         if (offset <= (buffers.BaseStream.Length - buffers.BaseStream.Position))
                         {
                             int msgID = buffers.ReadInt32();
+                            Debug.LogErrorFormat("msgID= {0}",msgID);
                             _buff = buffers.ReadBytes(offset - 4);
 
                             IBaseMessage msg = ReceiverHelper.PopMessage();

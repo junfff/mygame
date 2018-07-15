@@ -2,6 +2,6 @@
 {
     public class DefineProtobuf
     {
-        public const int MSG_PERSON = 112300;
+        public const int MSG_PERSON = 1000;
     }
 }

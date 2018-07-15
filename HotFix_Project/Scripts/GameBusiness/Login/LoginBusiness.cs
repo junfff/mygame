@@ -58,7 +58,9 @@
             ServerInfo info = new ServerInfo();
             //info.ip = "47.106.123.211";
             //info.ip = "127.0.0.1"; 
-            info.ip = "172.16.73.132"; 
+           //info.ip = "172.16.73.132"; 
+            info.ip = "192.168.1.100"; 
+
             info.port = 33000;
 
             base.CoreModules.netMDL.ConnectServer(info, RomoteType.LOGIN);
