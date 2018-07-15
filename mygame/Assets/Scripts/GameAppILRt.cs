@@ -59,7 +59,7 @@ public class GameAppILRt : IGameAppProxy
         WWW www = new WWW(Application.streamingAssetsPath + "/HotFix_Project.dll");
 #else
         //string path = string.Format("file:///{0}/StreamingAssets/{1}.dll", Application.dataPath, dllName); 
-        string path = string.Format("file:///E:/ljf/HotFix_Project/lib/{1}.dll", Application.dataPath, dllName);
+        string path = string.Format("file:///{0}/../../HotFix_Project/lib/{1}.dll", Application.dataPath, dllName);
         WWW www = new WWW(path);
 #endif
         while (!www.isDone)
@@ -74,7 +74,7 @@ public class GameAppILRt : IGameAppProxy
         www = new WWW(Application.streamingAssetsPath + "/HotFix_Project.pdb");
 #else
         //path = string.Format("file:///{0}/StreamingAssets/{1}.pdb", Application.dataPath, dllName);
-        path = string.Format("file:///E:/ljf/HotFix_Project/lib/{1}.pdb", Application.dataPath, dllName);
+        path = string.Format("file:///{0}/../../HotFix_Project/lib/{1}.pdb", Application.dataPath, dllName);
         www = new WWW(path);
 #endif
         while (!www.isDone)
@@ -88,7 +88,7 @@ public class GameAppILRt : IGameAppProxy
         {
             using (MemoryStream p = new MemoryStream(pdb))
             {
-                appdomain.LoadAssembly(fs, null != action ? p : null, new Mono.Cecil.Pdb.PdbReaderProvider());
+                appdomain.LoadAssembly(fs,  null, new Mono.Cecil.Pdb.PdbReaderProvider());
             }
         }
 
