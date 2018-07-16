@@ -110,3 +110,11 @@ E:\ljf\HotFix_Project\lib\UnityEngine.UnityWebRequestTextureModule.xml
 E:\ljf\HotFix_Project\lib\UnityEngine.VideoModule.xml
 E:\ljf\HotFix_Project\lib\UnityEngine.WindModule.xml
 E:\ljf\HotFix_Project\lib\UnityEngine.XRModule.xml
+E:\Git\HotFix_Project\lib\HotFix_Project.dll
+E:\Git\HotFix_Project\lib\HotFix_Project.pdb
+E:\Git\HotFix_Project\lib\Assembly-CSharp.dll
+E:\Git\HotFix_Project\obj\Release\HotFix_Project.csprojAssemblyReference.cache
+E:\Git\HotFix_Project\obj\Release\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\Git\HotFix_Project\obj\Release\HotFix_Project.csproj.CopyComplete
+E:\Git\HotFix_Project\obj\Release\HotFix_Project.dll
+E:\Git\HotFix_Project\obj\Release\HotFix_Project.pdb
