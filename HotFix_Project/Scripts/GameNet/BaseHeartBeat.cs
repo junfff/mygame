@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtobufMsg;
+using System;
 using UnityEngine;
 
 namespace GameNet
@@ -25,7 +26,10 @@ namespace GameNet
             }
             else
             {
-                this.RemoveTime();
+                if(this.RemoveTime())
+                {
+                    Debug.Log("断开连接，停止心跳！！");
+                }
             }
         }
         private void AddTime()
@@ -35,26 +39,26 @@ namespace GameNet
                 this.timer = this.Context.CoreModules.timerMDL.AddTimer(heartTime, OnTime, true);
             }
         }
-        private void RemoveTime()
+        private bool RemoveTime()
         {
             if (null != this.timer)
             {
                 this.Context.CoreModules.timerMDL.RemoveTimer(this.timer);
                 this.timer = null;
+                return true;
             }
+            return false;
         }
         private void OnTime(int passedTime)
         {
             this.heartNum++;
             Debug.Log("心跳时间！！啵啵啵");
 
-            Person p = new Person();
-            p.Name = "心跳时间！！啵啵啵 --- heartNum : " + this.heartNum;
-            p.Email = "67449789@qq.com";
-            p.Id = 123456789;
+            HeartBeat p = new HeartBeat();
+            p.ActionId = 123456789;
 
             IBaseMessage msg = ReceiverHelper.PopMessage();
-            msg.WriteIn(p, DefineProtobuf.MSG_PERSON);
+            msg.WriteIn(p, DefineProtobuf.MSG_HEARTBEAT);
             this.Context.CoreModules.netMDL.SendMessage(msg);
         }
     }

@@ -184,6 +184,7 @@
     <Compile Include="Scripts\GameNet\ServerInfo.cs" />
     <Compile Include="Scripts\GameNet\SocketConnectState.cs" />
     <Compile Include="Scripts\GameNet\SocketState.cs" />
+    <Compile Include="Scripts\GameProto\Heartbeat.cs" />
     <Compile Include="Scripts\GameProto\Person.cs" />
     <Compile Include="Scripts\GameTimer\ITimer.cs" />
     <Compile Include="Scripts\GameTimer\ITimerModule.cs" />
