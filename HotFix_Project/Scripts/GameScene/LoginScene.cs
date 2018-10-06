@@ -8,7 +8,8 @@
         public override void Initialize()
         {
             base.Initialize();
-            base.AddBusiness<LoginBusiness>();
+            base.AddBusiness<LoginAccountBusiness>();
+            base.AddBusiness<LoginBusiness>(); 
         }
 
         public override SceneType sceneType

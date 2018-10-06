@@ -18,6 +18,7 @@
             InputPassed = dictBind.FindUI<InputField>("InputPassed");
 
             dictBind.AddButton("LoginButton", OnLoginButton);
+            dictBind.AddButton("BackButton", OnBackButton);
             Binder.Add<string>("LoginState", OnLoginState);
         }
 
@@ -30,15 +31,20 @@
         {
             base.Dispose();
             dictBind.RemoveButton("LoginButton", OnLoginButton);
+            dictBind.RemoveButton("BackButton", OnBackButton);
         }
 
 
 
-        public void OnLoginButton()
+        private void OnBackButton()
+        {
+            Debug.Log("OnBackButton！！");
+        }
+        private void OnLoginButton()
         {
             LoginState.text = "开始登陆账号！！";
             Debug.Log("开始登陆账号！！");
-           // base.BindingContext.OnLoginButton();
+            // base.BindingContext.OnLoginButton();
         }
     }
 }
