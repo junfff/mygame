@@ -55,7 +55,7 @@ namespace GameNet
             Debug.Log("心跳时间！！啵啵啵");
 
             HeartBeat p = new HeartBeat();
-            p.ActionId = 123456789;
+            p.ActionId = this.heartNum;
 
             IBaseMessage msg = ReceiverHelper.PopMessage();
             msg.WriteIn(p, DefineProtobuf.MSG_HEARTBEAT);
