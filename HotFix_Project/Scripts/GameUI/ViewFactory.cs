@@ -14,6 +14,8 @@ namespace GameUI
 
                 case UIDefine.LoginView:
                     return new LoginView();
+                case UIDefine.LoginAccount:
+                    return new LoginAccount();
             }
             Debug.LogErrorFormat("ViewFactory Create error !!!");
             return null;
@@ -29,6 +31,8 @@ namespace GameUI
                     return UIDefine.Setup;
                 case UIDefine.LoginView:
                     return UIDefine.Login;
+                case UIDefine.LoginAccount:
+                    return UIDefine.UILoginAccount;
             }
             Debug.LogErrorFormat("ViewFactory Create error !!!");
             return null;

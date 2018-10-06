@@ -21,7 +21,7 @@
 
             //base.timerHandler.AddTimer(1000, OnTime);
 
-            base.CoreModules.eventMDL.Subscribe(DefineProtobuf.MSG_PERSON,OnPerson);
+            base.CoreModules.eventMDL.Subscribe(DefineProtobuf.MSG_PERSON, OnPerson);
         }
         public override void OnEnd()
         {
@@ -35,7 +35,7 @@
 
         private void OnPerson(object param)
         {
-            if(param is Person)
+            if (param is Person)
             {
                 Person p = param as Person;
                 Debug.LogErrorFormat(">>>> LoginBusiness OnPerson name = {0} email = {1} id = {2} ", p.Name, p.Email, p.Id);
@@ -49,7 +49,8 @@
         }
         private void OnStartButton(object param)
         {
-            base.CoreModules.sceneMDL.RunScene(SceneType.Lobby);
+            base.Core.UI.Show(UIDefine.LoginAccount);
+          //  base.CoreModules.sceneMDL.RunScene(SceneType.Lobby);
         }
         private void OnLoginButton(object param)
         {
@@ -58,7 +59,7 @@
             ServerInfo info = new ServerInfo();
             //info.ip = "47.106.123.211";
             //info.ip = "127.0.0.1"; 172.16.129.128 
-            info.ip = "172.16.129.128"; 
+            info.ip = "172.16.129.128";
             //info.ip = "192.168.1.100"; 
 
             info.port = 33000;
@@ -83,7 +84,7 @@
                 p.Id = 222;
 
                 IBaseMessage msg = ReceiverHelper.PopMessage();
-                msg.WriteIn(p,DefineProtobuf.MSG_PERSON);
+                msg.WriteIn(p, DefineProtobuf.MSG_PERSON);
                 CoreModules.netMDL.SendMessage(msg);
                 Debug.LogErrorFormat("OnSendButton str = {0}", str);
             }

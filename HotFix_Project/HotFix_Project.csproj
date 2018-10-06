@@ -198,7 +198,9 @@
     <Compile Include="Scripts\GameUI\UIType.cs" />
     <Compile Include="Scripts\GameUI\ViewFactory.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LobbyMainViewModel.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\LoginAccountModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Scripts\GameUI\Views\LoginAccount.cs" />
     <Compile Include="Scripts\GameUI\Views\LoginView.cs" />
     <Compile Include="Scripts\GameUI\Views\MainMenuView.cs" />
     <Compile Include="Scripts\GameUtil\BaseProxy.cs" />
