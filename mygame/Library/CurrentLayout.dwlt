@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 80
+  controlID: 84
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -92,7 +92,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &5
 MonoBehaviour:
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 9
+  controlID: 32
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 321}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 102
+  controlID: 33
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -399,7 +399,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 5c4affff746bffffcc70fffffc72ffff1c73ffff2073ffff2273ffff5e7affff1cb5ffffe2b8ffff02b9ffff06b9ffff08b9ffff46baffff68bcffff6cbcffff6ebcffff64beffff66beffff06cdffff2acdffff3ccdffffa2d1ffffc6d1ffffd8d1fffffadfffff1ee0ffff30e0ffff32e0ffffe4fbffffe6fbffff00000000
+    m_ExpandedIDs: e6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -505,9 +505,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ce2e0000
-    m_LastClickedID: 11982
-    m_ExpandedIDs: 00000000422c0000762c0000882c0000f42c0000062d0000842d0000c42d00001e2e00005a2e0000902e0000ae2e0000ba2e0000e22e00000c2f00006a2f00003e30000000ca9a3b
+    m_SelectedIDs: d02e0000
+    m_LastClickedID: 11984
+    m_ExpandedIDs: 00000000422c0000762c0000882c0000f62c0000082d0000862d0000c62d0000202e00005c2e0000922e0000b02e0000bc2e0000e42e00000e2f00006c2f00005c30000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -535,7 +535,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000422c0000762c0000882c0000f42c0000062d0000842d0000c42d00001e2e00005a2e0000902e0000ae2e0000ba2e0000e22e00000c2f00006a2f00003e300000
+    m_ExpandedIDs: 00000000422c0000762c0000882c0000f62c0000082d0000862d0000c62d0000202e00005c2e0000922e0000b02e0000bc2e0000e42e00000e2f00006c2f00005c300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

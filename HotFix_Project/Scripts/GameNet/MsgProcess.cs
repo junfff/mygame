@@ -1,6 +1,7 @@
 ﻿namespace GameNet
 {
     using GameBase;
+    using GameEvent;
     using UnityEngine;
 
     public class MsgProcess : IMsgProcess
@@ -29,6 +30,7 @@
             while (socketStateQueue.TryDequeue(out tmp))
             {
                 Debug.LogFormat("SocketConnectState state = {0} error = {1}", tmp.socketState, tmp.errorno);
+                this.Context.CoreModules.eventMDL.Publish(DefineEvent.EVENT_SOCKET_STATUS, tmp);
             }
 
             IReceiver receiver = null;

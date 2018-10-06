@@ -76,6 +76,7 @@ namespace GameNet
         public void OnUpdate(float elapse)
         {
             msgProcess.OnUpdate(elapse);
+            heartBeat.OnUpdate(elapse);
         }
     }
 }

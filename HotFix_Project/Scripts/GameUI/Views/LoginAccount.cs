@@ -39,12 +39,14 @@
         private void OnBackButton()
         {
             Debug.Log("OnBackButton！！");
+            base.BindingContext.OnBackButton();
         }
         private void OnLoginButton()
         {
             LoginState.text = "开始登陆账号！！";
-            Debug.Log("开始登陆账号！！");
-            // base.BindingContext.OnLoginButton();
+            base.BindingContext.account_text.Value = InputAccount.text;
+            base.BindingContext.passed_text.Value = InputPassed.text;
+            base.BindingContext.OnLoginButton();
         }
     }
 }

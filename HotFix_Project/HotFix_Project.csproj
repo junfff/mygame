@@ -145,6 +145,7 @@
     <Compile Include="Scripts\GameBusiness\Lobby\LobbyMainBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Login\LoginAccountBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Login\LoginBusiness.cs" />
+    <Compile Include="Scripts\GameEvent\DefineEvent.cs" />
     <Compile Include="Scripts\GameEvent\EventModule.cs" />
     <Compile Include="Scripts\GameEvent\GameEventExtensions.cs" />
     <Compile Include="Scripts\GameEvent\IEventModule.cs" />
