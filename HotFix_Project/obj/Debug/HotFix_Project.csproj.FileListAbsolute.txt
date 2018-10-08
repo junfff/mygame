@@ -26,3 +26,11 @@ D:\Git\HotFix_Project\obj\Debug\HotFix_Project.csproj.CoreCompileInputs.cache
 D:\Git\HotFix_Project\obj\Debug\HotFix_Project.csproj.CopyComplete
 D:\Git\HotFix_Project\obj\Debug\HotFix_Project.dll
 D:\Git\HotFix_Project\obj\Debug\HotFix_Project.pdb
+E:\unity\mygame\HotFix_Project\lib\HotFix_Project.dll
+E:\unity\mygame\HotFix_Project\lib\HotFix_Project.pdb
+E:\unity\mygame\HotFix_Project\lib\Assembly-CSharp.dll
+E:\unity\mygame\HotFix_Project\obj\Debug\HotFix_Project.csprojAssemblyReference.cache
+E:\unity\mygame\HotFix_Project\obj\Debug\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\unity\mygame\HotFix_Project\obj\Debug\HotFix_Project.csproj.CopyComplete
+E:\unity\mygame\HotFix_Project\obj\Debug\HotFix_Project.dll
+E:\unity\mygame\HotFix_Project\obj\Debug\HotFix_Project.pdb
