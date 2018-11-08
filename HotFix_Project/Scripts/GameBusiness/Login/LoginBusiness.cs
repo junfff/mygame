@@ -18,6 +18,7 @@
             base.Subscribe(base.viewModel.Define_StartButton, OnStartButton);
             base.Subscribe(base.viewModel.Define_LoginButton, OnLoginButton);
             base.Subscribe(base.viewModel.Define_SendButton, OnSendButton);
+            base.Subscribe(base.viewModel.Define_RegisterButton,OnRegisterButton);
 
             //base.timerHandler.AddTimer(1000, OnTime);
 
@@ -29,7 +30,8 @@
             base.UnSubscribe(base.viewModel.Define_StartButton, OnStartButton);
             base.UnSubscribe(base.viewModel.Define_LoginButton, OnLoginButton);
             base.UnSubscribe(base.viewModel.Define_SendButton, OnSendButton);
-
+            base.UnSubscribe(base.viewModel.Define_RegisterButton,OnRegisterButton);
+            
             base.CoreModules.eventMDL.UnSubscribe(DefineProtobuf.MSG_PERSON, OnPerson);
         }
 
@@ -47,6 +49,11 @@
             Debug.LogErrorFormat("OnTime passedTime = {0}", passedTime);
             base.viewModel.LoginState.Value = string.Format("Start Connecting...{0}\n", passedTime) + base.viewModel.LoginState.Value;
         }
+
+        private void OnRegisterButton(object param)
+        {
+            base.Core.UI.Show(UIDefine.LoginRegister);
+        }
         private void OnStartButton(object param)
         {
             base.Core.UI.Show(UIDefine.LoginAccount);
@@ -57,8 +64,8 @@
             base.viewModel.LoginState.Value = "Start Connecting...\n";
 
             ServerInfo info = new ServerInfo();
-            info.ip = "47.106.123.211";
-            //info.ip = "172.16.252.134";
+            //info.ip = "47.106.123.211";
+            info.ip = "172.16.129.131";
             //info.ip = "127.0.0.1"; 172.16.129.128  172.16.252.134 172.16.252.134
             //info.ip = "172.16.129.128";
             //info.ip = "192.168.1.100"; 

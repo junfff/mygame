@@ -37,7 +37,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 #if DOTNET35
 // Needed for ReadOnlyDictionary, which does not exist in .NET 3.5
-using Google.Protobuf.Collections;
 #endif
 
 namespace Google.Protobuf.Reflection

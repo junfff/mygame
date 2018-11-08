@@ -63,7 +63,10 @@ namespace GameNet
                     return Person.Parser.ParseFrom(msg.GetByte());
             }
 
-            Debug.LogErrorFormat("ReceiverHelper ParseFrom not find parser  !!!! msgid = {0}", msg.MsgID);
+            if ( msg.MsgID != DefineProtobuf.MSG_HEARTBEAT)
+            {
+                Debug.LogErrorFormat("ReceiverHelper ParseFrom not find parser  !!!! msgid = {0}", msg.MsgID);
+            }
             return null;
         }
     }

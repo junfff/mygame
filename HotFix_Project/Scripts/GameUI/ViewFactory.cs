@@ -16,6 +16,10 @@ namespace GameUI
                     return new LoginView();
                 case UIDefine.LoginAccount:
                     return new LoginAccount();
+                case UIDefine.LoginRegister:
+                    return new LoginRegister();
+                case UIDefine.WindowHint:
+                    return new WindowHint();
             }
             Debug.LogErrorFormat("ViewFactory Create error !!!");
             return null;
@@ -33,6 +37,10 @@ namespace GameUI
                     return UIDefine.Login;
                 case UIDefine.LoginAccount:
                     return UIDefine.UILoginAccount;
+                case  UIDefine.LoginRegister:
+                    return UIDefine.UILoginRegister;
+                case  UIDefine.WindowHint:
+                    return UIDefine.UIWindowHint;
             }
             Debug.LogErrorFormat("ViewFactory Create error !!!");
             return null;

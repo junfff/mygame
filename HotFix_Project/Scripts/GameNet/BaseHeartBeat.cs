@@ -6,7 +6,7 @@ namespace GameNet
 {
     public class BaseHeartBeat : IHeartBeat
     {
-        private const int heartTime = 5000;
+        private const int heartTime = 1000;
         private int heartNum;
         public IRemote Context { get; set; }
         public void Initialize()
@@ -52,7 +52,7 @@ namespace GameNet
         private void OnTime(int passedTime)
         {
             this.heartNum++;
-            Debug.Log("心跳时间！！啵啵啵");
+            //Debug.Log("心跳时间！！啵啵啵");
 
             HeartBeat p = new HeartBeat();
             p.ActionId = this.heartNum;

@@ -28,9 +28,14 @@ namespace GameBase
         {
             base.messageAggregator.Publish(Define_LoginButton, true);
         }
+        public void OnRegisterButton()
+        {
+            base.messageAggregator.Publish(Define_RegisterButton, true);
+        }
         public int Define_StartButton { get { return 1; } }
         public int Define_LoginButton { get { return 2; } }
         public int Define_SendButton { get { return 3; } }
+        public int Define_RegisterButton { get { return 4; } }
 
         public void OnSendButton(string text)
         {

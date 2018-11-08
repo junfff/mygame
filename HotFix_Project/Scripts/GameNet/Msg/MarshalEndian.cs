@@ -122,13 +122,13 @@ public class MarshalEndian: IMarshalEndian
                         }
                         else
                         {
-                            Debug.LogErrorFormat("成功 包头！！！");
+                            //Debug.LogErrorFormat("成功 包头！！！");
                         }
                         #endregion
 
                         #region 包协议  
                         int offset = buffers.ReadInt16();
-                        Debug.LogErrorFormat("包协议，长度是 offset={0}",offset);
+                        //Debug.LogErrorFormat("包协议，长度是 offset={0}",offset);
                         #endregion
 
                         #region 包解析  
@@ -136,7 +136,7 @@ public class MarshalEndian: IMarshalEndian
                         if (offset <= (buffers.BaseStream.Length - buffers.BaseStream.Position))
                         {
                             int msgID = buffers.ReadInt32();
-                            Debug.LogErrorFormat("msgID= {0}",msgID);
+                            //Debug.LogErrorFormat("msgID= {0}",msgID);
                             _buff = buffers.ReadBytes(offset - 4);
 
                             IBaseMessage msg = ReceiverHelper.PopMessage();

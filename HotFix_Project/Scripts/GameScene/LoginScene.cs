@@ -9,7 +9,9 @@
         {
             base.Initialize();
             base.AddBusiness<LoginAccountBusiness>();
-            base.AddBusiness<LoginBusiness>(); 
+            base.AddBusiness<LoginBusiness>();
+            base.AddBusiness<WindowHintBusiness>();
+            base.AddBusiness<LoginRegisterBusiness>();
         }
 
         public override SceneType sceneType

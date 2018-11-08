@@ -18,7 +18,7 @@
             dictBind.AddButton("StartButton", OnStartButton);
             dictBind.AddButton("LoginButton", OnLoginButton);
             dictBind.AddButton("SendButton", OnSendButton);
-
+            dictBind.AddButton("RegisterButton", OnRegisterButton);
 
             Binder.Add<string>("LoginState", OnLoginState);
 
@@ -39,6 +39,7 @@
             dictBind.RemoveButton("StartButton", OnStartButton);
             dictBind.RemoveButton("LoginButton", OnLoginButton);
             dictBind.RemoveButton("SendButton", OnSendButton);
+            dictBind.RemoveButton("RegisterButton", OnSendButton);
         }
 
         private void OnSendButton()
@@ -55,5 +56,11 @@
         {
             base.BindingContext.OnLoginButton();
         }
+
+        public void OnRegisterButton()
+        {
+            base.BindingContext.OnRegisterButton();
+        }
+        
     }
 }

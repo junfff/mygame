@@ -20,7 +20,7 @@ namespace GameNet
         }
         public void OnRead(byte[] buff, int offset, int length)
         {
-            Debug.LogFormat("============ Socket Read :  buff.Length = {0} offset = {1}, buff = ( {2} )", length, offset,buff.ToString());
+            //Debug.LogFormat("============ Socket Read :  buff.Length = {0} offset = {1}, buff = ( {2} )", length, offset,buff.ToString());
 
             List<IBaseMessage> list = Context.marshalEndian.Decode(buff, length);
 
@@ -43,7 +43,10 @@ namespace GameNet
 
             if (null == message)
             {
-                Debug.LogErrorFormat("MsgReceiver OnRead ParseFrom message is null !!!! msgid = {0}", msgId);
+                if (msgId != DefineProtobuf.MSG_HEARTBEAT)
+                {
+                    Debug.LogErrorFormat("MsgReceiver OnRead ParseFrom message is null !!!! msgid = {0}", msgId);
+                }
                 return;
             }
 
@@ -57,7 +60,10 @@ namespace GameNet
 
             Context.msgProcess.EnqueueReceiver(receiver);
 
-            Debug.LogFormat("============ Socket Read :  msgId = {0} size = {1}", msgId, size);
+            if (msgId != DefineProtobuf.MSG_HEARTBEAT)
+            {
+                Debug.LogFormat("============ Socket Read :  msgId = {0} size = {1}", msgId, size);
+            }
         }
     }
 }

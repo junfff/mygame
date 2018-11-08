@@ -24,9 +24,12 @@ namespace GameNet
             {
                 byte[] tmp = Context.marshalEndian.Encode(msg);
 
-                Debug.LogFormat("============ Socket Send : ({0}) byte length : {1}   tmp[0]:{2} tmp[1]:{3}", 
-                    msg.GetString(), tmp.Length,tmp[0].ToString("x8"),tmp[1].ToString("x8"));
-
+                if (msg.MsgID != DefineProtobuf.MSG_HEARTBEAT)
+                {
+                    Debug.LogFormat("============ Socket Send : ({0}) byte length : {1}   tmp[0]:{2} tmp[1]:{3}", 
+                        msg.GetString(), tmp.Length,tmp[0].ToString("x8"),tmp[1].ToString("x8"));
+                }
+            
                 Context.socket.Send(tmp, tmp.Length);
             }
             else
