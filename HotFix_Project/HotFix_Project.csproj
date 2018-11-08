@@ -145,6 +145,8 @@
     <Compile Include="Scripts\GameBusiness\Lobby\LobbyMainBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Login\LoginAccountBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Login\LoginBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\Login\LoginRegisterBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\Login\WindowHintBusiness.cs" />
     <Compile Include="Scripts\GameEvent\DefineEvent.cs" />
     <Compile Include="Scripts\GameEvent\EventModule.cs" />
     <Compile Include="Scripts\GameEvent\GameEventExtensions.cs" />
@@ -202,10 +204,14 @@
     <Compile Include="Scripts\GameUI\ViewFactory.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LobbyMainViewModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LoginAccountModel.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\LoginRegisterModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\WindowHintModel.cs" />
     <Compile Include="Scripts\GameUI\Views\LoginAccount.cs" />
+    <Compile Include="Scripts\GameUI\Views\LoginRegister.cs" />
     <Compile Include="Scripts\GameUI\Views\LoginView.cs" />
     <Compile Include="Scripts\GameUI\Views\MainMenuView.cs" />
+    <Compile Include="Scripts\GameUI\Views\WindowHint.cs" />
     <Compile Include="Scripts\GameUtil\BaseProxy.cs" />
     <Compile Include="Scripts\GameUtil\CoreUtil.cs" />
     <Compile Include="Scripts\GameUtil\ICore.cs" />
