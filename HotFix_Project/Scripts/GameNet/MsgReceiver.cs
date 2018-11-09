@@ -43,10 +43,7 @@ namespace GameNet
 
             if (null == message)
             {
-                if (msgId != DefineProtobuf.MSG_HEARTBEAT)
-                {
                     Debug.LogErrorFormat("MsgReceiver OnRead ParseFrom message is null !!!! msgid = {0}", msgId);
-                }
                 return;
             }
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 package protobufMsg;
-message Register_CS {
+message MsgRegister_CS {
   string accountId = 1;
   string name = 2;
   string mobilephone = 3;
@@ -9,6 +9,6 @@ message Register_CS {
   string pwd = 6;
 }
 
-message Register_SC {
+message MsgRegister_SC {
   int32 code = 1;
 }

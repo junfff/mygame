@@ -1,4 +1,6 @@
-﻿namespace GameBusiness
+﻿using ProtobufMsg;
+
+namespace GameBusiness
 {
     using GameBase;
     using GameEvent;
@@ -37,9 +39,9 @@
 
         private void OnPerson(object param)
         {
-            if (param is Person)
+            if (param is MsgPerson)
             {
-                Person p = param as Person;
+                MsgPerson p = param as MsgPerson;
                 Debug.LogErrorFormat(">>>> LoginBusiness OnPerson name = {0} email = {1} id = {2} ", p.Name, p.Email, p.Id);
             }
         }
@@ -86,7 +88,7 @@
                     return;
                 }
 
-                Person p = new Person();
+                MsgPerson p = new MsgPerson();
                 p.Name = "huangqiaoping_hahaha";
                 p.Email = "67449789@qq.com";
                 p.Id = 222;

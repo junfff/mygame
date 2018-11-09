@@ -9,8 +9,12 @@ namespace GameNet
         private const int heartTime = 1000;
         private int heartNum;
         public IRemote Context { get; set; }
+        private MsgHeartBeat p;
+
         public void Initialize()
         {
+            p = new MsgHeartBeat();
+
             this.heartNum = 0;
         }
         public void Dispose()
@@ -54,9 +58,9 @@ namespace GameNet
             this.heartNum++;
             //Debug.Log("心跳时间！！啵啵啵");
 
-            HeartBeat p = new HeartBeat();
             p.ActionId = this.heartNum;
-
+            p.T0 = DateTimeHelper.GetTimeStamp(false);
+            
             IBaseMessage msg = ReceiverHelper.PopMessage();
             msg.WriteIn(p, DefineProtobuf.MSG_HEARTBEAT);
             this.Context.CoreModules.netMDL.SendMessage(msg);

@@ -1,0 +1,17 @@
+//1.t0：客户端发包时间，客户端时间 
+//2.t1：服务器收包时时间，服务器时间 
+//3.t2 : 服务器发包时间，服务器时间 
+//4.t3：客户端收包时间，客户端时间
+//总延时(两趟延时之和)total_delay ＝ （t3 － t0） － （t2 － t1）
+
+syntax = "proto3";
+package protobufMsg;
+message MsgHeartBeat {
+  int32 actionId = 1;
+  int32 num = 2;
+  int64 t0 = 3;
+  int64 t1 = 4;
+  int64 t2 = 5;
+  int64 t3 = 6;
+}
+

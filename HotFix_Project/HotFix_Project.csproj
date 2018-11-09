@@ -141,6 +141,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\GameBase\TContext.cs" />
     <Compile Include="Scripts\GameBusiness\BaseBusiness.cs" />
+    <Compile Include="Scripts\GameBusiness\HeartBeatBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\IBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Lobby\LobbyMainBusiness.cs" />
     <Compile Include="Scripts\GameBusiness\Login\LoginAccountBusiness.cs" />
@@ -186,8 +187,9 @@
     <Compile Include="Scripts\GameNet\ServerInfo.cs" />
     <Compile Include="Scripts\GameNet\SocketConnectState.cs" />
     <Compile Include="Scripts\GameNet\SocketState.cs" />
-    <Compile Include="Scripts\GameProto\Heartbeat.cs" />
-    <Compile Include="Scripts\GameProto\Person.cs" />
+    <Compile Include="Scripts\GameProto\MsgHeartbeat.cs" />
+    <Compile Include="Scripts\GameProto\MsgPerson.cs" />
+    <Compile Include="Scripts\GameProto\MsgRegister.cs" />
     <Compile Include="Scripts\GameTimer\ITimer.cs" />
     <Compile Include="Scripts\GameTimer\ITimerModule.cs" />
     <Compile Include="Scripts\GameTimer\BaseTimer.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="Scripts\GameUI\UIHelper.cs" />
     <Compile Include="Scripts\GameUI\UIType.cs" />
     <Compile Include="Scripts\GameUI\ViewFactory.cs" />
+    <Compile Include="Scripts\GameUI\ViewModels\HeartBeatModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LobbyMainViewModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LoginAccountModel.cs" />
     <Compile Include="Scripts\GameUI\ViewModels\LoginRegisterModel.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Scripts\GameUtil\ICore.cs" />
     <Compile Include="Scripts\GameUtil\IUIUtil.cs" />
     <Compile Include="Scripts\GameUtil\SceneUIProxy.cs" />
+    <Compile Include="Scripts\Helper\DateTimeHelper.cs" />
     <Compile Include="Scripts\Modules\BaseModule.cs" />
     <Compile Include="Scripts\GameBusiness\BusinessCollection.cs" />
     <Compile Include="Scripts\GameBusiness\BusinessModule.cs" />

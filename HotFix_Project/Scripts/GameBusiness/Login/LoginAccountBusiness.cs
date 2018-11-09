@@ -1,4 +1,6 @@
-﻿namespace GameBusiness
+﻿using ProtobufMsg;
+
+namespace GameBusiness
 {
     using GameBase;
     using GameEvent;
@@ -72,7 +74,7 @@
                     return;
                 }
 
-                Person p = new Person();
+                MsgPerson p = new MsgPerson();
                 p.Name = "huangqiaoping_hahaha";
                 p.Email = "67449789@qq.com";
                 p.Id = 222;

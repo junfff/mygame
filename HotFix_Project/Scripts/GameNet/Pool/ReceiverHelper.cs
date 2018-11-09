@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameBase;
 using Google.Protobuf;
+using ProtobufMsg;
 using UnityEngine;
 
 namespace GameNet
@@ -60,13 +61,14 @@ namespace GameNet
             switch (msg.MsgID)
             {
                 case (int)DefineProtobuf.MSG_PERSON:
-                    return Person.Parser.ParseFrom(msg.GetByte());
+                    return MsgPerson.Parser.ParseFrom(msg.GetByte());
+                case (int)DefineProtobuf.MSG_REGISTER:
+                    return MsgRegister_SC.Parser.ParseFrom(msg.GetByte());
+                
+                case (int)DefineProtobuf.MSG_HEARTBEAT:
+                    return MsgHeartBeat.Parser.ParseFrom(msg.GetByte());
             }
-
-            if ( msg.MsgID != DefineProtobuf.MSG_HEARTBEAT)
-            {
                 Debug.LogErrorFormat("ReceiverHelper ParseFrom not find parser  !!!! msgid = {0}", msg.MsgID);
-            }
             return null;
         }
     }
