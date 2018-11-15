@@ -4,10 +4,13 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model ID="{7CA51B63-28C8-47FC-AEC4-3334EBB680DA}" Name="Conceptual Data_Actor" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="coc/Conceptual Data_Actor.cdm"/>
-		<Model Expanded="Yes" ID="{E1672538-C4B6-49E1-9147-630D687EC0AD}" Name="Conceptual Data_app" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="app/Conceptual Data_app.cdm"/>
-		<Model ID="{D149611F-47E8-4E4A-93D8-812F636D0730}" Name="Conceptual Data_app" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="actor/Conceptual Data_app.ldm"/>
-		<Model ID="{58DF29DF-CFD9-4EB2-A2D0-5731E2C6CF7E}" Name="Conceptual Data_app" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="app/Conceptual Data_app.pdm"/>
+		<Model ID="{7CA51B63-28C8-47FC-AEC4-3334EBB680DA}" Loaded="No" Name="Conceptual Data_Actor" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="coc/Conceptual Data_Actor.cdm"/>
+		<Model Expanded="Yes" ID="{E1672538-C4B6-49E1-9147-630D687EC0AD}" Loaded="No" Name="Conceptual Data_app" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="app/Conceptual Data_app.cdm"/>
+		<Model ID="{D149611F-47E8-4E4A-93D8-812F636D0730}" Loaded="No" Name="Conceptual Data_app" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="actor/Conceptual Data_app.ldm"/>
+		<Model ID="{58DF29DF-CFD9-4EB2-A2D0-5731E2C6CF7E}" Loaded="No" Name="Conceptual Data_app" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="app/Conceptual Data_app.pdm"/>
+		<Model Expanded="Yes" ID="{755791BF-B796-4FF3-85E6-76A82D539338}" Name="Conceptual Data_USR_ROLE" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="app/Conceptual Data_USR_ROLE.cdm"/>
+		<Model Expanded="Yes" ID="{10C0E613-F51D-4294-8D32-C450D41B858A}" Name="Conceptual Data_USR_ROLE" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="app/Conceptual Data_USR_ROLE.ldm"/>
+		<Model Expanded="Yes" ID="{04483CB5-D658-474B-A9B1-D6C6E7059329}" Name="Conceptual Data_USR_ROLE" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="app/Conceptual Data_USR_ROLE.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
